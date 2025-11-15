@@ -13,8 +13,8 @@ interface GridPatternProps {
 }
 
 export function GridPattern({
-  width = 40,
-  height = 40,
+  width = 80,
+  height = 80,
   x = -1,
   y = -1,
   strokeDasharray = 0,
@@ -28,7 +28,8 @@ export function GridPattern({
     <svg
       aria-hidden="true"
       className={cn(
-        "pointer-events-none items-center flex justify-center inset-0 min-h-screen  w-1/2 fill-gray-400/30 stroke-gray-400/30",
+        // anchor to left and occupy half the container width so it can be used as a half-screen background
+        "pointer-events-none absolute  inset-y-0  w-1/2 h-full -z-10 fill-gray-400/30 stroke-gray-400/30",
         className,
       )}
       {...props}

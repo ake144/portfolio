@@ -22,8 +22,8 @@ export function NavbarItems() {
       link: "#features",
     },
     {
-      name: "Pricing",
-      link: "#pricing",
+      name: "About Me",
+      link: "/about-me",
     },
     {
       name: "Contact",
