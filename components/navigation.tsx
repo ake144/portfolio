@@ -17,13 +17,14 @@ import { useState } from "react";
 
 export function NavbarItems() {
   const navItems = [
-    {
-      name: "Features",
-      link: "#features",
-    },
+    
     {
       name: "About Me",
-      link: "/about-me",
+      link: "/",
+    },
+    {
+      name: "Projects",
+      link: "/projects",
     },
     {
       name: "Contact",
