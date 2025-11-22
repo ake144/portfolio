@@ -34,37 +34,37 @@ export function SocialButtons({
   className,
 }: SocialButtonsProps) {
   return (
-    <div className={cn("flex gap-3 items-center", className)}>
+    <div className={cn("flex gap-3 items-center justify-center" , className)}>
       <Button
         asChild
         variant="outline"
-        size="sm"
-        className="flex items-center gap-2 px-3 py-2 hover:scale-105 transform transition"
+        size="lg"
+        className="flex items-center gap-2 px-3 h-[70px] w-[70px] py-2 hover:scale-105 transform transition"
       >
         <a href={github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <IconGithub className="w-4 h-4" />
+          <IconGithub className="w-[50px] h-[50px] " />
         </a>
       </Button>
 
       <Button
         asChild
         variant="outline"
-        size="sm"
-        className="flex items-center gap-2 px-3 py-2 hover:scale-105 transform transition"
+        size="lg"
+        className="flex items-center gap-2 px-3 h-[70px] w-[70px] py-2 hover:scale-105 transform transition"
       >
         <a href={twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-          <IconTwitter className="w-4 h-4" />
+          <IconTwitter className="w-[50px] h-[50px]" />
         </a>
       </Button>
 
       <Button
         asChild
         variant="outline"
-        size="sm"
-        className="flex items-center gap-2 px-3 py-2 hover:scale-105 transform transition"
+        size="lg"
+        className="flex items-center h-[70px] w-[70px] gap-2 px-3 py-2 hover:scale-105 transform transition"
       >
         <a href={linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <IconLinkedIn className="w-4 h-4" />
+          <IconLinkedIn className="w-full h-full" />
         </a>
       </Button>
     </div>
