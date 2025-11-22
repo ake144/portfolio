@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import GridPattern from "./grid-layout";
+import AboutMe from "./about";
 
 const HeroSection=()=>{
     return (
@@ -10,13 +11,18 @@ const HeroSection=()=>{
            
      <div
         className={cn(
-          "absolute inset-0 z-0 px-22 mx-22 ",
+          "absolute inset-0 z-0 px-22 mx-76  flex justify-center items-center ",
           "[background-size:40px_40px]",
           "[background-image:linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)]",
           "dark:[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]",
         )}
-      />
-      {/* Radial gradient for the container to give a faded look */}
+      >
+          <AboutMe   />
+
+      </div>
+1
+    
+     
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
 
   </main>

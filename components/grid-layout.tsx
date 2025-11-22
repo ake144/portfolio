@@ -28,7 +28,7 @@ export function GridPattern({
     <svg
       aria-hidden="true"
       className={cn(
-        // anchor to left and occupy half the container width so it can be used as a half-screen background
+      
         "pointer-events-none absolute  inset-y-0  w-1/2 h-full -z-10 fill-gray-400/30 stroke-gray-400/30",
         className,
       )}
