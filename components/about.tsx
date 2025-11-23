@@ -69,14 +69,17 @@ const AboutMe = () => {
             it's been an exciting journey so far, and I'm eager to continue growing and contributing  to impactful projects in Fintech Industry.
           </p>
 
-          <div className="justify-end flex mt-12 " >
+          <div className="flex justify-end items-center mt-12 pr-8">
+            <div className="bg-white/5 dark:bg-white/3 rounded-2xl p-2">
               <SocialButtons
-                github="https://github.com/your-username"
+                size="lg"
+                className="gap-12"
+                github="https://github.com/ake144"
                 twitter="https://twitter.com/your-handle"
                 linkedin="https://www.linkedin.com/in/your-profile"
-              
               />
             </div>
+          </div>
 
       </div>
       </div>

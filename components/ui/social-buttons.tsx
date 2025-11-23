@@ -7,6 +7,7 @@ type SocialButtonsProps = {
   twitter?: string;
   linkedin?: string;
   className?: string;
+  size?: "sm" | "md" | "lg";
 };
 
 const IconGithub = (props: { className?: string }) => (
@@ -32,17 +33,18 @@ export function SocialButtons({
   twitter = "https://twitter.com/your-handle",
   linkedin = "https://www.linkedin.com/in/your-profile",
   className,
+  size = "lg",
 }: SocialButtonsProps) {
   return (
-    <div className={cn("flex gap-3 items-center justify-center" , className)}>
+    <div className={cn("flex gap-12 items-center", className)}>
       <Button
         asChild
         variant="outline"
         size="lg"
-        className="flex items-center gap-2 px-3 h-[70px] w-[70px] py-2 hover:scale-105 transform transition"
+        className="flex items-center justify-center rounded-full h-20 w-20 hover:scale-105 transform transition"
       >
         <a href={github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <IconGithub className="w-[50px] h-[50px] " />
+          <IconGithub className="size-custom w-14 h-14" />
         </a>
       </Button>
 
@@ -50,10 +52,10 @@ export function SocialButtons({
         asChild
         variant="outline"
         size="lg"
-        className="flex items-center gap-2 px-3 h-[70px] w-[70px] py-2 hover:scale-105 transform transition"
+        className="flex items-center justify-center rounded-full h-20 w-20 hover:scale-105 transform transition"
       >
         <a href={twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-          <IconTwitter className="w-[50px] h-[50px]" />
+                <IconTwitter className="size-custom w-14 h-14" />
         </a>
       </Button>
 
@@ -61,10 +63,10 @@ export function SocialButtons({
         asChild
         variant="outline"
         size="lg"
-        className="flex items-center h-[70px] w-[70px] gap-2 px-3 py-2 hover:scale-105 transform transition"
+        className="flex items-center justify-center rounded-full h-20 w-20 hover:scale-105 transform transition"
       >
         <a href={linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <IconLinkedIn className="w-full h-full" />
+                <IconLinkedIn className="size-custom w-14 h-14" />
         </a>
       </Button>
     </div>
