@@ -61,7 +61,7 @@ export function ProjectCard({ project, isHovered, onHoverChange }: ProjectCardPr
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors group/link"
+            className="inline-flex items-center gap-2 text-sm font-medium   transition-colors group/link"
           >
             <span>View Project</span>
             <ExternalLink className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
