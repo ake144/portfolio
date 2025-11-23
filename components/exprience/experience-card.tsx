@@ -43,7 +43,7 @@ export function ExperienceCard({ experience, isExpanded, onToggle, isFirst, isLa
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-2">
               <h3 className="text-xl font-bold text-foreground">{experience.role}</h3>
-              <span className="text-xs px-2 py-1 bg-accent/10 text-accent rounded-full font-semibold">
+              <span className="text-sm text-muted-foreground px-2 py-1 bg-accent/10  rounded-full font-semibold">
                 {experience.period}
               </span>
             </div>
@@ -62,7 +62,7 @@ export function ExperienceCard({ experience, isExpanded, onToggle, isFirst, isLa
         {/* Expandable content */}
         {isExpanded && (
           <div className="space-y-4 pt-4 border-t border-border/50">
-            <p className="text-sm text-foreground">{experience.description}</p>
+            {/* <p className="text-sm text-foreground">{experience.description}</p> */}
 
             {/* Highlights */}
             <div>
@@ -88,7 +88,7 @@ export function ExperienceCard({ experience, isExpanded, onToggle, isFirst, isLa
                 {experience.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs px-2.5 py-1 bg-accent/10 text-accent rounded-full font-medium hover:bg-accent/20 transition-colors"
+                    className="text-xs px-2.5 py-1 bg-accent/10 text-gray-100 rounded-full font-medium hover:bg-accent transition-colors"
                   >
                     {tag}
                   </span>
@@ -102,7 +102,7 @@ export function ExperienceCard({ experience, isExpanded, onToggle, isFirst, isLa
         {!isExpanded && (
           <div className="flex flex-wrap gap-2">
             {experience.tags.slice(0, 3).map((tag) => (
-              <span key={tag} className="text-xs px-2.5 py-1 bg-accent/10 text-accent rounded-full font-medium">
+              <span key={tag} className="text-xs px-2.5 py-1 bg-gray-300 text-accent rounded-full font-medium">
                 {tag}
               </span>
             ))}
