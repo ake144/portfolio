@@ -1,11 +1,12 @@
 import { cn } from "@/lib/utils";
 import GridPattern from "./grid-layout";
 import AboutMe from "./about";
+import { Spotlight } from "./ui/spotlight-new";
 
 const HeroSection=()=>{
     return (
 <div className="flex  max-w-4xl w-full items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-   
+   <Spotlight />  
 
       <main className="flex min-h-auto w-full max-w-5xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
            

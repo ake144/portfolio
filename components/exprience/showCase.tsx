@@ -46,7 +46,7 @@ export function ExperienceShowcase() {
   const [expandedId, setExpandedId] = useState<number | null>(null)
 
   return (
-    <section className="relative py-20 mt-22 px-4 sm:px-6 lg:px-8">
+    <section className="relative py-20 mb-12 mt-22 px-4 sm:px-6 lg:px-8">
       {/* Background accent line */}
       <div className="absolute left-0 top-0 h-full w-1 " />
 

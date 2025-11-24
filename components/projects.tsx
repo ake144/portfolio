@@ -3,8 +3,9 @@
 import { useState } from "react"
 
 import { cn } from "@/lib/utils";
-import { Spotlight } from "./ui/spotlight";
+
 import { ProjectCard } from "./projects/card";
+import { Spotlight } from "./ui/spotlight-new";
 
 const Projects=() => {
  const [hoveredId, setHoveredId] = useState<number | null>(null)
@@ -62,10 +63,12 @@ const Projects=() => {
                       "dark:[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]",
                     )}
                   >
-                    <Spotlight
+                    {/* <Spotlight
                         className="-top-40 left-0 md:-top-20 md:left-60"
                         fill="white"
-                        />
+                        /> */}
+      
+                      
 
                     <div className="flex justify-start items-start mt-32 max-w-2xl px-8">
                         <h1 className="text-5xl font-normal ">Real World Projects I've Worked On</h1>
@@ -76,7 +79,7 @@ const Projects=() => {
                        </p>
 
                      </div>
-
+               <Spotlight /> 
                      <div className=" mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 pl-8">
                         {projects.map((project) => (
                             <ProjectCard
@@ -87,7 +90,7 @@ const Projects=() => {
                             />
                         ))}
                         </div>
-                                
+                                 
                   </div>
 
     )
