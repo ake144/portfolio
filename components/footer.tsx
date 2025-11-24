@@ -10,10 +10,16 @@ const FooterPage=()=>{
         
 {/* <GridPattern   /> */}
 
-    <div className="h-[40rem] flex items-center justify-center">
+    <div className="h-[20rem] flex items-center justify-center">
       <TextHoverEffect text="UIForest" />
-      <p>hiiii</p>
     </div> 
+
+    <div>
+        <p className="flex items-end justify-end text-muted">
+        © 2024 UIForest. All rights reserved.
+        </p>
+        
+    </div>
         </main>
     </div>
     )

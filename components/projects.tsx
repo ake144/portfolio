@@ -56,7 +56,7 @@ const Projects=() => {
     return (
               <div
                     className={cn(
-                      "absolute inset-0 z-0 px-22 mx-76   h-[calc(120vh-10px)]",
+                      "absolute inset-0 z-0 px-22 mx-76    h-[calc(120vh-10px)]",
                       "[background-size:100px_100px]",
                       
                       "[background-image:linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)]",
@@ -79,7 +79,7 @@ const Projects=() => {
                        </p>
 
                      </div>
-               <Spotlight /> 
+               {/* <Spotlight />  */}
                      <div className=" mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 pl-8">
                         {projects.map((project) => (
                             <ProjectCard
