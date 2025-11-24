@@ -6,7 +6,7 @@ const ExpriencePage = ()=>{
     return (
          <div
                 className={cn(
-                    "absolute inset-0 z-0 px-22 mx-76 ",
+                    "absolute inset-0 z-0 px-22 mx-76  h-[calc(120vh-10px)] ",
                     "[background-size:100px_100px]",
                     
                     "[background-image:linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)]",

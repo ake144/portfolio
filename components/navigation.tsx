@@ -76,13 +76,13 @@ export function NavbarItems() {
               </a>
             ))}
             <div className="flex w-full flex-col gap-4">
-              <NavbarButton
+              {/* <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"
                 className="w-full"
               >
                 Login
-              </NavbarButton>
+              </NavbarButton> */}
               <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"
