@@ -15,8 +15,8 @@ const FooterPage=()=>{
     </div> 
 
     <div>
-        <p className="flex items-end justify-end text-muted">
-        © 2024 UIForest. All rights reserved.
+        <p className="flex items-end justify-end text-muted-foreground ">
+        © 2026 UIForest. All rights reserved.
         </p>
         
     </div>

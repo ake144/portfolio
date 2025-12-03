@@ -10,7 +10,7 @@ interface Project {
   description: string
   category: string
   tags: string[]
-  link: string
+  link?: string
   color: string
   icon: string
 }
