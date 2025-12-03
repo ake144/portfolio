@@ -32,7 +32,7 @@ export function NavbarItems() {
     },
     {
       name: "Contact",
-      link: "#contact",
+      link: "/contact",
     },
   ];
 

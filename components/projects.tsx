@@ -40,16 +40,16 @@ const Projects=() => {
     color: "from-red-500 to-pink-500",
     icon: "🎥",
   },
-  {
-    id: 4,
-    title: "MDJSONIFY",
-    description: "An optimized - 3x Faster way of dumping your json compatible data from markdown data store.",
-    category: "Developer Tool",
-    tags: ["CLI", "Node.js", "TypeScript", "JSON"],
-    link: "https://mdjsonify.dev",
-    color: "from-slate-500 to-gray-600",
-    icon: "⚡",
-  },
+  // {
+  //   id: 4,
+  //   title: "MDJSONIFY",
+  //   description: "An optimized - 3x Faster way of dumping your json compatible data from markdown data store.",
+  //   category: "Developer Tool",
+  //   tags: ["CLI", "Node.js", "TypeScript", "JSON"],
+  //   link: "https://mdjsonify.dev",
+  //   color: "from-slate-500 to-gray-600",
+  //   icon: "⚡",
+  // },
 ]
 
     return (
