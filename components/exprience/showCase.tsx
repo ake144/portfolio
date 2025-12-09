@@ -10,9 +10,9 @@ const experiences = [
     role: "Frontend Engineer",
     period: "2025 - Present",
     description:
-      "Part of the core team developing and maintaining the Safaricom Ethiopia web platform, focusing on delivering seamless user experiences. ",
+      "Part of the core team developing and maintaining the Safaricom Ethiopia web platform, focusing on delivering seamless user experiences.",
     highlights: ["M-Pesa Integration", "Architecture", "Performance Optimization"],
-    tags: [ "Docker", "Jenkins", "GitLab CI/CD", "Kubernetes", "Next.js", "TypeScript", "PostgreSQL", "AWS",],
+    tags: ["Docker", "Jenkins", "GitLab CI/CD", "Kubernetes", "Next.js", "TypeScript", "PostgreSQL", "AWS"],
     icon: "💼",
     color: "from-blue-500 to-cyan-500",
   },
@@ -34,7 +34,7 @@ const experiences = [
     role: "Frontend Developer",
     period: "2024 - 2025",
     description:
-      "As an Intern developer, contributed to job hunting platform admin dashboard, and  UI/UX implementation and performance improvements.",
+      "As an Intern developer, contributed to job hunting platform admin dashboard, and UI/UX implementation and performance improvements.",
     highlights: ["UI/UX Implementation", "Performance", "Client Management"],
     tags: ["React", "Tailwind CSS", "Figma", "JavaScript", "zustand"],
     icon: "🎨",
@@ -46,21 +46,20 @@ export function ExperienceShowcase() {
   const [expandedId, setExpandedId] = useState<number | null>(null)
 
   return (
-    <section className="relative py-20 mb-12 mt-22 px-4 sm:px-6 lg:px-8">
-      {/* Background accent line */}
-      <div className="absolute left-0 top-0 h-full w-1 " />
-
+    <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="mb-16 pl-8">
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">Career Journey</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl">
-            A timeline of my professional growth and the amazing teams I've worked with
+        <div className="mb-12 sm:mb-16 text-center sm:text-left">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+            Career Journey
+          </h2>
+          <p className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto sm:mx-0">
+            A timeline of my professional growth and the amazing teams I&apos;ve worked with
           </p>
         </div>
 
         {/* Timeline */}
-        <div className="space-y-4 pl-8">
+        <div className="space-y-4">
           {experiences.map((exp, index) => (
             <ExperienceCard
               key={exp.id}

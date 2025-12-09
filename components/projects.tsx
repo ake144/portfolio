@@ -1,98 +1,70 @@
 "use client"
 
 import { useState } from "react"
+import { ProjectCard } from "./projects/card"
 
-import { cn } from "@/lib/utils";
+const Projects = () => {
+  const [hoveredId, setHoveredId] = useState<number | null>(null)
 
-import { ProjectCard } from "./projects/card";
-import { Spotlight } from "./ui/spotlight-new";
+  const projects = [
+    {
+      id: 1,
+      title: "UIForest",
+      description: "Opensource Design system, UI component library and template solution based on tailwindcss and shadcn",
+      category: "Design System",
+      tags: ["React", "TypeScript", "Tailwind", "shadcn"],
+      link: "https://uiforest.dev",
+      color: "from-purple-500 to-indigo-500",
+      icon: "🎨",
+    },
+    {
+      id: 2,
+      title: "School Portal",
+      description: "A complete student management system for university and colleges to manage their students and academic activities.",
+      category: "Enterprise",
+      tags: ["Next.js", "TypeScript", "Node.js", "PostgreSQL"],
+      color: "from-blue-500 to-cyan-500",
+      icon: "💬",
+    },
+    {
+      id: 3,
+      title: "E-Commerce Platform",
+      description: "An E-commerce admin dashboard and platform for managing products, orders, and customers. Used by over 5000+ users worldwide.",
+      category: "Streaming",
+      tags: ["Next.js", "TypeScript", "Tanstack Query", "PostgreSQL"],
+      color: "from-red-500 to-pink-500",
+      icon: "🎥",
+    },
+  ]
 
-const Projects=() => {
- const [hoveredId, setHoveredId] = useState<number | null>(null)
+  return (
+    <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="mb-12 sm:mb-16 text-center sm:text-left max-w-3xl">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+            Real World Projects I&apos;ve Worked On
+          </h1>
+          <p className="text-base sm:text-lg text-slate-400">
+            I got an opportunity to work on several real-world projects that helped me enhance my skills and gain practical experience.
+            I&apos;ve put my efforts into building projects that solve real problems and showcase my abilities as a developer and also as a contributor to open-source projects.
+          </p>
+        </div>
 
-    const projects = [
-  {
-    id: 1,
-    title: "UIForest ",
-    description: "Opensource Design system, UI component library and template solution based on tailwindcss and shadcn",
-    category: "Design System",
-    tags: ["React", "TypeScript", "Tailwind", "shadcn"],
-    link: "https://uiforest.dev",
-    color: "from-purple-500 to-indigo-500",
-    icon: "🎨",
-  },
-  {
-    id: 2,
-    title: "School Portal",
-    description: "A complete student management system for university and colleges to manage their students and academic activities. ",
-    category: "Enterprise",
-    tags: ["Next.js", "TypeScript", "Node.js", "PostgreSQL"],
-    color: "from-blue-500 to-cyan-500",
-    icon: "💬",
-  },
-  {
-    id: 3,
-    title: "E-CommercePlatform",
-    description: "An E-commerce admin dashboard and platform for managing products, orders, and customers. used by over 5000+ users worldwide.",
-    category: "Streaming",
-    tags: ["Next.js", "TypeScript", "Tanstack Query", "PostgreSQL"],
-    
-    color: "from-red-500 to-pink-500",
-    icon: "🎥",
-  },
-  // {
-  //   id: 4,
-  //   title: "MDJSONIFY",
-  //   description: "An optimized - 3x Faster way of dumping your json compatible data from markdown data store.",
-  //   category: "Developer Tool",
-  //   tags: ["CLI", "Node.js", "TypeScript", "JSON"],
-  //   link: "https://mdjsonify.dev",
-  //   color: "from-slate-500 to-gray-600",
-  //   icon: "⚡",
-  // },
-]
-
-    return (
-              <div
-                    className={cn(
-                      "absolute inset-0 z-0 px-22 mx-76    h-[calc(120vh-10px)]",
-                      "[background-size:100px_100px]",
-                      
-                      "[background-image:linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)]",
-                      "dark:[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]",
-                    )}
-                  >
-                    {/* <Spotlight
-                        className="-top-40 left-0 md:-top-20 md:left-60"
-                        fill="white"
-                        /> */}
-      
-                      
-
-                    <div className="flex justify-start items-start mt-32 max-w-2xl px-8">
-                        <h1 className="text-5xl font-normal ">Real World Projects I've Worked On</h1>
-                    </div>
-                     <div className="mt-12 max-w-6xl mx-12 font-medium flex justify-center items-center ">
-                       <p>I got an opportunity to work on several real-world projects that helped me enhance my skills and gain practical experience.
-                         i've put my efforts into building projects that solve real problems and showcase my abilities as a developer and also as a contributor to open-source projects.
-                       </p>
-
-                     </div>
-               {/* <Spotlight />  */}
-                     <div className=" mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 pl-8">
-                        {projects.map((project) => (
-                            <ProjectCard
-                            key={project.id}
-                            project={project}
-                            isHovered={hoveredId === project.id}
-                            onHoverChange={(isHovered) => setHoveredId(isHovered ? project.id : null)}
-                            />
-                        ))}
-                        </div>
-                                 
-                  </div>
-
-    )
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              isHovered={hoveredId === project.id}
+              onHoverChange={(isHovered) => setHoveredId(isHovered ? project.id : null)}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
 }
 
-export default Projects;
+export default Projects

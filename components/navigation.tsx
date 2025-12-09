@@ -17,7 +17,7 @@ import { useState } from "react";
 
 export function NavbarItems() {
   const navItems = [
-    
+
     {
       name: "About Me",
       link: "/",
@@ -26,9 +26,13 @@ export function NavbarItems() {
       name: "Projects",
       link: "/projects",
     },
-       {
+    {
       name: "Experience",
       link: "/experience",
+    },
+    {
+      name: "Blog",
+      link: "/blog",
     },
     {
       name: "Contact",
@@ -46,7 +50,7 @@ export function NavbarItems() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">Login</NavbarButton>
+            {/* <NavbarButton variant="secondary">Login</NavbarButton> */}
             <NavbarButton variant="primary">Book a call</NavbarButton>
           </div>
         </NavBody>
@@ -94,7 +98,7 @@ export function NavbarItems() {
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
-     
+
     </div>
   );
 }
