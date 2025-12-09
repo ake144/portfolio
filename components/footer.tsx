@@ -4,8 +4,7 @@ import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 const FooterPage = () => {
     return (
         <footer className="relative bg-neutral-950 text-slate-100 overflow-hidden">
-            {/* Grid pattern background */}
-            <div
+                       <div
                 className={cn(
                     "absolute inset-0 z-0",
                     "[background-size:80px_80px]",
@@ -13,7 +12,7 @@ const FooterPage = () => {
                 )}
             />
 
-            {/* Radial gradient overlay for fade effect */}
+
             <div className="pointer-events-none absolute inset-0 bg-neutral-950 [mask-image:radial-gradient(ellipse_at_center,transparent_30%,black)]" />
 
             <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">

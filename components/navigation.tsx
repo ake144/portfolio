@@ -45,7 +45,7 @@ export function NavbarItems() {
   return (
     <div className="sticky top-0  z-50 w-full">
       <Navbar>
-        {/* Desktop Navigation */}
+        
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} />
