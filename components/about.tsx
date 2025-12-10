@@ -16,7 +16,7 @@ const AboutMe = () => {
       </div>
 
       {/* Main content */}
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center lg:items-start">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-22 items-center lg:items-start">
         {/* Avatar */}
         <div className="flex-shrink-0 w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[360px]">
           <PixelatedCanvas
@@ -42,7 +42,7 @@ const AboutMe = () => {
           />
         </div>
 
-        {/* Bio */}
+      
         <div className="flex-1 flex flex-col gap-6 text-center lg:text-left">
           <p className="text-base sm:text-lg leading-7 text-slate-300">
             A passionate developer with a love for creating innovative solutions.
@@ -72,14 +72,14 @@ const AboutMe = () => {
           </p>
 
           {/* Social buttons */}
-          <div className="flex justify-center lg:justify-start mt-4">
-            <div className="rounded-2xl bg-white/5 p-3">
+          <div className="flex justify-end lg:justify-end mt-4">
+            <div className="rounded-2xl  p-3">
               <SocialButtons
                 size="lg"
                 className="gap-6"
                 github="https://github.com/ake144"
-                twitter="https://twitter.com/your-handle"
-                linkedin="https://www.linkedin.com/in/your-profile"
+                twitter="https://x.com/AkeTamirat94397"
+                linkedin="https://www.linkedin.com/in/akeja/"
               />
             </div>
           </div>
