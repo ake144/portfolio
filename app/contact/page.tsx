@@ -1,7 +1,10 @@
+'use client';
+
 import GridPattern from "@/components/grid-layout";
 import SocialButtons from "@/components/ui/social-buttons";
 import CopyButton from "@/components/ui/copy-button";
 import Link from "next/link";
+import { useState } from "react";
 
 const contactDetails = [
 	{
@@ -11,8 +14,8 @@ const contactDetails = [
 	},
 	{
 		label: "Phone",
-		value: "+251 90 000 0000",
-		href: "tel:+251900000000",
+		value: "+251 954234576`",
+		href: "tel:+251954234576",
 	},
 	{
 		label: "Location",
@@ -21,6 +24,46 @@ const contactDetails = [
 ];
 
 const ContactPage = () => {
+   const [emailSubmitted, setEmailSubmitted] = useState(false);
+   const [error, setError] = useState<string | null>(null);
+   const [loading, setLoading] = useState(false);
+    
+   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+	  event.preventDefault();
+	  setLoading(true);
+	  setError(null);
+	  
+	  const formData = new FormData(event.currentTarget);
+	  const data = {
+		 email: formData.get("email"),
+		 subject: formData.get("subject"),
+		 message: formData.get("message"),
+	  };
+	  
+	  try {
+		 const response = await fetch("/api/send", {
+			method: "POST",
+			headers: {
+			   "Content-Type": "application/json",
+			},
+			body: JSON.stringify(data),
+		 });
+		 
+		 if (response.ok) {
+			setEmailSubmitted(true);
+			event.currentTarget.reset();
+		 } else {
+			const result = await response.json();
+			setError(result.message || "Failed to send email");
+		 }
+	  } catch (err) {
+		 setError("An unexpected error occurred");
+	  } finally {
+		 setLoading(false);
+	  }
+   }
+
+
 	return (
 		<section className="relative min-h-screen overflow-hidden bg-neutral-950 text-slate-100">
 			<GridPattern
@@ -88,13 +131,13 @@ const ContactPage = () => {
 							Tell me a little bit about your project, timeline, and goals.
 						</p>
 
-						<form className="mt-8 space-y-5">
+						<form className="mt-8 space-y-5" onSubmit={handleSubmit}>
 							<div>
 								<label className="text-sm text-slate-300">Full name</label>
 								<input
 									type="text"
 									placeholder="Jane Doe"
-									className="mt-2 w-full rounded-xl border border-white/10 bg-neutral-900/70 px-4 py-3 text-white outline-none focus:border-sky-500"
+									className="mt-2 w-full rounded-xl border border-white/10 bg-neutral-900/70 px-4 py-3 text-white outline-none focus:border-sky-100"
 								/>
 							</div>
 							<div className="grid sm:grid-cols-2 gap-4">
@@ -126,11 +169,11 @@ const ContactPage = () => {
 							</div>
 
 							<div className="flex flex-wrap items-center gap-4">
-								<button
+								<button 
 									type="submit"
-									className="inline-flex items-center justify-center rounded-2xl bg-linear-to-r from-sky-500 via-cyan-500 to-emerald-400 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-sky-500/30 transition hover:scale-[1.01]"
+									className="inline-flex items-center justify-center rounded-2xl  hover:cursor-pointer px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-sky-500/30 transition hover:scale-[1.01]"
 								>
-									Send message
+								{loading ? "Sending..." : "Send message"}
 								</button>
 								<p className="text-xs text-slate-400">
 									By sending, you agree to receive a reply via email.
