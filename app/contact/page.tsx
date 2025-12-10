@@ -5,6 +5,8 @@ import SocialButtons from "@/components/ui/social-buttons";
 import CopyButton from "@/components/ui/copy-button";
 import Link from "next/link";
 import { useState } from "react";
+import { toast } from "sonner"
+
 
 const contactDetails = [
 	{
@@ -27,6 +29,8 @@ const ContactPage = () => {
    const [emailSubmitted, setEmailSubmitted] = useState(false);
    const [error, setError] = useState<string | null>(null);
    const [loading, setLoading] = useState(false);
+
+
     
    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 	  event.preventDefault();
@@ -40,7 +44,8 @@ const ContactPage = () => {
 		 message: formData.get("message"),
 	  };
 	  
-	  try {
+	  
+   try {
 		 const response = await fetch("/api/send", {
 			method: "POST",
 			headers: {
@@ -50,6 +55,9 @@ const ContactPage = () => {
 		 });
 		 
 		 if (response.ok) {
+			toast("Email sent successfully!",{
+				description: "Thank you for reaching out. I'll get back to you soon.",
+			});
 			setEmailSubmitted(true);
 			event.currentTarget.reset();
 		 } else {
