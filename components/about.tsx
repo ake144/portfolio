@@ -3,8 +3,26 @@
 import { PixelatedCanvas } from "./ui/pixelated-canvas";
 import SocialButtons from "./ui/social-buttons";
 import Link from "next/link";
+import { MorphingText } from "@/components/ui/morphing-text"
 
 const AboutMe = () => {
+   const texts = [
+  "Hello",
+  "Aklilu Tamirat",
+  "Software Developer",
+  "Full-Stack",
+  "Web",
+  "Mobile",
+  "Backend",
+  "JavaScript",
+  "TypeScript",
+  "Python",
+  "React",
+  "Next.js",
+  "Node.js",
+  "Flutter",
+]
+
   return (
     <div className="w-full flex flex-col gap-12">
       {/* Header */}
@@ -13,7 +31,9 @@ const AboutMe = () => {
           About Me
         </p>
         <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight text-white">
-          Hello, I&apos;m Aklilu Tamirat
+          {/* Hello, I&apos;m Aklilu Tamirat */}
+               Hello, I&apos;m 
+          <MorphingText texts={texts} />
         </h1>
       </div>
 
