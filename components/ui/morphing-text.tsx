@@ -143,6 +143,7 @@ export const MorphingText: React.FC<MorphingTextProps> = ({
       className
     )}
   >
+
     <Texts texts={texts} />
     <SvgFilters />
   </div>

@@ -7,20 +7,13 @@ import { MorphingText } from "@/components/ui/morphing-text"
 
 const AboutMe = () => {
    const texts = [
-  "Hello",
   "Aklilu Tamirat",
-  "Software Developer",
   "Full-Stack",
   "Web",
   "Mobile",
   "Backend",
-  "JavaScript",
-  "TypeScript",
-  "Python",
-  "React",
-  "Next.js",
-  "Node.js",
-  "Flutter",
+  "Developer",
+  "Software Engineer",
 ]
 
   return (
@@ -30,10 +23,12 @@ const AboutMe = () => {
         <p className="text-sm uppercase tracking-[0.3em] text-slate-400">
           About Me
         </p>
-        <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight text-white">
-          {/* Hello, I&apos;m Aklilu Tamirat */}
-               Hello, I&apos;m 
-          <MorphingText texts={texts} />
+        <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight text-white flex flex-wrap items-center gap-x-3 gap-y-2">
+          <span className="whitespace-nowrap">Hello, I&apos;m</span>
+          <MorphingText 
+            texts={texts} 
+            className="text-3xl mt-8 sm:text-4xl lg:text-5xl leading-tight h-[1.2em] flex-1 min-w-[200px] text-left mx-0 max-w-none font-semibold"
+          />
         </h1>
       </div>
 
@@ -111,6 +106,14 @@ const AboutMe = () => {
             frameworks, researching innovative app ideas, hiking, reading, or
             diving into tech topics like offline-first systems, modular
             architecture, clean code patterns, and real-world problem solving.
+            here's <Link
+              href="/aklilu_tamirat_resume.pdf"
+              className="underline text-emerald-400 hover:text-emerald-300 transition-colors"
+            >
+              my resume
+            </Link>{" "}
+            if you&apos;d like to learn more about my experience and projects.
+
           </p>
 
           {/* Social buttons */}

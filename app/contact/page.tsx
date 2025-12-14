@@ -37,10 +37,12 @@ const ContactPage = () => {
 	  setLoading(true);
 	  setError(null);
 	  
-	  const formData = new FormData(event.currentTarget);
+	  const form = event.currentTarget;
+	  const formData = new FormData(form);
 	  const data = {
+		 name: formData.get("name"),
 		 email: formData.get("email"),
-		 subject: formData.get("subject"),
+		 company: formData.get("company"),
 		 message: formData.get("message"),
 	  };
 	  
@@ -53,13 +55,15 @@ const ContactPage = () => {
 			},
 			body: JSON.stringify(data),
 		 });
+
+		 console.log("Response status:", response.ok);
 		 
-		 if (response.ok) {
+		 if (response.ok || response.status === 200) {
 			toast("Email sent successfully!",{
 				description: "Thank you for reaching out. I'll get back to you soon.",
 			});
 			setEmailSubmitted(true);
-			event.currentTarget.reset();
+			form.reset();
 		 } else {
 			const result = await response.json();
 			setError(result.message || "Failed to send email");
@@ -143,6 +147,8 @@ const ContactPage = () => {
 							<div>
 								<label className="text-sm text-slate-300">Full name</label>
 								<input
+									required
+									name="name"
 									type="text"
 									placeholder="Jane Doe"
 									className="mt-2 w-full rounded-xl border border-white/10 bg-neutral-900/70 px-4 py-3 text-white outline-none focus:border-sky-100"
@@ -152,6 +158,8 @@ const ContactPage = () => {
 								<div>
 									<label className="text-sm text-slate-300">Email address</label>
 									<input
+										required
+										name="email"
 										type="email"
 										placeholder="you@example.com"
 										className="mt-2 w-full rounded-xl border border-white/10 bg-neutral-900/70 px-4 py-3 text-white outline-none focus:border-sky-500"
@@ -160,6 +168,7 @@ const ContactPage = () => {
 								<div>
 									<label className="text-sm text-slate-300">Company</label>
 									<input
+										name="company"
 										type="text"
 										placeholder="Your organization"
 										className="mt-2 w-full rounded-xl border border-white/10 bg-neutral-900/70 px-4 py-3 text-white outline-none focus:border-sky-500"
@@ -170,6 +179,8 @@ const ContactPage = () => {
 							<div>
 								<label className="text-sm text-slate-300">How can I help?</label>
 								<textarea
+									required
+									name="message"
 									rows={5}
 									placeholder="Tell me about your project, brief, or problem you need help with."
 									className="mt-2 w-full rounded-2xl border border-white/10 bg-neutral-900/70 px-4 py-3 text-white outline-none focus:border-sky-500"
