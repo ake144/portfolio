@@ -42,7 +42,10 @@ const Projects = () => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-12 sm:mb-16 text-center sm:text-left max-w-3xl">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+           <p className="text-sm uppercase tracking-[0.3em] text-slate-400">
+            Projects
+            </p>
+          <h1 className="text-3xl mt-9 sm:mt-10 sm:text-4xl lg:text-5xl font-bold text-white mb-6">
             Real World Projects I&apos;ve Worked On
           </h1>
           <p className="text-base sm:text-lg text-slate-400">

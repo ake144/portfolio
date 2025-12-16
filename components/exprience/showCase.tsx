@@ -50,7 +50,10 @@ export function ExperienceShowcase() {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-12 sm:mb-16 text-center sm:text-left">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+           <p className="text-sm uppercase tracking-[0.3em] text-slate-400">
+            Experience
+            </p>
+          <h2 className="text-3xl mt-9 sm:mt-10 sm:text-4xl lg:text-5xl font-bold text-white mb-4">
             Career Journey
           </h2>
           <p className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto sm:mx-0">
