@@ -15,10 +15,14 @@ export function BlogList({ posts }: BlogListProps) {
     }
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {posts.map((post) => (
-                <BlogCard key={post.slug} post={post} />
-            ))}
+        <div className="relative z-10 w-full max-w-7xl border border-neutral-800 bg-neutral-800">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-neutral-800">
+                {posts.map((post) => (
+                    <div className="bg-black h-full" key={post.slug}>
+                        <BlogCard post={post} />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
