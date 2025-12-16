@@ -8,10 +8,10 @@ import { MorphingText } from "@/components/ui/morphing-text"
 const AboutMe = () => {
    const texts = [
   "Aklilu Tamirat",
-  "Full-Stack",
   "Web",
   "Mobile",
   "Backend",
+  "Full-Stack",
   "Developer",
   "Software Engineer",
 ]
@@ -27,7 +27,7 @@ const AboutMe = () => {
           <span className="whitespace-nowrap">Hello, I&apos;m</span>
           <MorphingText 
             texts={texts} 
-            className="text-3xl mt-8 sm:text-4xl lg:text-5xl leading-tight h-[1.2em] flex-1 min-w-[200px] text-left mx-0 max-w-none font-semibold"
+            className="text-3xl mt-0 sm:mt-9 sm:text-4xl lg:text-5xl leading-tight h-[1.2em] flex-1 min-w-[200px] text-left mx-0 max-w-none font-semibold"
           />
         </h1>
       </div>
@@ -57,10 +57,23 @@ const AboutMe = () => {
             tintStrength={0.2}
             className="rounded-xl border border-neutral-800 shadow-lg w-full aspect-square"
           />
+
+           <div className="flex justify-center  lg:justify-end mt-8 sm:mt-12">
+            <div className="rounded-2xl  p-3">
+              <SocialButtons
+                size="lg"
+                className="gap-6"
+                github="https://github.com/ake144"
+                twitter="https://x.com/AkeTamirat94397"
+                linkedin="https://www.linkedin.com/in/akeja/"
+              />
+            </div>
+          </div>
+
         </div>
 
         <div className="flex-1 flex flex-col gap-6 text-center lg:text-left">
-          <p className="text-base sm:text-lg leading-7 text-slate-300">
+          <p className="text-base sm:text-lg leading-7 tracking-[.2em] text-slate-400">
             I&apos;m a passionate and versatile software developer who loves building
             real-world solutions that solve meaningful problems. Over the past
             few years, I&apos;ve worked across Web, Mobile, and Backend development —
@@ -68,7 +81,7 @@ const AboutMe = () => {
             make everyday tasks simpler and more efficient.
           </p>
 
-          <p className="text-base sm:text-lg leading-7 text-slate-300 mt-4">
+          <p className="text-base sm:text-lg leading-7 tracking-[0.2em] text-slate-400 mt-4">
             My core expertise includes modern JavaScript and its ecosystem —
             React, Next.js, Node.js, Express — alongside TypeScript, Python,
             Flutter, and Native Android/iOS development. I also enjoy working
@@ -77,16 +90,16 @@ const AboutMe = () => {
             Docker, CI/CD pipelines, FastAPI, and system design patterns.
           </p>
 
-          <p className="text-base sm:text-lg leading-7 text-slate-300 mt-4">
+          {/* <p className="text-base sm:text-lg leading-7 tracking-[0.3em] text-slate-400 mt-4">
             Beyond app and web development, I&apos;m genuinely interested in building
             AI-powered tools that help students, job seekers, and everyday users
             be more productive. I&apos; ve worked on projects involving AI essay
             generation, job search platforms, note-taking apps, CMS automation,
             and intelligent frontend solutions using APIs, caching, modular
             architecture, and clean code principles.
-          </p>
+          </p> */}
 
-          <p className="text-base sm:text-lg leading-7 text-slate-300 mt-4">
+          <p className="text-base sm:text-lg leading-7 tracking-[0.2em] text-slate-400 mt-4">
             I&apos;m currently a software developer at{" "}
             <Link
               href="https://www.linkedin.com/company/african-fintech-hub/"
@@ -101,7 +114,7 @@ const AboutMe = () => {
             development, system architecture, testing, and DevOps.
           </p>
 
-          <p className="text-base sm:text-lg leading-7 text-slate-300 mt-4">
+          <p className="text-base sm:text-lg leading-7  tracking-[0.2em] text-slate-400 mt-4">
             When I&apos;m not coding, you&apos;ll probably find me exploring new
             frameworks, researching innovative app ideas, hiking, reading, or
             diving into tech topics like offline-first systems, modular
@@ -117,7 +130,7 @@ const AboutMe = () => {
           </p>
 
           {/* Social buttons */}
-          <div className="flex justify-end lg:justify-end mt-4">
+          {/* <div className="flex justify-end lg:justify-end mt-4">
             <div className="rounded-2xl  p-3">
               <SocialButtons
                 size="lg"
@@ -127,7 +140,7 @@ const AboutMe = () => {
                 linkedin="https://www.linkedin.com/in/akeja/"
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
