@@ -51,7 +51,13 @@ export function NavbarItems() {
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
             {/* <NavbarButton variant="secondary">Login</NavbarButton> */}
-            <NavbarButton variant="primary">Book a call</NavbarButton>
+            <NavbarButton
+             onClick={() => {
+              window.open('/aklilu_tamirat_resume.pdf', '_blank');
+             }}
+            variant="primary">
+              View CV
+            </NavbarButton>
           </div>
         </NavBody>
 
@@ -88,11 +94,13 @@ export function NavbarItems() {
                 Login
               </NavbarButton> */}
               <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                   window.open('/aklilu_tamirat_resume.pdf', '_blank');
+                 }}
                 variant="primary"
                 className="w-full"
               >
-                Book a call
+                View CV
               </NavbarButton>
             </div>
           </MobileNavMenu>
