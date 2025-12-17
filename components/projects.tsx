@@ -4,8 +4,6 @@ import { useState } from "react"
 import { ProjectCard } from "./projects/card"
 
 const Projects = () => {
-  const [hoveredId, setHoveredId] = useState<number | null>(null)
-
   const projects = [
     {
       id: 1,
@@ -35,38 +33,27 @@ const Projects = () => {
       color: "from-red-500 to-pink-500",
       icon: "🎥",
     },
+    {
+      id:4,
+      title:"Job Board Platform",
+      description:"A job board platform for connecting job seekers with employers. Features job listings, applications, and employer profiles.",
+      category:"Job Board",
+      tags:["Next.js", "Redux", "Node.js", "PostgreSQL"],
+      color:"from-green-500 to-teal-500",
+      icon:"💼",
+    }
   ]
 
   return (
-    <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-12 sm:mb-16 text-center sm:text-left max-w-3xl">
-           <p className="text-sm uppercase tracking-[0.3em] text-slate-400">
-            Projects
-            </p>
-          <h1 className="text-3xl mt-9 sm:mt-10 sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-            Real World Projects I&apos;ve Worked On
-          </h1>
-          <p className="text-base sm:text-lg text-slate-400">
-            I got an opportunity to work on several real-world projects that helped me enhance my skills and gain practical experience.
-            I&apos;ve put my efforts into building projects that solve real problems and showcase my abilities as a developer and also as a contributor to open-source projects.
-          </p>
-        </div>
-
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              isHovered={hoveredId === project.id}
-              onHoverChange={(isHovered) => setHoveredId(isHovered ? project.id : null)}
-            />
-          ))}
-        </div>
+    <div className="relative z-10 w-full max-w-7xl border border-neutral-800 bg-neutral-800">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-neutral-800">
+        {projects.map((project) => (
+          <div className="bg-black h-full" key={project.id}>
+            <ProjectCard project={project} />
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
   )
 }
 
