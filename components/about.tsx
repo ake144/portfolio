@@ -4,6 +4,8 @@ import { PixelatedCanvas } from "./ui/pixelated-canvas";
 import SocialButtons from "./ui/social-buttons";
 import Link from "next/link";
 import { MorphingText } from "@/components/ui/morphing-text"
+import { LinkPreview } from "./ui/link-preview";
+import { Spotlight } from "./ui/spotlight";
 
 const AboutMe = () => {
    const texts = [
@@ -19,6 +21,11 @@ const AboutMe = () => {
   return (
     <div className="w-full flex flex-col gap-12">
       {/* Header */}
+
+      <Spotlight
+        className="-top-40 left-0 md:-top-20 md:left-60"
+        fill="white"
+      />
       <div className="text-center sm:text-left">
         <p className="text-sm uppercase tracking-[0.3em] text-slate-400">
           About Me
@@ -101,12 +108,15 @@ const AboutMe = () => {
 
           <p className="text-base sm:text-lg leading-7 tracking-wider text-slate-400 mt-4">
             I&apos;m currently a software developer at{" "}
-            <Link
-              href="https://www.linkedin.com/company/african-fintech-hub/"
-              className="underline text-emerald-400 hover:text-emerald-300 transition-colors"
-            >
+           
+              <LinkPreview
+                url="https://m-pesa.safaricom.et/"
+                imageSrc="/safari.png"
+                isStatic
+                className="underline text-emerald-400 hover:text-emerald-300 transition-colors"
+              >
               Safaricom Ethiopia
-            </Link>
+             </LinkPreview>
             , where I work on building scalable fintech applications, improving
             user experiences, integrating secure systems, and contributing to
             high-impact digital solutions across the organization. It&apos;s been an
@@ -119,12 +129,17 @@ const AboutMe = () => {
             frameworks, researching innovative app ideas, hiking, reading, or
             diving into tech topics like offline-first systems, modular
             architecture, clean code patterns, and real-world problem solving.
-            here's <Link
-              href="/aklilu_tamirat_resume.pdf"
-              className="underline text-emerald-400 hover:text-emerald-300 transition-colors"
-            >
+            here&apos;s  {" "}
+
+               <LinkPreview
+                url="/aklilu_tamirat_resume.pdf"
+                imageSrc="/resume.png"
+                isStatic
+                className="underline text-emerald-400 hover:text-emerald-300 transition-colors"
+              >
               my resume
-            </Link>{" "}
+              </LinkPreview>
+            {" "}
             if you&apos;d like to learn more about my experience and projects.
 
           </p>
