@@ -9,6 +9,7 @@ import {
 } from "motion/react";
 
 import React, { useRef, useState } from "react";
+import { HyperText } from "./hyper-text";
 
 
 interface NavbarProps {
@@ -135,10 +136,11 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
           {hovered === idx && (
             <motion.div
               layoutId="hovered"
-              className="absolute inset-0 h-full w-full rounded-full bg-gray-100 dark:bg-neutral-800"
+              className="absolute inset-0 h-full w-full rounded-full "
             />
           )}
-          <span className="relative z-20">{item.name}</span>
+          <HyperText>{item.name}</HyperText>
+          {/* <span className="relative z-20">{item.name}</span> */}
         </a>
       ))}
     </motion.div>
@@ -242,7 +244,9 @@ export const NavbarLogo = () => {
         width={30}
         height={30}
       /> */}
-      <span className="font-4xl text-black dark:text-white">UIForest</span>
+     
+        <HyperText className="font-5xl text-white">UIForest</HyperText>
+      
     </a>
   );
 };

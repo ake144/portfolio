@@ -14,6 +14,7 @@ import {
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
+import { HyperText } from "./ui/hyper-text";
 
 export function NavbarItems() {
   const navItems = [
@@ -56,7 +57,8 @@ export function NavbarItems() {
               window.open('/aklilu_tamirat_resume.pdf', '_blank');
              }}
             variant="primary">
-              View CV
+             
+              <HyperText>View CV</HyperText>
             </NavbarButton>
           </div>
         </NavBody>
@@ -82,7 +84,8 @@ export function NavbarItems() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="relative text-neutral-600 dark:text-neutral-300"
               >
-                <span className="block">{item.name}</span>
+                <HyperText>{item.name}</HyperText>
+                {/* <span className="block">{item.name}</span> */}
               </a>
             ))}
             <div className="flex w-full flex-col gap-4">
