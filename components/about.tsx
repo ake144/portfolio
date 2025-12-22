@@ -23,7 +23,7 @@ const AboutMe = () => {
       {/* Header */}
 
       <Spotlight
-        className="-top-40 left-0 md:-top-20 md:left-60"
+        className="-top-40 left-0 font-mono md:-top-20 md:left-60"
         fill="white"
       />
       <div className="text-center sm:text-left">
@@ -80,7 +80,7 @@ const AboutMe = () => {
         </div>
 
         <div className="flex-1 flex flex-col gap-6 text-center font-mono lg:text-left">
-          <p className="text-base sm:text-lg leading-7 tracking-wider ">
+          <p className="text-base sm:text-lg text-neutral-300 leading-relaxed">
             I&apos;m a passionate and versatile software developer who loves building
             real-world solutions that solve meaningful problems. Over the past
             few years, I&apos;ve worked across Web, Mobile, and Backend development —
@@ -88,7 +88,7 @@ const AboutMe = () => {
             make everyday tasks simpler and more efficient.
           </p>
 
-          <p className="text-base sm:text-lg leading-7 tracking-wider mt-4">
+          <p className="text-base sm:text-lg text-neutral-300 leading-relaxed mt-4">
             My core expertise includes modern JavaScript and its ecosystem —
             React, Next.js, Node.js, Express — alongside TypeScript, Python,
             Flutter, and Native Android/iOS development. I also enjoy working
@@ -106,7 +106,7 @@ const AboutMe = () => {
             architecture, and clean code principles.
           </p> */}
 
-          <p className="text-base sm:text-lg leading-7 tracking-wider mt-4">
+          <p className="text-base sm:text-lg text-neutral-300 leading-relaxed mt-4">
             I&apos;m currently a software developer at{" "}
            
               <LinkPreview
@@ -124,7 +124,7 @@ const AboutMe = () => {
             development, system architecture, testing, and DevOps.
           </p>
 
-          <p className="text-base sm:text-lg leading-7 tracking-wider  mt-4">
+          <p className="text-base sm:text-lg text-neutral-300 leading-relaxed mt-4">
             When I&apos;m not coding, you&apos;ll probably find me exploring new
             frameworks, researching innovative app ideas, hiking, reading, or
             diving into tech topics like offline-first systems, modular
