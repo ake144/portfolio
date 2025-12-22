@@ -1,6 +1,8 @@
 "use client"
 
-import { ChevronDown } from "lucide-react"
+import React from "react"
+import { ChevronRight, Calendar } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 interface Experience {
   id: number
@@ -18,101 +20,116 @@ interface ExperienceCardProps {
   experience: Experience
   isExpanded: boolean
   onToggle: () => void
-  isFirst: boolean
   isLast: boolean
 }
 
-export function ExperienceCard({ experience, isExpanded, onToggle, isFirst, isLast }: ExperienceCardProps) {
+export function ExperienceCard({ experience, isExpanded, onToggle, isLast }: ExperienceCardProps) {
   return (
-    <div className="relative group ">
-      {/* Vertical connecting line */}
-      <div className="absolute -left-10 top-16 bottom-0 w-0.5 " />
-
-      {/* Timeline dot */}
-      <div className="absolute -left-14 top-6 w-8 h-8 rounded-full bg-card border-2 border-accent flex items-center justify-center text-sm font-bold text-accent group-hover:scale-125 transition-transform duration-300">
-        {experience.icon}
+    <div className="flex md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-8 justify-center items-start">
+      {/* Date Column - Left Side */}
+      <div className="hidden md:block text-right pt-6 pr-4">
+        <span className="text-sm font-medium text-muted-foreground/60 font-mono">
+          {experience.period}
+        </span>
       </div>
 
-      {/* Card */}
-      <div
-        onClick={onToggle}
-        className="cursor-pointer  hover:bg-card border border-border/50 hover:border-accent/50 rounded-lg p-6 transition-all duration-300 hover:shadow-lg hover:shadow-accent/20"
-      >
-        {/* Header */}
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex-1">
-            <div className="flex items-center gap-3 mb-2">
-              <h3 className="text-xl font-bold text-foreground">{experience.role}</h3>
-              <span className="text-sm text-muted-foreground px-2 py-1 bg-accent/10  rounded-full font-semibold">
-                {experience.period}
-              </span>
-            </div>
-            <p className="text-sm text-muted-foreground">{experience.company}</p>
-          </div>
-          <ChevronDown
-            className={`w-5 h-5 text-muted-foreground transition-transform duration-300 ${
-              isExpanded ? "rotate-180" : ""
-            }`}
-          />
+      {/* Timeline Column - Center */}
+      <div className="relative flex flex-col items-center h-full">
+        {/* Dot */}
+        <div className={cn(
+            "w-3 h-3 rounded-full z-10 mt-7 ring-4 ring-background transition-all duration-300",
+            isExpanded ? "bg-blue-500 scale-110" : "bg-muted-foreground/30 group-hover:bg-blue-500/50"
+        )} />
+        
+        {/* Vertical Line */}
+        {!isLast && (
+          <div className="absolute top-7 bottom-[-3rem] w-px border-l border-dashed border-border/30" />
+        )}
+      </div>
+
+      {/* Content Column - Right Side */}
+      <div className="pb-12 pt-2 group w-full max-w-xl">
+        {/* Mobile Date */}
+        <div className="md:hidden mb-2 flex items-center gap-2 text-muted-foreground">
+            <Calendar className="w-3 h-3" />
+            <span className="text-xs font-mono">{experience.period}</span>
         </div>
 
-        {/* Description */}
-        <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{experience.description}</p>
-
-        {/* Expandable content */}
-        {isExpanded && (
-          <div className="space-y-4 pt-4 border-t border-border/50">
-            {/* <p className="text-sm text-foreground">{experience.description}</p> */}
-
-            {/* Highlights */}
-            <div>
-              <h4 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
-                Key Achievements
-              </h4>
-              <ul className="space-y-1">
-                {experience.highlights.map((highlight, idx) => (
-                  <li key={idx} className="text-sm text-muted-foreground flex items-center gap-2">
-                    <span className="w-1 h-1 rounded-full bg-accent" />
-                    {highlight}
-                  </li>
-                ))}
-              </ul>
+        <div
+          onClick={onToggle}
+          className={cn(
+            "cursor-pointer relative overflow-hidden rounded-xl border border-border/40 bg-card/20 p-5 transition-all duration-300",
+            "hover:bg-card/40 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/5",
+            isExpanded && "bg-card/40 border-blue-500/30 ring-1 ring-blue-500/20"
+          )}
+        >
+          <div className="flex items-start justify-between gap-4">
+            <div className="space-y-1.5">
+              <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
+                {experience.role}
+              </h3>
+              <p className="text-sm text-muted-foreground">{experience.company}</p>
             </div>
+            <ChevronRight
+              className={cn(
+                "w-5 h-5 text-muted-foreground/50 transition-transform duration-300",
+                isExpanded && "rotate-90 text-blue-500"
+              )}
+            />
+          </div>
 
-            {/* Tech stack */}
-            <div>
-              <h4 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
-                Technologies
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {experience.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs px-2.5 py-1 bg-accent/10 text-gray-100 rounded-full font-medium hover:bg-accent transition-colors"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+          <div className={cn(
+              "grid transition-all duration-300 ease-in-out",
+              isExpanded ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"
+          )}>
+            <div className="overflow-hidden">
+                <p className="text-sm text-muted-foreground/80 leading-relaxed mb-6">
+                    {experience.description}
+                </p>
+
+                <div className="space-y-5">
+                    {/* Highlights */}
+                    <div>
+                        <h4 className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/50 mb-3">
+                            Key Achievements
+                        </h4>
+                        <ul className="space-y-2.5">
+                            {experience.highlights.map((highlight, idx) => (
+                                <li key={idx} className="text-sm text-muted-foreground/80 flex items-start gap-2.5">
+                                    <span className="w-1 h-1 rounded-full bg-blue-500 mt-2 shrink-0" />
+                                    {highlight}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Tech Stack */}
+                    <div>
+                        <h4 className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/50 mb-3">
+                            Technologies
+                        </h4>
+                        <div className="flex flex-wrap gap-1.5">
+                            {experience.tags.map((tag) => (
+                                <span
+                                    key={tag}
+                                    className="text-[11px] px-2 py-0.5 bg-blue-500/5 text-blue-400/80 border border-blue-500/10 rounded-md font-medium"
+                                >
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
           </div>
-        )}
-
-        {/* Tags preview */}
-        {!isExpanded && (
-          <div className="flex flex-wrap gap-2">
-            {experience.tags.slice(0, 3).map((tag) => (
-              <span key={tag} className="text-xs px-2.5 py-1 bg-gray-300 text-accent rounded-full font-medium">
-                {tag}
-              </span>
-            ))}
-            {experience.tags.length > 3 && (
-              <span className="text-xs px-2.5 py-1 bg-muted text-muted-foreground rounded-full">
-                +{experience.tags.length - 3} more
-              </span>
-            )}
-          </div>
-        )}
+          
+          {/* Preview Text when collapsed */}
+          {!isExpanded && (
+             <p className="mt-3 text-sm text-muted-foreground/50 line-clamp-2">
+                {experience.description}
+             </p>
+          )}
+        </div>
       </div>
     </div>
   )

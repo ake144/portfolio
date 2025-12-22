@@ -62,14 +62,13 @@ export function ExperienceShowcase() {
         </div>
 
         {/* Timeline */}
-        <div className="space-y-4">
+        <div className="">
           {experiences.map((exp, index) => (
             <ExperienceCard
               key={exp.id}
               experience={exp}
               isExpanded={expandedId === exp.id}
               onToggle={() => setExpandedId(expandedId === exp.id ? null : exp.id)}
-              isFirst={index === 0}
               isLast={index === experiences.length - 1}
             />
           ))}
