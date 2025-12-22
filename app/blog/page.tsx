@@ -6,7 +6,7 @@ export default function BlogPage() {
     const posts = getAllPosts();
 
     return (
-        <section className="relative min-h-screen overflow-hidden bg-neutral-950 text-slate-100">
+        <section className="relative min-h-screen overflow-hidden bg-neutral-950 text-slate-100 font-mono">
             {/* Grid pattern background */}
             {/* <div
                 className={cn(

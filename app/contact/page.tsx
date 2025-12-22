@@ -69,7 +69,7 @@ const ContactPage = () => {
 	}
 
 	return (
-		<section className="relative min-h-screen w-full bg-black text-white pt-24 pb-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+		<section className="relative min-h-screen w-full bg-neutral-950 text-slate-100 pt-24 pb-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center font-mono">
 
 			{/* Background Grid Pattern - Subtle */}
 			<div className="absolute inset-0 z-0">
@@ -83,7 +83,7 @@ const ContactPage = () => {
 				/>
 			</div>
 
-			<div className="relative z-10 w-full max-w-6xl border border-neutral-800 bg-black">
+			<div className="relative z-10 w-full max-w-6xl border border-neutral-800 bg-neutral-950">
 				<div className="grid lg:grid-cols-[1fr_1.2fr] divide-y lg:divide-y-0 lg:divide-x divide-neutral-800">
 
 					{/* Left Column */}
@@ -135,7 +135,7 @@ const ContactPage = () => {
 					</div>
 
 					{/* Right Column - Form */}
-					<div className="p-8 sm:p-12 lg:p-16 bg-black">
+					<div className="p-8 sm:p-12 lg:p-16 bg-neutral-950">
 						<div className="mb-10">
 							<h2 className="text-xl font-semibold text-white mb-2">Get in touch</h2>
 							<p className="text-neutral-500">Fill out the form below and I&apos;ll get back to you within 24 hours.</p>
