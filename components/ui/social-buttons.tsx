@@ -41,10 +41,10 @@ export function SocialButtons({
         asChild
         variant="outline"
         size="lg"
-        className="flex items-center justify-center rounded-full h-20 w-20 hover:scale-105 transform transition"
+        className="flex items-center justify-center rounded-full h-16 w-16 sm:h-20 sm:w-20 hover:scale-105 transform transition"
       >
         <a href={github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <IconGithub className="size-custom w-14 h-14" />
+          <IconGithub className="size-custom w-10 h-10 sm:w-14 sm:h-14" />
         </a>
       </Button>
 
@@ -52,10 +52,10 @@ export function SocialButtons({
         asChild
         variant="outline"
         size="lg"
-        className="flex items-center justify-center rounded-full h-20 w-20 hover:scale-105 transform transition"
+        className="flex items-center justify-center rounded-full h-16 w-16 sm:h-20 sm:w-20 hover:scale-105 transform transition"
       >
         <a href={twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                <IconTwitter className="size-custom w-14 h-14" />
+                <IconTwitter className="size-custom w-10 h-10 sm:w-14 sm:h-14" />
         </a>
       </Button>
 
@@ -63,10 +63,10 @@ export function SocialButtons({
         asChild
         variant="outline"
         size="lg"
-        className="flex items-center justify-center rounded-full h-20 w-20 hover:scale-105 transform transition"
+        className="flex items-center justify-center rounded-full h-16 w-16 sm:h-20 sm:w-20 hover:scale-105 transform transition"
       >
         <a href={linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <IconLinkedIn className="size-custom w-14 h-14" />
+                <IconLinkedIn className="size-custom w-10 h-10 sm:w-14 sm:h-14" />
         </a>
       </Button>
     </div>

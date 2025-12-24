@@ -46,7 +46,7 @@ const AboutMe = () => {
           <PixelatedCanvas
             src="/avatar.jpg"
             width={450}
-            height={500}
+            height={450}
             cellSize={3}
             dotScale={0.9}
             shape="square"
@@ -62,7 +62,7 @@ const AboutMe = () => {
             sampleAverage
             tintColor="#FFFFFF"
             tintStrength={0.2}
-            className="rounded-xl border border-neutral-800 shadow-lg w-full aspect-square"
+            className="rounded-xl border border-neutral-800 shadow-lg !w-full !h-auto aspect-square"
           />
 
            <div className="flex justify-center  lg:justify-end mt-8 sm:mt-12">
