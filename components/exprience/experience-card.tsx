@@ -38,7 +38,7 @@ export function ExperienceCard({ experience, isExpanded, onToggle, isLast }: Exp
         {/* Dot */}
         <div className={cn(
             "w-3 h-3 rounded-full z-10 mt-7 ring-4 ring-background transition-all duration-300",
-            isExpanded ? "bg-blue-500 scale-110" : "bg-muted-foreground/30 group-hover:bg-blue-500/50"
+            isExpanded ? "bg-muted-foreground/90 scale-110" : "bg-muted-foreground/30 group-hover:bg-blue-500/50"
         )} />
         
         {/* Vertical Line */}
@@ -59,8 +59,8 @@ export function ExperienceCard({ experience, isExpanded, onToggle, isLast }: Exp
           onClick={onToggle}
           className={cn(
             "cursor-pointer relative overflow-hidden rounded-xl border border-border/40 bg-card/20 p-5 transition-all duration-300",
-            "hover:bg-card/40 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/5",
-            isExpanded && "bg-card/40 border-blue-500/30 ring-1 ring-blue-500/20"
+            "hover:bg-card/40 hover:border-card/80 hover:shadow-lg hover:shadow-gray-500/5",
+            isExpanded && "bg-card/40 border-gray-500/30 ring-1 ring-gray-500/20"
           )}
         >
           <div className="flex items-start justify-between gap-4">
@@ -73,7 +73,7 @@ export function ExperienceCard({ experience, isExpanded, onToggle, isLast }: Exp
             <ChevronRight
               className={cn(
                 "w-5 h-5 text-muted-foreground/50 transition-transform duration-300",
-                isExpanded && "rotate-90 text-blue-500"
+                isExpanded && "rotate-90 "
               )}
             />
           </div>
@@ -96,7 +96,7 @@ export function ExperienceCard({ experience, isExpanded, onToggle, isLast }: Exp
                         <ul className="space-y-2.5">
                             {experience.highlights.map((highlight, idx) => (
                                 <li key={idx} className="text-sm text-muted-foreground/80 flex items-start gap-2.5">
-                                    <span className="w-1 h-1 rounded-full bg-blue-500 mt-2 shrink-0" />
+                                    <span className="w-1 h-1 rounded-full bg-gray-500 mt-2 shrink-0" />
                                     {highlight}
                                 </li>
                             ))}

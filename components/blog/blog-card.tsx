@@ -15,7 +15,7 @@ export function BlogCard({ post }: BlogCardProps) {
 
     return (
         <Link href={`/blog/${post.slug}`} className="block h-full group">
-            <article className="flex flex-col h-full p-8 sm:p-10 transition-colors hover:bg-neutral-900/50">
+            <article className="flex flex-col h-full p-8 sm:p-10 font-mono transition-colors hover:bg-neutral-900/50">
                 <div className="flex flex-wrap gap-2 mb-6">
                     {post.tags.slice(0, 3).map((tag) => (
                         <span
