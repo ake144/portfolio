@@ -17,12 +17,12 @@ const FooterPage = () => {
 
             <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
                 <div className="h-[15rem] sm:h-80 flex items-center justify-center">
-                    <TextHoverEffect text="UIForest" />
+                    <TextHoverEffect text="Aklil" />
                 </div>
 
                 <div className="text-center">
                     <p className="text-sm text-slate-500">
-                        © 2025 UIForest. All rights reserved.
+                        © 2025 aklil. All rights reserved.
                     </p>
                 </div>
             </div>

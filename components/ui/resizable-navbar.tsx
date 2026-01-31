@@ -245,7 +245,7 @@ export const NavbarLogo = () => {
         height={30}
       /> */}
      
-        <HyperText className="font-5xl text-white">UIForest</HyperText>
+        <HyperText className="font-5xl text-white">AKE</HyperText>
       
     </a>
   );
