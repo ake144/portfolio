@@ -1,6 +1,5 @@
 'use client';
 
-import GridPattern from "@/components/grid-layout";
 import SocialButtons from "@/components/ui/social-buttons";
 import Link from "next/link";
 import { useState } from "react";
@@ -69,171 +68,133 @@ const ContactPage = () => {
 	}
 
 	return (
-		<section className="relative min-h-screen w-full bg-neutral-950 text-slate-100 pt-24 pb-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center font-mono">
+		<main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-14">
+			<div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
+				<div className="space-y-6 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.35)] sm:p-8 lg:p-10">
+					<p className="text-xs uppercase tracking-[0.35em] text-red-400/80">
+						Contact
+					</p>
+					<h1 className="max-w-2xl text-4xl font-semibold leading-[0.95] text-white sm:text-5xl lg:text-7xl">
+						Let&apos;s build something extraordinary.
+					</h1>
+					<p className="max-w-xl text-base leading-7 text-white/68 sm:text-lg">
+						If you have a product idea, a design challenge, or a platform that needs stronger execution, send me a note and I&apos;ll reply as soon as I can.
+					</p>
 
-			{/* Background Grid Pattern - Subtle */}
-			<div className="absolute inset-0 z-0">
-				<GridPattern
-					width={50}
-					height={50}
-					x={-1}
-					y={-1}
-					className="opacity-20 text-neutral-800 fill-neutral-900 stroke-neutral-800"
-					strokeDasharray="0"
-				/>
-			</div>
-
-			<div className="relative z-10 w-full max-w-6xl border border-neutral-800 bg-neutral-950">
-				<div className="grid lg:grid-cols-[1fr_1.2fr] divide-y lg:divide-y-0 lg:divide-x divide-neutral-800">
-
-					{/* Left Column */}
-					<div className="divide-y divide-neutral-800">
-
-						{/* Header Section */}
-						<div className="p-8 sm:p-12 lg:p-16">
-							<h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-6">
-								Let&apos;s build something extraordinary.
-							</h1>
-							<p className="text-lg text-neutral-400 leading-relaxed">
-								Whether you have a groundbreaking idea or need to scale your existing platform, I&apos;m ready to help you achieve your goals.
-							</p>
-
-							<div className="mt-10">
-								<SocialButtons
-									size="md"
-									className="gap-4"
-									github="https://github.com/ake144"
-									twitter="https://twitter.com/your-handle"
-									linkedin="https://www.linkedin.com/in/your-profile"
-								/>
-							</div>
-						</div>
-
-						{/* Stats Section */}
-						<div className="grid grid-cols-2 divide-x divide-neutral-800">
-							<div className="p-8 sm:p-10">
-								<p className="text-4xl font-bold text-white mb-2">100%</p>
-								<p className="text-sm text-neutral-500 uppercase tracking-wider">Client Satisfaction</p>
-							</div>
-							<div className="p-8 sm:p-10">
-								<p className="text-4xl font-bold text-white mb-2">24/7</p>
-								<p className="text-sm text-neutral-500 uppercase tracking-wider">Support</p>
-							</div>
-						</div>
-
-						{/* Quote Section */}
-						<div className="p-8 sm:p-12">
-							<blockquote className="space-y-4">
-								<p className="text-lg text-neutral-300 italic">
-									&quot;Great design is not just what it looks like and feels like. Design is how it works.&quot;
-								</p>
-								<footer className="text-sm text-neutral-500 font-medium">
-									— Steve Jobs
-								</footer>
-							</blockquote>
-						</div>
+					<div className="flex flex-wrap gap-3">
+						<SocialButtons
+							size="md"
+							className="gap-4"
+							github="https://github.com/ake144"
+							twitter="https://x.com/AkeTamirat94397"
+							linkedin="https://www.linkedin.com/in/akeja/"
+						/>
 					</div>
 
-					{/* Right Column - Form */}
-					<div className="p-8 sm:p-12 lg:p-16 bg-neutral-950">
-						<div className="mb-10">
-							<h2 className="text-xl font-semibold text-white mb-2">Get in touch</h2>
-							<p className="text-neutral-500">Fill out the form below and I&apos;ll get back to you within 24 hours.</p>
-						</div>
-
-						<form onSubmit={handleSubmit} className="space-y-8">
-							<div className="space-y-6">
-								<div className="group">
-									<label className="block text-xs font-medium uppercase tracking-wider text-neutral-500 mb-2 group-focus-within:text-white transition-colors">Your Name</label>
-									<input
-										required
-										name="name"
-										type="text"
-										placeholder="John Doe"
-										className="w-full bg-transparent border-b border-neutral-800 py-3 text-white placeholder:text-neutral-700 focus:border-white focus:outline-none transition-colors rounded-none"
-									/>
-								</div>
-
-								<div className="group">
-									<label className="block text-xs font-medium uppercase tracking-wider text-neutral-500 mb-2 group-focus-within:text-white transition-colors">Email Address</label>
-									<input
-										required
-										name="email"
-										type="email"
-										placeholder="john@example.com"
-										className="w-full bg-transparent border-b border-neutral-800 py-3 text-white placeholder:text-neutral-700 focus:border-white focus:outline-none transition-colors rounded-none"
-									/>
-								</div>
-
-								<div className="grid sm:grid-cols-2 gap-8">
-									<div className="group">
-										<label className="block text-xs font-medium uppercase tracking-wider text-neutral-500 mb-2 group-focus-within:text-white transition-colors">Phone (Optional)</label>
-										<input
-											name="phone"
-											type="tel"
-											placeholder="+1 (555) 000-0000"
-											className="w-full bg-transparent border-b border-neutral-800 py-3 text-white placeholder:text-neutral-700 focus:border-white focus:outline-none transition-colors rounded-none"
-										/>
-									</div>
-									<div className="group">
-										<label className="block text-xs font-medium uppercase tracking-wider text-neutral-500 mb-2 group-focus-within:text-white transition-colors">Company Website</label>
-										<input
-											name="website"
-											type="url"
-											placeholder="https://example.com"
-											className="w-full bg-transparent border-b border-neutral-800 py-3 text-white placeholder:text-neutral-700 focus:border-white focus:outline-none transition-colors rounded-none"
-										/>
-									</div>
-								</div>
-
-								<div className="group">
-									<label className="block text-xs font-medium uppercase tracking-wider text-neutral-500 mb-2 group-focus-within:text-white transition-colors">How can I help?</label>
-									<textarea
-										required
-										name="message"
-										rows={4}
-										placeholder="Tell me about your project goals..."
-										className="w-full bg-transparent border-b border-neutral-800 py-3 text-white placeholder:text-neutral-700 focus:border-white focus:outline-none transition-colors resize-none rounded-none"
-									/>
-								</div>
+					<div className="grid gap-3 sm:grid-cols-2">
+						{contactDetails.map((item) => (
+							<div key={item.label} className="rounded-[1.25rem] border border-white/10 bg-black/40 p-4">
+								<span className="text-[10px] uppercase tracking-[0.3em] text-white/40">{item.label}</span>
+								{item.href ? (
+									<Link href={item.href} className="mt-3 block truncate text-sm text-white/75 transition hover:text-white sm:text-base">
+										{item.value}
+									</Link>
+								) : (
+									<p className="mt-3 truncate text-sm text-white/75 sm:text-base">{item.value}</p>
+								)}
 							</div>
+						))}
+					</div>
 
-							<div className="pt-4">
-								<button
-									type="submit"
-									disabled={loading}
-									className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 text-sm font-bold hover:bg-neutral-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-								>
-									{loading ? (
-										"Sending..."
-									) : (
-										<>
-											Send Message
-											<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-										</>
-									)}
-								</button>
-							</div>
-						</form>
-
-						<div className="mt-16 pt-10 border-t border-neutral-800 grid grid-cols-1 sm:grid-cols-3 gap-8">
-							{contactDetails.map((item) => (
-								<div key={item.label} className="flex flex-col gap-2">
-									<span className="text-xs text-neutral-500 uppercase tracking-wider">{item.label}</span>
-									{item.href ? (
-										<Link href={item.href} className="text-sm font-medium text-neutral-300 hover:text-white transition-colors truncate">
-											{item.value}
-										</Link>
-									) : (
-										<span className="text-sm font-medium text-neutral-300 truncate">{item.value}</span>
-									)}
-								</div>
-							))}
-						</div>
+					<div className="rounded-[1.5rem] border border-white/10 bg-black/50 p-5 text-sm leading-7 text-white/60">
+						I usually respond with a direct next step, a short scope note, or a concrete recommendation so the conversation can move quickly.
 					</div>
 				</div>
+
+				<div className="rounded-[2rem] border border-white/10 bg-black/60 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.35)] sm:p-8 lg:p-10">
+					<div className="mb-8">
+						<p className="text-xs uppercase tracking-[0.35em] text-white/45">
+							Send a message
+						</p>
+						<p className="mt-4 max-w-xl text-sm leading-7 text-white/60 sm:text-base">
+							Use the form below if you want to talk about a project, collaboration, or a role.
+						</p>
+					</div>
+
+					<form onSubmit={handleSubmit} className="space-y-6">
+						<div className="grid gap-5 sm:grid-cols-2">
+							<label className="space-y-2 text-sm text-white/70">
+								<span className="text-[10px] uppercase tracking-[0.3em] text-white/45">Your name</span>
+								<input
+									required
+									name="name"
+									type="text"
+									placeholder="John Doe"
+									className="w-full border border-white/10 bg-white/[0.03] px-4 py-3 text-white placeholder:text-white/25 focus:border-red-500/60 focus:outline-none"
+								/>
+							</label>
+
+							<label className="space-y-2 text-sm text-white/70">
+								<span className="text-[10px] uppercase tracking-[0.3em] text-white/45">Email address</span>
+								<input
+									required
+									name="email"
+									type="email"
+									placeholder="john@example.com"
+									className="w-full border border-white/10 bg-white/[0.03] px-4 py-3 text-white placeholder:text-white/25 focus:border-red-500/60 focus:outline-none"
+								/>
+							</label>
+						</div>
+
+						<div className="grid gap-5 sm:grid-cols-2">
+							<label className="space-y-2 text-sm text-white/70">
+								<span className="text-[10px] uppercase tracking-[0.3em] text-white/45">Phone optional</span>
+								<input
+									name="phone"
+									type="tel"
+									placeholder="+1 (555) 000-0000"
+									className="w-full border border-white/10 bg-white/[0.03] px-4 py-3 text-white placeholder:text-white/25 focus:border-red-500/60 focus:outline-none"
+								/>
+							</label>
+							<label className="space-y-2 text-sm text-white/70">
+								<span className="text-[10px] uppercase tracking-[0.3em] text-white/45">Company website</span>
+								<input
+									name="website"
+									type="url"
+									placeholder="https://example.com"
+									className="w-full border border-white/10 bg-white/[0.03] px-4 py-3 text-white placeholder:text-white/25 focus:border-red-500/60 focus:outline-none"
+								/>
+							</label>
+						</div>
+
+						<label className="block space-y-2 text-sm text-white/70">
+							<span className="text-[10px] uppercase tracking-[0.3em] text-white/45">How can I help?</span>
+							<textarea
+								required
+								name="message"
+								rows={6}
+								placeholder="Tell me about your project goals..."
+								className="w-full resize-none border border-white/10 bg-white/[0.03] px-4 py-3 text-white placeholder:text-white/25 focus:border-red-500/60 focus:outline-none"
+							/>
+						</label>
+
+						<div className="flex flex-wrap items-center gap-3 pt-2">
+							<button
+								type="submit"
+								disabled={loading}
+								className="inline-flex items-center justify-center gap-2 border border-red-500/70 bg-red-500 px-6 py-3 text-[11px] font-bold uppercase tracking-[0.35em] text-white transition hover:bg-red-400 disabled:cursor-not-allowed disabled:opacity-50"
+							>
+								{loading ? "Sending..." : "Send message"}
+								<ArrowRight className="h-4 w-4" />
+							</button>
+							<p className="text-xs uppercase tracking-[0.3em] text-white/35">
+								Usually replies within 24 hours
+							</p>
+						</div>
+					</form>
+				</div>
 			</div>
-		</section>
+		</main>
 	);
 };
 

@@ -78,7 +78,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -102,9 +102,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} dark antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground antialiased`}>
         <NavbarItems />
         {children}
 

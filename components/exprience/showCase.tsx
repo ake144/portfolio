@@ -46,23 +46,21 @@ export function ExperienceShowcase() {
   const [expandedId, setExpandedId] = useState<number | null>(null)
 
   return (
-    <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="mb-12 sm:mb-16 text-center sm:text-left">
-           <p className="text-sm uppercase tracking-[0.3em] text-slate-400">
+    <section className="relative px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-12 space-y-4 sm:mb-16">
+          <p className="text-xs uppercase tracking-[0.35em] text-red-400/80">
             Experience
-            </p>
-          <h2 className="text-3xl mt-9 sm:mt-10 sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Career Journey
+          </p>
+          <h2 className="max-w-3xl text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-6xl">
+            A career timeline built around shipping, learning, and execution.
           </h2>
-          <p className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto sm:mx-0">
-            A timeline of my professional growth and the amazing teams I&apos;ve worked with
+          <p className="max-w-2xl text-base leading-7 text-white/60 sm:text-lg">
+            Selected roles that shaped how I think about product quality, delivery, and collaboration.
           </p>
         </div>
 
-        {/* Timeline */}
-        <div className="">
+        <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-3 shadow-[0_30px_90px_rgba(0,0,0,0.35)]">
           {experiences.map((exp, index) => (
             <ExperienceCard
               key={exp.id}

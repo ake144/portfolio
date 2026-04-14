@@ -3,162 +3,154 @@
 import { PixelatedCanvas } from "./ui/pixelated-canvas";
 import SocialButtons from "./ui/social-buttons";
 import Link from "next/link";
-import { MorphingText } from "@/components/ui/morphing-text"
 import { LinkPreview } from "./ui/link-preview";
 import { Spotlight } from "./ui/spotlight";
+import { ArrowRight } from "lucide-react";
 
 const AboutMe = () => {
-   const texts = [
-  "Aklilu Tamirat",
-  "Web",
-  "Mobile",
-  "Backend",
-  "Full-Stack",
-  "Developer",
-  "Software Engineer",
-]
-
   return (
-    <div className="w-full flex flex-col gap-12">
-      {/* Header */}
-
+    <section className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] px-6 py-8 shadow-[0_30px_90px_rgba(0,0,0,0.35)] sm:px-8 sm:py-10 lg:px-10">
       <Spotlight
-        className="-top-40 left-0 font-mono md:-top-20 md:left-60"
-        fill="white"
+        className="-top-24 left-6 font-mono md:-top-16 md:left-24"
+        fill="rgba(239,68,68,0.45)"
       />
-      <div className="text-center sm:text-left">
-        <p className="text-sm uppercase tracking-[0.3em] text-slate-400">
-          About Me
-        </p>
-        <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight text-white flex flex-wrap items-center gap-x-3 gap-y-2">
-          <span className="whitespace-nowrap">Hello, I&apos;m</span>
-          <MorphingText 
-            texts={texts} 
-            className="text-3xl mt-0 sm:mt-9 sm:text-4xl lg:text-5xl leading-tight h-[1.2em] flex-1 min-w-[200px] text-left mx-0 max-w-none font-semibold"
-          />
-        </h1>
-      </div>
 
-      {/* Main content */}
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-22 items-center lg:items-start">
-        {/* Avatar */}
-        <div className="mt-12 justify-center items-center shrink-0 w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[400px]">
-          <PixelatedCanvas
-            src="/avatar.jpg"
-            width={450}
-            height={450}
-            cellSize={3}
-            dotScale={0.9}
-            shape="square"
-            backgroundColor="#000000"
-            dropoutStrength={0.4}
-            interactive
-            distortionStrength={3}
-            distortionRadius={80}
-            distortionMode="swirl"
-            followSpeed={0.2}
-            jitterStrength={4}
-            jitterSpeed={4}
-            sampleAverage
-            tintColor="#FFFFFF"
-            tintStrength={0.2}
-            className="rounded-xl border border-neutral-800 shadow-lg !w-full !h-auto aspect-square"
-          />
+      <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+        <div className="space-y-8">
+          <div className="space-y-4">
+            <p className="text-xs uppercase tracking-[0.35em] text-red-400/90">
+              About Me
+            </p>
+            <h1 className="max-w-3xl text-4xl font-semibold leading-[0.9] text-white sm:text-5xl lg:text-7xl">
+              Build. Share. Ship.
+            </h1>
+            <p className="max-w-2xl text-base leading-7 text-white/70 sm:text-lg">
+              I design and ship software that feels sharp, fast, and useful. My focus sits at the intersection of product thinking, frontend craft, and backend systems.
+            </p>
+          </div>
 
-           <div className="flex justify-center  lg:justify-end mt-8 sm:mt-12">
-            <div className="rounded-2xl  p-3">
-              <SocialButtons
-                size="lg"
-                className="gap-6"
-                github="https://github.com/ake144"
-                twitter="https://x.com/AkeTamirat94397"
-                linkedin="https://www.linkedin.com/in/akeja/"
-              />
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 border border-red-500/70 bg-red-500 px-5 py-3 text-[11px] font-bold uppercase tracking-[0.35em] text-white transition hover:bg-red-400"
+            >
+              Start a conversation
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <LinkPreview
+              url="/aklilu_tamirat_resume.pdf"
+              imageSrc="/resume.png"
+              isStatic
+              className="inline-flex items-center gap-2 border border-white/10 px-5 py-3 text-[11px] font-bold uppercase tracking-[0.35em] text-white/80 transition hover:border-white/25 hover:text-white"
+            >
+              View resume
+            </LinkPreview>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-3">
+            <div className="rounded-[1.5rem] border border-white/10 bg-black/40 p-4">
+              <p className="text-3xl font-semibold text-white">5+</p>
+              <p className="mt-2 text-xs uppercase tracking-[0.3em] text-white/45">
+                Years building products
+              </p>
+            </div>
+            <div className="rounded-[1.5rem] border border-white/10 bg-black/40 p-4">
+              <p className="text-3xl font-semibold text-white">Web</p>
+              <p className="mt-2 text-xs uppercase tracking-[0.3em] text-white/45">
+                Mobile and backend
+              </p>
+            </div>
+            <div className="rounded-[1.5rem] border border-white/10 bg-black/40 p-4">
+              <p className="text-3xl font-semibold text-white">Fintech</p>
+              <p className="mt-2 text-xs uppercase tracking-[0.3em] text-white/45">
+                Shipping at scale
+              </p>
             </div>
           </div>
 
-        </div>
-
-        <div className="flex-1 flex flex-col gap-6 text-center font-mono lg:text-left">
-          <p className="text-base sm:text-lg text-neutral-300 leading-relaxed">
-            I&apos;m a passionate and versatile software developer who loves building
-            real-world solutions that solve meaningful problems. Over the past
-            few years, I&apos;ve worked across Web, Mobile, and Backend development —
-            crafting user-friendly interfaces, scalable systems, and tools that
-            make everyday tasks simpler and more efficient.
-          </p>
-
-          <p className="text-base sm:text-lg text-neutral-300 leading-relaxed mt-4">
-            My core expertise includes modern JavaScript and its ecosystem —
-            React, Next.js, Node.js, Express — alongside TypeScript, Python,
-            Flutter, and Native Android/iOS development. I also enjoy working
-            with databases, cloud services, and DevOps tooling, and I frequently
-            explore new technologies such as Redis, Prisma, Supabase, Firebase,
-            Docker, CI/CD pipelines, FastAPI, and system design patterns.
-          </p>
-
-          {/* <p className="text-base sm:text-lg leading-7 tracking-[0.3em] text-slate-400 mt-4">
-            Beyond app and web development, I&apos;m genuinely interested in building
-            AI-powered tools that help students, job seekers, and everyday users
-            be more productive. I&apos; ve worked on projects involving AI essay
-            generation, job search platforms, note-taking apps, CMS automation,
-            and intelligent frontend solutions using APIs, caching, modular
-            architecture, and clean code principles.
-          </p> */}
-
-          <p className="text-base sm:text-lg text-neutral-300 leading-relaxed mt-4">
-            I&apos;m currently a software developer at{" "}
-           
+          <div className="space-y-5 text-sm leading-7 text-white/70 sm:text-base">
+            <p>
+              I&apos;ve worked across React, Next.js, Node.js, TypeScript, Flutter, and related backend tooling to create interfaces and systems that hold up in production.
+            </p>
+            <p>
+              I&apos;m currently a software developer at{" "}
               <LinkPreview
                 url="https://m-pesa.safaricom.et/"
                 imageSrc="/safari.png"
                 isStatic
-                className="underline text-emerald-400 hover:text-emerald-300 transition-colors"
+                className="border-b border-red-400/70 text-red-300 transition hover:text-red-200"
               >
-              Safaricom Ethiopia
-             </LinkPreview>
-            , where I work on building scalable fintech applications, improving
-            user experiences, integrating secure systems, and contributing to
-            high-impact digital solutions across the organization. It&apos;s been an
-            exciting journey, and I&apos;m constantly growing in areas like mobile
-            development, system architecture, testing, and DevOps.
-          </p>
-
-          <p className="text-base sm:text-lg text-neutral-300 leading-relaxed mt-4">
-            When I&apos;m not coding, you&apos;ll probably find me exploring new
-            frameworks, researching innovative app ideas, hiking, reading, or
-            diving into tech topics like offline-first systems, modular
-            architecture, clean code patterns, and real-world problem solving.
-            here&apos;s  {" "}
-
-               <LinkPreview
-                url="/aklilu_tamirat_resume.pdf"
-                imageSrc="/resume.png"
-                isStatic
-                className="underline text-emerald-400 hover:text-emerald-300 transition-colors"
-              >
-              my resume
+                Safaricom Ethiopia
               </LinkPreview>
-            {" "}
-            if you&apos;d like to learn more about my experience and projects.
+              , where I work on scalable fintech products, user experience, and reliable integrations.
+            </p>
+            <p>
+              When I&apos;m not coding, I&apos;m usually exploring new systems, reading, hiking, or refining the details that make interfaces feel intentional.
+            </p>
+          </div>
 
-          </p>
+          <div className="flex items-center gap-3 pt-2">
+            <SocialButtons
+              size="lg"
+              className="gap-4"
+              github="https://github.com/ake144"
+              twitter="https://x.com/AkeTamirat94397"
+              linkedin="https://www.linkedin.com/in/akeja/"
+            />
+          </div>
+        </div>
 
-          {/* Social buttons */}
-          {/* <div className="flex justify-end lg:justify-end mt-4">
-            <div className="rounded-2xl  p-3">
-              <SocialButtons
-                size="lg"
-                className="gap-6"
-                github="https://github.com/ake144"
-                twitter="https://x.com/AkeTamirat94397"
-                linkedin="https://www.linkedin.com/in/akeja/"
+        <div className="space-y-4">
+          <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/60 p-4">
+            <div className="overflow-hidden rounded-[1.25rem] border border-white/10 bg-neutral-950">
+              <PixelatedCanvas
+                src="/avatar.jpg"
+                width={450}
+                height={450}
+                cellSize={3}
+                dotScale={0.9}
+                shape="square"
+                backgroundColor="#000000"
+                dropoutStrength={0.4}
+                interactive
+                distortionStrength={3}
+                distortionRadius={80}
+                distortionMode="swirl"
+                followSpeed={0.2}
+                jitterStrength={4}
+                jitterSpeed={4}
+                sampleAverage
+                tintColor="#FFFFFF"
+                tintStrength={0.2}
+                className="aspect-square h-full w-full"
               />
             </div>
-          </div> */}
+            <div className="mt-4 flex items-center justify-between gap-3 text-xs uppercase tracking-[0.3em] text-white/45">
+              <span>Portrait / signal</span>
+              <span className="text-white/80">Live profile</span>
+            </div>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            {[
+              "React",
+              "Next.js",
+              "TypeScript",
+              "Flutter",
+              "Node.js",
+              "DevOps",
+            ].map((skill) => (
+              <div
+                key={skill}
+                className="rounded-[1.25rem] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white/75"
+              >
+                {skill}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

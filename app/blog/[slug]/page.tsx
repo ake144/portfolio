@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { IconArrowLeft } from "@tabler/icons-react";
 
@@ -31,60 +30,44 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     });
 
     return (
-        <section className="relative min-h-screen overflow-hidden bg-neutral-950 text-slate-100">
-            {/* Grid pattern background */}
-            <div
-                className={cn(
-                    "absolute inset-0 z-0",
-                    "[background-size:80px_80px]",
-                    "[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]"
-                )}
-            />
-
-            {/* Radial gradient overlay for fade effect */}
-            <div className="pointer-events-none absolute inset-0 bg-neutral-950 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
-
-            <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-                {/* Back link */}
+        <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-14">
+            <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.35)] sm:p-8 lg:p-10">
                 <Link
                     href="/blog"
-                    className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-8"
+                    className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.35em] text-white/55 transition hover:text-white"
                 >
                     <IconArrowLeft className="w-4 h-4" />
                     Back to Blog
                 </Link>
 
-                {/* Article header */}
-                <header className="mb-12">
-                    {/* Tags */}
+                <header className="mb-10 mt-8">
                     <div className="flex flex-wrap gap-2 mb-6">
                         {post.tags.map((tag) => (
                             <span
                                 key={tag}
-                                className="inline-flex items-center rounded-full bg-gradient-to-r from-sky-500/20 to-cyan-500/20 px-3 py-1 text-xs font-medium text-sky-300"
+                                className="inline-flex items-center rounded-none border border-white/10 bg-white/[0.04] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.25em] text-white/65"
                             >
                                 {tag}
                             </span>
                         ))}
                     </div>
 
-                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+                    <h1 className="mb-6 max-w-4xl text-4xl font-semibold leading-[0.95] text-white sm:text-5xl lg:text-7xl">
                         {post.title}
                     </h1>
 
-                    <p className="text-lg sm:text-xl text-slate-300 mb-6">
+                    <p className="max-w-3xl text-base leading-7 text-white/68 sm:text-lg">
                         {post.description}
                     </p>
 
-                    <div className="flex items-center gap-4 text-sm text-slate-500 border-b border-white/10 pb-8">
+                    <div className="flex items-center gap-4 border-b border-white/10 pb-8 pt-6 text-sm text-white/45">
                         <span>{post.author}</span>
                         <span>•</span>
                         <time dateTime={post.date}>{formattedDate}</time>
                     </div>
                 </header>
 
-                {/* Article content */}
-                <article className="prose prose-invert prose-lg max-w-none prose-headings:text-white prose-p:text-slate-300 prose-a:text-sky-400 prose-strong:text-white prose-code:text-emerald-400 prose-pre:bg-neutral-900 prose-pre:border prose-pre:border-white/10">
+                <article className="prose prose-invert prose-lg max-w-none prose-headings:text-white prose-p:text-white/75 prose-a:text-red-400 prose-strong:text-white prose-code:text-red-300 prose-pre:border prose-pre:border-white/10 prose-pre:bg-black/60">
                     <div
                         dangerouslySetInnerHTML={{
                             __html: post.content
@@ -103,6 +86,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     />
                 </article>
             </div>
-        </section>
+        </main>
     );
 }

@@ -1,37 +1,46 @@
-import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import Projects from "@/components/projects";
 
 const ProjectsPage = () => {
     return (
-        <section className="relative min-h-screen overflow-hidden bg-neutral-950 text-slate-100 font-mono">
-            {/* Grid pattern background */}
-            {/* <div
-                className={cn(
-                    "absolute inset-0 z-0",
-                    "[background-size:80px_80px]",
-                    "[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]"
-                )}
-            /> */}
-
-            {/* Radial gradient overlay for fade effect */}
-            <div className="pointer-events-none absolute inset-0 bg-neutral-950 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
-
-            <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-                {/* Header */}
-                <div className="mb-12 sm:mb-16 text-center sm:text-left">
-                    <p className="text-sm uppercase tracking-[0.3em] text-slate-400 mb-4">Projects</p>
-                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight text-white mb-4">
-                        Real World Projects
+        <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-14">
+            <section className="grid gap-6 lg:grid-cols-[1fr_0.6fr] lg:items-end">
+                <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.35)] sm:p-8 lg:p-10">
+                    <p className="text-xs uppercase tracking-[0.35em] text-red-400/80">
+                        Projects
+                    </p>
+                    <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-[0.95] text-white sm:text-5xl lg:text-7xl">
+                        Real work, structured like a product showcase.
                     </h1>
-                    <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto sm:mx-0">
-                        I got an opportunity to work on several real-world projects that helped me enhance my skills and gain practical experience.
-                        I&apos;ve put my efforts into building projects that solve real problems.
+                    <p className="mt-6 max-w-2xl text-base leading-7 text-white/68 sm:text-lg">
+                        A curated collection of things I have built across product, engineering, and platform work.
                     </p>
                 </div>
 
+                <div className="rounded-[2rem] border border-white/10 bg-black/60 p-6 sm:p-8">
+                    <p className="text-xs uppercase tracking-[0.35em] text-white/45">
+                        What to expect
+                    </p>
+                    <div className="mt-5 space-y-3 text-sm leading-7 text-white/65">
+                        <p>Product-focused interfaces.</p>
+                        <p>Production systems with real users.</p>
+                        <p>Dark, contrast-heavy layouts tuned for clarity.</p>
+                    </div>
+                    <Link
+                        href="/contact"
+                        className="mt-6 inline-flex items-center gap-2 border border-red-500/70 bg-red-500 px-5 py-3 text-[11px] font-bold uppercase tracking-[0.35em] text-white transition hover:bg-red-400"
+                    >
+                        Let&apos;s build
+                        <ArrowRight className="h-4 w-4" />
+                    </Link>
+                </div>
+            </section>
+
+            <div className="mt-10 sm:mt-14">
                 <Projects />
             </div>
-        </section>
+        </main>
     );
 };
 
