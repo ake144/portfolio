@@ -5,6 +5,7 @@ import { NavbarItems } from "@/components/navigation";
 import FooterPage from "@/components/footer";
 import { Toaster } from "sonner";
 import { siteConfig } from "@/lib/site-config";
+import InitialLoader from "@/components/initial-loader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -72,8 +73,6 @@ export const metadata: Metadata = {
   },
 };
 
-import InitialLoader from "@/components/initial-loader";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -104,12 +103,22 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground antialiased`}
+      >
         <InitialLoader />
         <NavbarItems />
         {children}
         <FooterPage />
-        <Toaster />
+        <Toaster
+          toastOptions={{
+            style: {
+              background: "#111",
+              border: "1px solid rgba(255,255,255,0.08)",
+              color: "white",
+            },
+          }}
+        />
       </body>
     </html>
   );

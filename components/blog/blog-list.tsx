@@ -8,18 +8,28 @@ interface BlogListProps {
 export function BlogList({ posts }: BlogListProps) {
     if (posts.length === 0) {
         return (
-            <div className="rounded-[1.75rem] border border-white/10 bg-white/3 py-16 text-center">
-                <p className="text-lg text-white/60">No blog posts yet. Check back soon.</p>
+            <div className="section-card flex flex-col items-center justify-center py-24 text-center">
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] text-2xl">
+                    ✍️
+                </div>
+                <p className="mt-6 text-lg font-medium text-white/60">
+                    No blog posts yet.
+                </p>
+                <p className="mt-2 text-sm text-white/35">
+                    Check back soon for new articles on craft and systems.
+                </p>
             </div>
         );
     }
 
     return (
-        <div className="relative z-10 w-full overflow-hidden rounded-4xl border border-white/15 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-2 shadow-[0_34px_100px_rgba(0,0,0,0.45)]">
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.08),transparent_45%)]" />
-            <div className="relative grid grid-cols-1 gap-px bg-white/10 lg:grid-cols-2 xl:grid-cols-3">
+        <div className="section-card overflow-hidden">
+            <div className="grid grid-cols-1 gap-px bg-white/[0.05] md:grid-cols-2 xl:grid-cols-3">
                 {posts.map((post) => (
-                    <div className="h-full bg-black/70" key={post.slug}>
+                    <div
+                        className="h-full bg-black/75 transition hover:bg-white/[0.03]"
+                        key={post.slug}
+                    >
                         <BlogCard post={post} />
                     </div>
                 ))}

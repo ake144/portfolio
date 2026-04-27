@@ -7,70 +7,101 @@ import { LinkPreview } from "./ui/link-preview";
 import { Spotlight } from "./ui/spotlight";
 import { ArrowRight } from "lucide-react";
 
+const SKILLS = [
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Flutter",
+  "Node.js",
+  "DevOps",
+];
+
 const AboutMe = () => {
   return (
-    <section className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] px-6 py-8 shadow-[0_30px_90px_rgba(0,0,0,0.35)] sm:px-8 sm:py-10 lg:px-10">
+    <section className="section-card relative overflow-hidden px-6 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
+      {/* Spotlight glow */}
       <Spotlight
-        className="-top-24 left-6 font-mono md:-top-16 md:left-24"
-        fill="rgba(239,68,68,0.45)"
+        className="-top-24 left-6 md:-top-16 md:left-24"
+        fill="rgba(220,38,38,0.38)"
       />
 
-      <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+      {/* Faint dot grid backdrop */}
+      <div className="dot-grid pointer-events-none absolute inset-0 opacity-20" />
+
+      <div className="relative z-10 grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+
+        {/* ── Left column ───────────────────────────────── */}
         <div className="space-y-8">
-          <div className="space-y-4">
-            <p className="text-xs uppercase tracking-[0.35em] text-red-400/90">
-              About Me
-            </p>
-            <h1 className="max-w-3xl text-4xl font-semibold leading-[0.9] text-white sm:text-5xl lg:text-7xl">
-              Build. Share. Ship.
-            </h1>
-            <p className="max-w-2xl text-base leading-7 text-white/70 sm:text-lg">
-              I design and ship software that feels sharp, fast, and useful. My focus sits at the intersection of product thinking, frontend craft, and backend systems.
+          <div className="space-y-5">
+            <p className="accent-line">About Me</p>
+            <h2
+              className="max-w-3xl text-balance"
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: "clamp(2.4rem, 6vw, 4rem)",
+                fontWeight: 700,
+                lineHeight: 0.92,
+                letterSpacing: "-0.02em",
+                color: "white",
+              }}
+            >
+              Build.{" "}
+              <span className="gradient-text">Share.</span>{" "}
+              Ship.
+            </h2>
+            <p className="max-w-2xl text-base leading-[1.85] text-white/60 sm:text-lg">
+              I design and ship software that feels sharp, fast, and useful.
+              My focus sits at the intersection of product thinking, frontend
+              craft, and backend systems.
             </p>
           </div>
 
+          {/* CTAs */}
           <div className="flex flex-wrap gap-3">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 border border-red-500/70 bg-red-500 px-5 py-3 text-[11px] font-bold uppercase tracking-[0.35em] text-white transition hover:bg-red-400"
-            >
+            <Link href="/contact" className="glow-btn">
               Start a conversation
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
             <LinkPreview
               url="/aklilu_tamirat_resume.pdf"
               imageSrc="/resume.png"
               isStatic
-              className="inline-flex items-center gap-2 border border-white/10 px-5 py-3 text-[11px] font-bold uppercase tracking-[0.35em] text-white/80 transition hover:border-white/25 hover:text-white"
+              className="ghost-btn"
             >
               View resume
             </LinkPreview>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-3">
-            <div className="rounded-[1.5rem] border border-white/10 bg-black/40 p-4">
-              <p className="text-3xl font-semibold text-white">5+</p>
-              <p className="mt-2 text-xs uppercase tracking-[0.3em] text-white/45">
-                Years building products
-              </p>
-            </div>
-            <div className="rounded-[1.5rem] border border-white/10 bg-black/40 p-4">
-              <p className="text-3xl font-semibold text-white">Web</p>
-              <p className="mt-2 text-xs uppercase tracking-[0.3em] text-white/45">
-                Mobile and backend
-              </p>
-            </div>
-            <div className="rounded-[1.5rem] border border-white/10 bg-black/40 p-4">
-              <p className="text-3xl font-semibold text-white">Fintech</p>
-              <p className="mt-2 text-xs uppercase tracking-[0.3em] text-white/45">
-                Shipping at scale
-              </p>
-            </div>
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.04]">
+            {[
+              { num: "5+", label: "Years building" },
+              { num: "Web", label: "Mobile & Backend" },
+              { num: "Fintech", label: "Shipping at scale" },
+            ].map(({ num, label }) => (
+              <div
+                key={num}
+                className="bg-black/50 px-4 py-5 transition hover:bg-white/[0.04]"
+              >
+                <p
+                  className="text-2xl font-bold text-white"
+                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                >
+                  {num}
+                </p>
+                <p className="mt-1 text-[10px] uppercase tracking-[0.28em] text-white/35">
+                  {label}
+                </p>
+              </div>
+            ))}
           </div>
 
-          <div className="space-y-5 text-sm leading-7 text-white/70 sm:text-base">
+          {/* Bio */}
+          <div className="space-y-4 text-sm leading-[1.9] text-white/55 sm:text-base">
             <p>
-              I&apos;ve worked across React, Next.js, Node.js, TypeScript, Flutter, and related backend tooling to create interfaces and systems that hold up in production.
+              I&apos;ve worked across React, Next.js, Node.js, TypeScript,
+              Flutter, and related backend tooling to create interfaces and
+              systems that hold up in production.
             </p>
             <p>
               I&apos;m currently a software developer at{" "}
@@ -78,18 +109,22 @@ const AboutMe = () => {
                 url="https://m-pesa.safaricom.et/"
                 imageSrc="/safari.png"
                 isStatic
-                className="border-b border-red-400/70 text-red-300 transition hover:text-red-200"
+                className="border-b border-red-400/60 text-red-300 transition hover:text-red-200"
               >
                 Safaricom Ethiopia
               </LinkPreview>
-              , where I work on scalable fintech products, user experience, and reliable integrations.
+              , where I work on scalable fintech products, user experience,
+              and reliable integrations.
             </p>
             <p>
-              When I&apos;m not coding, I&apos;m usually exploring new systems, reading, hiking, or refining the details that make interfaces feel intentional.
+              When I&apos;m not coding, I&apos;m usually exploring new
+              systems, reading, hiking, or refining the details that make
+              interfaces feel intentional.
             </p>
           </div>
 
-          <div className="flex items-center gap-3 pt-2">
+          {/* Socials */}
+          <div className="flex items-center gap-3 pt-1">
             <SocialButtons
               size="lg"
               className="gap-4"
@@ -100,9 +135,11 @@ const AboutMe = () => {
           </div>
         </div>
 
-        <div className="space-y-4">
-          <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/60 p-4">
-            <div className="overflow-hidden rounded-[1.25rem] border border-white/10 bg-neutral-950">
+        {/* ── Right column ──────────────────────────────── */}
+        <div className="space-y-5">
+          {/* Portrait */}
+          <div className="overflow-hidden rounded-3xl border border-white/[0.08] bg-black/60 p-3">
+            <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-neutral-950">
               <PixelatedCanvas
                 src="/avatar.jpg"
                 width={450}
@@ -125,28 +162,34 @@ const AboutMe = () => {
                 className="aspect-square h-full w-full"
               />
             </div>
-            <div className="mt-4 flex items-center justify-between gap-3 text-xs uppercase tracking-[0.3em] text-white/45">
+            <div className="mt-3 flex items-center justify-between px-1 text-[10px] uppercase tracking-[0.3em] text-white/35">
               <span>Portrait / signal</span>
-              <span className="text-white/80">Live profile</span>
+              <span className="flex items-center gap-1.5 text-white/60">
+                <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-emerald-400" />
+                Live profile
+              </span>
             </div>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2">
-            {[
-              "React",
-              "Next.js",
-              "TypeScript",
-              "Flutter",
-              "Node.js",
-              "DevOps",
-            ].map((skill) => (
+          {/* Skills grid */}
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+            {SKILLS.map((skill) => (
               <div
                 key={skill}
-                className="rounded-[1.25rem] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white/75"
+                className="tag-pill justify-center py-2.5 text-center"
               >
                 {skill}
               </div>
             ))}
+          </div>
+
+          {/* Location chip */}
+          <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4 text-center">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-white/30">Based in</p>
+            <p className="mt-1 text-sm font-medium text-white/70">
+              Addis Ababa, Ethiopia
+            </p>
+            <p className="mt-0.5 text-[10px] text-white/30">Open to remote worldwide</p>
           </div>
         </div>
       </div>
