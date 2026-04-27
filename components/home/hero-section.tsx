@@ -1,208 +1,90 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Link from "next/link";
-import { ArrowRight, ChevronDown } from "lucide-react";
-import { ThreeHeroScene } from "./three-hero-scene";
+import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
 
-/* ── Tiny animated counter ──────────────────────────────────── */
-function Counter({
-    end,
-    suffix = "",
-}: {
-    end: number;
-    suffix?: string;
-}) {
-    const ref = useRef<HTMLSpanElement>(null);
-    useEffect(() => {
-        let start = 0;
-        const step = end / 48;
-        const timer = setInterval(() => {
-            start = Math.min(start + step, end);
-            if (ref.current) ref.current.textContent = Math.floor(start) + suffix;
-            if (start >= end) clearInterval(timer);
-        }, 28);
-        return () => clearInterval(timer);
-    }, [end, suffix]);
-    return (
-        <span ref={ref} className="tabular-nums">
-            0{suffix}
-        </span>
-    );
-}
-
-/* ── Status badge ───────────────────────────────────────────── */
-function StatusBadge() {
-    return (
-        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[10px] uppercase tracking-[0.3em] text-white/60 backdrop-blur-sm">
-            <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-emerald-400" />
-            Open to opportunities
+const HeroSection = () => {
+  return (
+    <section className="relative h-[100dvh] w-full bg-black overflow-hidden flex items-center">
+      
+      {/* Background Pattern/Canvas */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none md:opacity-100 opacity-60">
+        <div className="h-[80%] w-full max-w-4xl opacity-80 pointer-events-auto translate-y-12">
+          <PixelatedCanvas
+            src="/avatar.jpg"
+            width={800}
+            height={800}
+            cellSize={3}
+            dotScale={0.8}
+            shape="square"
+            backgroundColor="#000000"
+            dropoutStrength={0.6}
+            interactive
+            distortionStrength={3}
+            distortionRadius={100}
+            distortionMode="swirl"
+            followSpeed={0.15}
+            jitterStrength={3}
+            jitterSpeed={4}
+            sampleAverage
+            tintColor="#FFFFFF"
+            tintStrength={0.0}
+            className="h-full w-full object-contain mix-blend-lighten"
+          />
         </div>
-    );
-}
+      </div>
 
-/* ── Scrolling tech marquee ─────────────────────────────────── */
-const TECHS = [
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "Three.js",
-    "Flutter",
-    "PostgreSQL",
-    "Redis",
-    "Docker",
-    "DevOps",
-    "Tailwind",
-    "Prisma",
-];
+      {/* Main typographic content */}
+      <div className="relative z-10 w-full mx-auto max-w-screen-2xl px-6 sm:px-12 xl:px-24 flex flex-col md:flex-row items-center md:items-start justify-between h-full pointer-events-none">
+        
+        <div className="flex w-full md:pt-48 pt-32 justify-between flex-col md:flex-row gap-8 md:gap-0 h-full pb-32">
+          
+          {/* Left Column Text */}
+          <div className="flex flex-col pointer-events-auto">
+            <h1 
+              className="text-white uppercase leading-[0.85] tracking-tighter"
+              style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(4rem, 10vw, 8rem)", fontWeight: 800 }}
+            >
+              Build<br/>
+              Products<br/>
+              That Last
+            </h1>
+            <p className="text-white/60 mt-8 text-sm sm:text-base leading-relaxed max-w-[280px]">
+              Full-stack developer focused on building scalable products.
+            </p>
+          </div>
 
-function TechMarquee() {
-    const items = [...TECHS, ...TECHS]; // duplicate for seamless loop
-    return (
-        <div className="pointer-events-none mt-12 overflow-hidden border-t border-b border-white/[0.06] py-3">
-            <div className="marquee-track">
-                {items.map((t, i) => (
-                    <span
-                        key={i}
-                        className="mx-6 text-[10px] uppercase tracking-[0.35em] text-white/30 transition-colors hover:text-white/60"
-                    >
-                        {t}
-                    </span>
-                ))}
-            </div>
+          {/* Right Column Text */}
+          <div className="flex flex-col text-left md:text-right pointer-events-auto mt-auto md:mt-0 lg:mt-32">
+            <h2 
+              className="text-white uppercase leading-[0.85] tracking-tighter mix-blend-difference"
+              style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(3.5rem, 8vw, 7.5rem)", fontWeight: 800 }}
+            >
+              Creative<br/>
+              Developer
+            </h2>
+          </div>
+
         </div>
-    );
-}
 
-/* ── Main Hero ──────────────────────────────────────────────── */
-export function HeroSection() {
-    return (
-        <section
-            id="home"
-            className="relative min-h-[100svh] overflow-hidden"
-            style={{ isolation: "isolate" }}
-        >
-            {/* Three.js parallax scrollable avatar background */}
-            <ThreeHeroScene />
+      </div>
 
-            {/* Dark overlay gradient so text stays readable */}
-            <div
-                className="pointer-events-none absolute inset-0 z-[1]"
-                style={{
-                    background:
-                        "linear-gradient(to bottom, rgba(8,8,8,0.72) 0%, rgba(8,8,8,0.40) 45%, rgba(8,8,8,0.88) 100%)",
-                }}
-            />
+      {/* Bottom Left ID Badge */}
+      <div className="absolute bottom-6 sm:bottom-12 left-6 sm:left-12 z-20 pointer-events-auto">
+        <div className="rounded-[1.5rem] border border-white/20 bg-black/50 backdrop-blur-xl px-8 py-5 flex flex-col transition-all hover:bg-white/[0.05] hover:border-white/30 cursor-pointer">
+          <span 
+            className="text-white tracking-[0.15em] uppercase text-sm sm:text-[17px] font-bold" 
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          >
+            Aklilu Tamirat
+          </span>
+          <span className="text-white/40 text-[10px] sm:text-xs uppercase tracking-[0.25em] mt-2">
+            Full Stack Developer
+          </span>
+        </div>
+      </div>
 
-            {/* Subtle top-left radial accent */}
-            <div
-                className="pointer-events-none absolute -left-32 -top-32 z-[1] h-[500px] w-[500px] rounded-full"
-                style={{
-                    background:
-                        "radial-gradient(circle, rgba(220,38,38,0.18) 0%, transparent 70%)",
-                }}
-            />
+    </section>
+  );
+};
 
-            {/* Content */}
-            <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col px-4 sm:px-6 lg:px-8">
-                {/* Top bar */}
-                <div className="flex items-center justify-between border-b border-white/[0.07] py-5">
-                    <span className="text-[10px] uppercase tracking-[0.4em] text-white/40">
-                        Portfolio · 2026
-                    </span>
-                    <StatusBadge />
-                    <div className="hidden items-center gap-6 md:flex">
-                        {["Work", "Experience", "Blog"].map((l) => (
-                            <Link
-                                key={l}
-                                href={`/#${l.toLowerCase()}`}
-                                className="text-[10px] uppercase tracking-[0.3em] text-white/50 transition hover:text-white"
-                            >
-                                {l}
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Main centred content */}
-                <div className="flex flex-1 flex-col items-center justify-center py-16 text-center">
-                    {/* Eyebrow */}
-                    <p className="accent-line mb-8 animate-fade-up opacity-0">
-                        Full-Stack Engineer &amp; Product Builder
-                    </p>
-
-                    {/* Heading */}
-                    <h1
-                        className="animate-fade-up delay-100 mx-auto max-w-5xl text-balance opacity-0"
-                        style={{
-                            fontFamily: "'Space Grotesk', sans-serif",
-                            fontSize: "clamp(3rem, 8vw, 6.5rem)",
-                            fontWeight: 700,
-                            lineHeight: 0.89,
-                            letterSpacing: "-0.02em",
-                        }}
-                    >
-                        <span className="gradient-text block">Engineering</span>
-                        <span className="block text-white">Products That</span>
-                        <span className="gradient-text block">Actually Ship.</span>
-                    </h1>
-
-                    {/* Sub-copy */}
-                    <p
-                        className="animate-fade-up delay-200 mx-auto mt-8 max-w-2xl text-balance text-sm leading-[1.9] text-white/55 opacity-0 sm:text-base"
-                    >
-                        I design and build fast, editorial interfaces and robust backend
-                        systems — from fintech at scale to open-source design systems.
-                        Sharp craft, clear product thinking.
-                    </p>
-
-                    {/* CTAs */}
-                    <div className="animate-fade-up delay-300 mt-10 flex flex-wrap items-center justify-center gap-3 opacity-0">
-                        <Link href="/#work" className="glow-btn">
-                            See my work
-                            <ArrowRight className="h-3.5 w-3.5" />
-                        </Link>
-                        <Link href="/#contact" className="ghost-btn">
-                            Start a project
-                        </Link>
-                    </div>
-
-                    {/* Stats */}
-                    <div
-                        className="animate-fade-up delay-400 mt-14 grid grid-cols-3 opacity-0 divide-x divide-white/10"
-                    >
-                        {[
-                            { end: 5, suffix: "+", label: "Years experience" },
-                            { end: 20, suffix: "+", label: "Projects shipped" },
-                            { end: 5, suffix: "K+", label: "Users served" },
-                        ].map(({ end, suffix, label }) => (
-                            <div key={label} className="px-8 text-center first:pl-0 last:pr-0">
-                                <p className="stat-num">
-                                    <Counter end={end} suffix={suffix} />
-                                </p>
-                                <p className="mt-1 text-[10px] uppercase tracking-[0.28em] text-white/35">
-                                    {label}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Tech marquee */}
-                <TechMarquee />
-
-                {/* Scroll hint */}
-                <div className="flex justify-center py-6">
-                    <a
-                        href="/#about"
-                        className="group flex flex-col items-center gap-1.5 text-[9px] uppercase tracking-[0.4em] text-white/30 transition hover:text-white/60"
-                    >
-                        Scroll
-                        <ChevronDown className="h-3.5 w-3.5 animate-float" />
-                    </a>
-                </div>
-            </div>
-        </section>
-    );
-}
+export default HeroSection;

@@ -4,10 +4,10 @@ import AboutMe from "@/components/about";
 import Projects from "@/components/projects";
 import { BlogList } from "@/components/blog/blog-list";
 import { getAllPosts } from "@/lib/blog";
-import { HeroSection } from "@/components/home/hero-section";
 import ExperienceSection from "@/components/experience/experience-section";
 import ContactSection from "@/components/contact/contact-section";
 import GSAPAnimations from "@/components/gsap-animations";
+import HeroSection from "@/components/home/hero-section";
 
 export default function Home() {
   const featuredPosts = getAllPosts().slice(0, 3);
@@ -15,8 +15,6 @@ export default function Home() {
   return (
     <main className="relative">
       <GSAPAnimations />
-
-      {/* ── Full-bleed Three.js hero ──────────────────────────── */}
       <HeroSection />
 
       {/* ── Page content container ─────────────────────────────── */}
