@@ -43,7 +43,7 @@ export function ExperienceCard({ experience, isExpanded, onToggle, isLast }: Exp
         
         {/* Vertical Line */}
         {!isLast && (
-          <div className="absolute top-7 bottom-[-3rem] w-px border-l border-dashed border-white/10" />
+          <div className="absolute top-7 -bottom-12 w-px border-l border-dashed border-white/10" />
         )}
       </div>
 
@@ -58,11 +58,17 @@ export function ExperienceCard({ experience, isExpanded, onToggle, isLast }: Exp
         <div
           onClick={onToggle}
           className={cn(
-            "relative cursor-pointer overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/55 p-5 transition-all duration-300",
-            "hover:border-red-500/40 hover:bg-black/75 hover:shadow-[0_18px_50px_rgba(0,0,0,0.35)]",
-            isExpanded && "border-red-500/40 bg-black/80 ring-1 ring-red-500/20"
+            "relative cursor-pointer overflow-hidden border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.018))] transition-all duration-300",
+            "hover:-translate-y-0.5 hover:border-red-500/40 hover:shadow-[0_25px_70px_rgba(0,0,0,0.45)]",
+            isExpanded && "border-red-500/40 ring-1 ring-red-500/20"
           )}
         >
+          <div className="flex items-center justify-between border-b border-white/10 bg-black/35 px-5 py-3">
+            <p className="text-[10px] uppercase tracking-[0.34em] text-white/50">SYS://EXPERIENCE</p>
+            <span className="text-[10px] uppercase tracking-[0.3em] text-red-300/85">{experience.period}</span>
+          </div>
+
+          <div className="p-5">
           <div className="flex items-start justify-between gap-4">
             <div className="space-y-1.5">
               <h3 className="flex items-center gap-2 text-base font-semibold text-white">
@@ -112,7 +118,7 @@ export function ExperienceCard({ experience, isExpanded, onToggle, isLast }: Exp
                             {experience.tags.map((tag) => (
                                 <span
                                     key={tag}
-                        className="rounded-none border border-white/10 bg-white/[0.04] px-2 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-white/65"
+                        className="rounded-none border border-white/10 bg-white/4 px-2 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-white/65"
                                 >
                                     {tag}
                                 </span>
@@ -129,6 +135,7 @@ export function ExperienceCard({ experience, isExpanded, onToggle, isLast }: Exp
                 {experience.description}
              </p>
           )}
+           </div>
         </div>
       </div>
     </div>

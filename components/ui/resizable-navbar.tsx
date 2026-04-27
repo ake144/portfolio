@@ -1,4 +1,5 @@
 "use client";
+
 import { cn } from "@/lib/utils";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import {
@@ -7,9 +8,8 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "motion/react";
-
 import React, { useRef, useState } from "react";
-
+import Link from "next/link";
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -58,11 +58,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   const [visible, setVisible] = useState<boolean>(true);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 100) {
-      setVisible(true);
-    } else {
-      setVisible(false);
-    }
+    setVisible(latest > 48);
   });
 
   return (
@@ -88,19 +84,14 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
       animate={{
         backdropFilter: visible ? "blur(18px)" : "blur(12px)",
         boxShadow: visible ? "0 24px 60px rgba(0, 0, 0, 0.28)" : "none",
-        width: "100%",
-        y: 0,
       }}
       transition={{
         type: "spring",
         stiffness: 200,
-        damping: 50,
-      }}
-      style={{
-        minWidth: "100%",
+        damping: 45,
       }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-[1440px] flex-row items-center justify-between self-start border-b border-white/10 bg-black/75 px-4 py-3 lg:flex lg:px-8",
+        "relative z-60 mx-auto hidden w-full max-w-[1440px] flex-row items-center justify-between border-b border-white/10 bg-black/75 px-4 py-3 lg:flex lg:px-8",
         className,
       )}
     >
@@ -118,14 +109,14 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
       )}
     >
       {items.map((item, idx) => (
-        <a
+        <Link
           onClick={onItemClick}
           className="relative px-4 py-2 text-[11px] uppercase tracking-[0.35em] text-white/60 transition hover:text-white"
           key={`link-${idx}`}
           href={item.link}
         >
           <span>{item.name}</span>
-        </a>
+        </Link>
       ))}
     </motion.div>
   );
@@ -137,16 +128,11 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       animate={{
         backdropFilter: visible ? "blur(18px)" : "blur(12px)",
         boxShadow: visible ? "0 24px 60px rgba(0, 0, 0, 0.28)" : "none",
-        width: "100%",
-        paddingRight: "0px",
-        paddingLeft: "0px",
-        borderRadius: "0px",
-        y: 0,
       }}
       transition={{
         type: "spring",
         stiffness: 200,
-        damping: 50,
+        damping: 45,
       }}
       className={cn(
         "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between border-b border-white/10 bg-black/80 px-0 py-2 lg:hidden",
@@ -178,7 +164,6 @@ export const MobileNavMenu = ({
   children,
   className,
   isOpen,
-  onClose,
 }: MobileNavMenuProps) => {
   return (
     <AnimatePresence>
@@ -215,7 +200,7 @@ export const MobileNavToggle = ({
 
 export const NavbarLogo = () => {
   return (
-    <a
+    <Link
       href="/"
       className="relative z-20 mr-4 flex items-center gap-3 px-1 py-1 text-sm font-medium text-white"
     >
@@ -223,7 +208,7 @@ export const NavbarLogo = () => {
         A
       </span>
       <span className="uppercase tracking-[0.35em] text-white/90">Aklilu</span>
-    </a>
+    </Link>
   );
 };
 
@@ -236,32 +221,44 @@ export const NavbarButton = ({
   ...props
 }: {
   href?: string;
-    "inline-flex items-center justify-center rounded-none border border-white/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.35em] transition duration-200 hover:-translate-y-0.5";
+  as?: "a" | "button";
   children: React.ReactNode;
   className?: string;
   variant?: "primary" | "secondary" | "dark" | "gradient";
+} & (
+  | React.ComponentPropsWithoutRef<"a">
+  | React.ComponentPropsWithoutRef<"button">
+)) => {
+  const baseStyles =
+    "inline-flex items-center justify-center rounded-none border border-white/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.35em] transition duration-200 hover:-translate-y-0.5";
+
+  const variantStyles = {
+    primary:
       "border-red-500/70 bg-red-500 text-white shadow-[0_18px_40px_rgba(239,68,68,0.2)] hover:bg-red-400",
     secondary: "bg-transparent text-white/80 hover:border-white/30 hover:text-white",
     dark: "bg-white/5 text-white hover:bg-white/10",
     gradient: "bg-gradient-to-r from-red-500 to-orange-500 text-white",
-    "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
-
-  const variantStyles = {
-    primary:
-      "shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
-    secondary: "bg-transparent shadow-none dark:text-white",
-    dark: "bg-black text-white shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
-    gradient:
-      "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
   };
 
+  if (Tag === "button") {
+    return (
+      <button
+        type="button"
+        className={cn(baseStyles, variantStyles[variant], className)}
+        {...(props as React.ComponentPropsWithoutRef<"button">)}
+      >
+        {children}
+      </button>
+    );
+  }
+
   return (
-    <Tag
+    <a
       href={href || undefined}
       className={cn(baseStyles, variantStyles[variant], className)}
-      {...props}
+      {...(props as React.ComponentPropsWithoutRef<"a">)}
     >
       {children}
-    </Tag>
+    </a>
   );
 };

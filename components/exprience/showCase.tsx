@@ -60,7 +60,9 @@ export function ExperienceShowcase() {
           </p>
         </div>
 
-        <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-3 shadow-[0_30px_90px_rgba(0,0,0,0.35)]">
+        <div className="relative rounded-4xl border border-white/15 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-3 shadow-[0_34px_100px_rgba(0,0,0,0.45)]">
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.08),transparent_45%)]" />
+          <div className="relative">
           {experiences.map((exp, index) => (
             <ExperienceCard
               key={exp.id}
@@ -70,6 +72,7 @@ export function ExperienceShowcase() {
               isLast={index === experiences.length - 1}
             />
           ))}
+          </div>
         </div>
       </div>
     </section>

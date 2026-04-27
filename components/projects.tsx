@@ -5,7 +5,7 @@ import { ProjectCard } from "./projects/card"
 const Projects = () => {
   const projects = [
     {
-      id: 2,
+      id: 1,
       title: "UIForest",
       description: "Opensource Design system, UI component library and template solution based on tailwindcss and shadcn",
       category: "Design System",
@@ -15,7 +15,7 @@ const Projects = () => {
       icon: "🎨",
     },
     {
-      id:2,
+      id: 2,
       title:"Esperanza",
       description:"A powerful digital affiliate platform built to help influencer scale their influence, multiply opportunities, and convert passion into measurable success.",
       category:"Affiliate Marketing",
@@ -76,8 +76,9 @@ const Projects = () => {
   ]
 
   return (
-    <div className="relative z-10 w-full overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-2 shadow-[0_30px_90px_rgba(0,0,0,0.35)]">
-      <div className="grid grid-cols-1 gap-px bg-white/10 md:grid-cols-2 xl:grid-cols-3">
+    <div className="relative z-10 w-full overflow-hidden rounded-4xl border border-white/15 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-2 shadow-[0_34px_100px_rgba(0,0,0,0.45)]">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.08),transparent_45%)]" />
+      <div className="relative grid grid-cols-1 gap-px bg-white/10 md:grid-cols-2 xl:grid-cols-3">
         {projects.map((project) => (
           <div className="h-full bg-black/70" key={project.id}>
             <ProjectCard project={project} />

@@ -4,113 +4,98 @@ import AboutMe from "@/components/about";
 import Projects from "@/components/projects";
 import { BlogList } from "@/components/blog/blog-list";
 import { getAllPosts } from "@/lib/blog";
+import { HeroWheelScene } from "@/components/home/hero-wheel-scene";
+import ExperienceSection from "@/components/experience/experience-section";
+import ContactSection from "@/components/contact/contact-section";
+import GSAPAnimations from "@/components/gsap-animations";
 
 export default function Home() {
   const featuredPosts = getAllPosts().slice(0, 3);
 
   return (
     <main className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-14">
-      <section className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-        <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.35)] sm:p-8 lg:p-10">
-          <p className="text-xs uppercase tracking-[0.35em] text-red-400/80">
-            Portfolio network
-          </p>
-          <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-[0.9] text-white sm:text-5xl lg:text-7xl">
-            Build. Share. <span className="text-red-400">Inspire.</span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-7 text-white/68 sm:text-lg">
-            A dark, fast, and highly structured portfolio inspired by editorial grids, high-contrast product cards, and the kind of interfaces that make work feel deliberate.
-          </p>
+      <GSAPAnimations />
+      
+      <section id="home" className="relative min-h-[92vh] overflow-hidden rounded-[2rem] border border-white/10 bg-black/70 px-6 pt-8 shadow-[0_35px_120px_rgba(0,0,0,0.58)] sm:px-8 lg:px-10">
+        <HeroWheelScene />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_22%,rgba(255,255,255,0.1),transparent_34%),radial-gradient(circle_at_84%_8%,rgba(120,130,170,0.18),transparent_30%),linear-gradient(180deg,rgba(255,255,255,0.06),transparent_22%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:92px_92px] opacity-25" />
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-2 border border-red-500/70 bg-red-500 px-5 py-3 text-[11px] font-bold uppercase tracking-[0.35em] text-white transition hover:bg-red-400"
-            >
-              View selected work
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 border border-white/10 px-5 py-3 text-[11px] font-bold uppercase tracking-[0.35em] text-white/80 transition hover:border-white/25 hover:text-white"
-            >
-              Read writing
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 border border-white/10 px-5 py-3 text-[11px] font-bold uppercase tracking-[0.35em] text-white/80 transition hover:border-white/25 hover:text-white"
-            >
-              Contact
-            </Link>
-          </div>
-
-          <div className="mt-8 grid gap-3 sm:grid-cols-3">
-            <div className="rounded-[1.25rem] border border-white/10 bg-black/40 p-4">
-              <p className="text-3xl font-semibold text-white">Web</p>
-              <p className="mt-2 text-xs uppercase tracking-[0.3em] text-white/45">
-                Interfaces
-              </p>
-            </div>
-            <div className="rounded-[1.25rem] border border-white/10 bg-black/40 p-4">
-              <p className="text-3xl font-semibold text-white">Mobile</p>
-              <p className="mt-2 text-xs uppercase tracking-[0.3em] text-white/45">
-                Products
-              </p>
-            </div>
-            <div className="rounded-[1.25rem] border border-white/10 bg-black/40 p-4">
-              <p className="text-3xl font-semibold text-white">Backend</p>
-              <p className="mt-2 text-xs uppercase tracking-[0.3em] text-white/45">
-                Systems
-              </p>
-            </div>
+        <div className="relative z-10 flex items-center justify-between border-b border-white/10 pb-6">
+          <p className="text-xs uppercase tracking-[0.35em] text-white/70">Portfolio systems</p>
+          <div className="hidden items-center gap-8 text-xs uppercase tracking-[0.28em] text-white/65 md:flex">
+            <Link href="/contact" className="transition hover:text-white">Philosophy</Link>
+            <Link href="/contact" className="transition hover:text-white">Craft</Link>
+            <Link href="/contact" className="transition hover:text-white">Innovation</Link>
           </div>
         </div>
 
-        <div className="grid gap-6">
-          <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
-            <p className="text-xs uppercase tracking-[0.35em] text-red-400/80">
-              Signal
+        <div className="relative z-10 grid gap-10 pb-10 pt-10 lg:grid-cols-[150px_1fr_230px] lg:pt-14">
+          <aside className="hidden space-y-24 lg:block">
+            <div>
+              <p className="text-xs text-white/45">01</p>
+              <p className="mt-1 text-sm uppercase tracking-[0.25em] text-white/85">Philosophy</p>
+            </div>
+            <div>
+              <p className="text-xs text-white/45">02</p>
+              <p className="mt-1 text-sm uppercase tracking-[0.25em] text-white/85">Craft</p>
+            </div>
+            <div>
+              <p className="text-xs text-white/45">03</p>
+              <p className="mt-1 text-sm uppercase tracking-[0.25em] text-white/85">Innovation</p>
+            </div>
+          </aside>
+
+          <div className="text-center">
+            <p className="text-xs uppercase tracking-[0.35em] text-white/50">Welcome</p>
+            <h1 className="mx-auto mt-6 max-w-4xl text-4xl font-semibold uppercase leading-[0.88] text-white sm:text-6xl lg:text-7xl">
+              The Evolution
+              <br />
+              Of Performance
+            </h1>
+            <p className="mx-auto mt-7 max-w-2xl text-sm uppercase tracking-[0.24em] text-white/55 sm:text-base">
+              Three-dimensional storytelling and modern engineering craft for ambitious digital products.
             </p>
-            <div className="mt-5 space-y-4 text-sm leading-7 text-white/68 sm:text-base">
-              <p>
-                I focus on work that is practical, maintainable, and visually sharp.
-              </p>
-              <p>
-                The current direction leans into dark surfaces, red accents, and card-based layouts that feel closer to a product network than a traditional portfolio.
-              </p>
-              <p>
-                Every section is meant to read quickly and still reward a closer look.
-              </p>
+
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/55 px-8 py-3 text-[11px] font-bold uppercase tracking-[0.3em] text-white transition hover:border-white/45"
+              >
+                Learn More
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 px-8 py-3 text-[11px] font-bold uppercase tracking-[0.3em] text-white/75 transition hover:border-white/30 hover:text-white"
+              >
+                Start project
+              </Link>
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-white/10 bg-black/60 p-6 sm:p-8">
-            <p className="text-xs uppercase tracking-[0.35em] text-white/45">
-              Focus areas
-            </p>
-            <ul className="mt-5 space-y-3 text-sm text-white/70 sm:text-base">
-              <li className="flex items-center justify-between border-b border-white/10 pb-3">
-                <span>Product engineering</span>
-                <span className="text-white/40">01</span>
-              </li>
-              <li className="flex items-center justify-between border-b border-white/10 pb-3">
-                <span>Design systems</span>
-                <span className="text-white/40">02</span>
-              </li>
-              <li className="flex items-center justify-between pb-1">
-                <span>Shipping at scale</span>
-                <span className="text-white/40">03</span>
-              </li>
-            </ul>
+          <div className="space-y-3">
+            <div className="rounded-2xl border border-white/10 bg-white/4 px-4 py-4 backdrop-blur-sm">
+              <p className="text-xs uppercase tracking-[0.3em] text-white/45">Signal</p>
+              <p className="mt-2 text-sm leading-6 text-white/72">Product-first execution.</p>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/4 px-4 py-4 backdrop-blur-sm">
+              <p className="text-xs uppercase tracking-[0.3em] text-white/45">Range</p>
+              <p className="mt-2 text-sm leading-6 text-white/72">Web, mobile, and backend systems.</p>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/4 px-4 py-4 backdrop-blur-sm">
+              <p className="text-xs uppercase tracking-[0.3em] text-white/45">Outcome</p>
+              <p className="mt-2 text-sm leading-6 text-white/72">Interfaces that feel premium and perform.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="mt-8">
+      <section id="about" className="mt-8">
         <AboutMe />
       </section>
 
-      <section className="mt-12 space-y-5 sm:mt-16">
+      <section id="work" className="mt-12 space-y-5 sm:mt-16">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.35em] text-red-400/80">
@@ -120,14 +105,25 @@ export default function Home() {
               Selected projects and product builds.
             </h2>
           </div>
-          <Link href="/projects" className="text-sm uppercase tracking-[0.3em] text-white/50 transition hover:text-white">
-            See all projects
-          </Link>
         </div>
         <Projects />
       </section>
 
-      <section className="mt-12 space-y-5 sm:mt-16">
+      <section id="experience" className="mt-12 space-y-5 sm:mt-16">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+                <p className="text-xs uppercase tracking-[0.35em] text-red-400/80">
+                Background
+                </p>
+                <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
+                Experience
+                </h2>
+            </div>
+        </div>
+        <ExperienceSection />
+      </section>
+
+      <section id="blog" className="mt-12 space-y-5 sm:mt-16">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.35em] text-red-400/80">
@@ -137,12 +133,24 @@ export default function Home() {
               Notes on craft, systems, and product thinking.
             </h2>
           </div>
-          <Link href="/blog" className="text-sm uppercase tracking-[0.3em] text-white/50 transition hover:text-white">
-            Browse writing
-          </Link>
         </div>
         <BlogList posts={featuredPosts} />
       </section>
+
+      <section id="contact" className="mt-12 space-y-5 sm:mt-16">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+                <p className="text-xs uppercase tracking-[0.35em] text-red-400/80">
+                Get In Touch
+                </p>
+                <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
+                Contact
+                </h2>
+            </div>
+        </div>
+        <ContactSection />
+      </section>
+
     </main>
   );
 }

@@ -72,6 +72,8 @@ export const metadata: Metadata = {
   },
 };
 
+import InitialLoader from "@/components/initial-loader";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -103,9 +105,9 @@ export default function RootLayout({
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground antialiased`}>
+        <InitialLoader />
         <NavbarItems />
         {children}
-
         <FooterPage />
         <Toaster />
       </body>

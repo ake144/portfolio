@@ -12,29 +12,30 @@ import {
   MobileNavHeader,
   MobileNavToggle,
   MobileNavMenu,
-} from "@/components/ui/resizable-navbar";
+} from "./ui/resizable-navbar";
 import { useState } from "react";
+import Link from "next/link";
 export function NavbarItems() {
   const navItems = [
     {
       name: "Home",
-      link: "/",
+      link: "/#home",
     },
     {
       name: "Work",
-      link: "/projects",
+      link: "/#work",
     },
     {
       name: "Experience",
-      link: "/experience",
+      link: "/#experience",
     },
     {
       name: "Blog",
-      link: "/blog",
+      link: "/#blog",
     },
     {
       name: "Contact",
-      link: "/contact",
+      link: "/#contact",
     },
   ];
 
@@ -47,12 +48,12 @@ export function NavbarItems() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-3">
-            <a
+            <Link
               href="/blog"
               className="hidden rounded-none border border-white/10 px-3 py-2 text-[11px] uppercase tracking-[0.35em] text-white/60 transition hover:border-red-500/60 hover:text-white lg:inline-flex"
             >
               Explore
-            </a>
+            </Link>
             <NavbarButton
               as="button"
               onClick={() => {
@@ -80,14 +81,14 @@ export function NavbarItems() {
             onClose={() => setIsMobileMenuOpen(false)}
           >
             {navItems.map((item, idx) => (
-              <a
+              <Link
                 key={`mobile-link-${idx}`}
                 href={item.link}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="relative text-sm uppercase tracking-[0.25em] text-white/70 transition hover:text-white"
               >
                 <span className="block">{item.name}</span>
-              </a>
+              </Link>
             ))}
             <div className="flex w-full flex-col gap-4">
               <NavbarButton
