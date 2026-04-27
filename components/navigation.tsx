@@ -5,11 +5,11 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
-  { name: "Home", link: "/#home" },
-  { name: "Work", link: "/#work" },
-  { name: "Experience", link: "/#experience" },
-  { name: "Blog", link: "/#blog" },
-  { name: "Contact", link: "/#contact" },
+  { name: "HOME", link: "/#home" },
+  { name: "WORK", link: "/#work" },
+  { name: "EXPERIENCE", link: "/#experience" },
+  { name: "BLOG", link: "/#blog" },
+  { name: "CONTACT", link: "/#contact" },
 ];
 
 export function NavbarItems() {
@@ -35,53 +35,40 @@ export function NavbarItems() {
           : "1px solid transparent",
       }}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-6 sm:px-10 lg:px-16">
 
         {/* Logo */}
         <Link
           href="/"
-          className="group flex items-center gap-2.5 text-white"
+          className="text-lg font-black tracking-tighter text-white"
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
-          <span
-            className="flex h-7 w-7 items-center justify-center rounded-md bg-red-600 text-xs font-bold text-white"
-          >
-            A
-          </span>
-          <span className="text-sm font-semibold tracking-tight leading-none">
-            Aklilu
-            <span className="block text-[9px] font-normal uppercase tracking-[0.3em] text-white/40">
-              Tamirat
-            </span>
-          </span>
+          DEV_PORTFOLIO
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-10 md:flex">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.name}
               href={item.link}
-              className="relative text-[10px] uppercase tracking-[0.3em] text-white/50 transition-colors hover:text-white after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-red-500 after:transition-all after:duration-300 hover:after:w-full"
+              className="relative text-[10px] font-bold uppercase tracking-[0.25em] text-white/50 transition-colors hover:text-white"
             >
               {item.name}
+              {item.name === "HOME" && (
+                <span className="absolute -bottom-2 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-red-500" />
+              )}
             </Link>
           ))}
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden items-center gap-3 md:flex">
-          <Link
-            href="/blog"
-            className="text-[10px] uppercase tracking-[0.3em] text-white/40 transition hover:text-white/70"
-          >
-            Explore
-          </Link>
+        <div className="hidden items-center md:flex">
           <button
             onClick={() => window.open("/aklilu_tamirat_resume.pdf", "_blank")}
-            className="glow-btn !py-2 !px-5 text-[10px]"
+            className="text-[10px] font-bold uppercase tracking-[0.25em] text-red-500 transition hover:text-red-400"
           >
-            View CV
+            RESUME
           </button>
         </div>
 
@@ -122,9 +109,9 @@ export function NavbarItems() {
                 setOpen(false);
                 window.open("/aklilu_tamirat_resume.pdf", "_blank");
               }}
-              className="glow-btn w-full justify-center"
+              className="w-full py-3 text-[11px] font-bold uppercase tracking-[0.28em] text-red-500"
             >
-              View CV
+              RESUME
             </button>
           </div>
         </div>
@@ -132,3 +119,4 @@ export function NavbarItems() {
     </header>
   );
 }
+
