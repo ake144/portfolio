@@ -108,7 +108,9 @@ export default function RootLayout({
       >
         <InitialLoader />
         <NavbarItems />
-        {children}
+        <main className="main-content">
+          {children}
+        </main>
         <FooterPage />
         <Toaster
           toastOptions={{

@@ -5,11 +5,12 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
-  { name: "HOME", link: "/#home" },
-  { name: "WORK", link: "/#work" },
-  { name: "EXPERIENCE", link: "/#experience" },
-  { name: "BLOG", link: "/#blog" },
-  { name: "CONTACT", link: "/#contact" },
+  { name: "About", link: "/#about" },
+  { name: "Services", link: "/#services" },
+  { name: "Tech", link: "/#tech" },
+  { name: "Projects", link: "/#projects" },
+  { name: "Experience", link: "/#experience" },
+  { name: "Contact", link: "/#contact" },
 ];
 
 export function NavbarItems() {
@@ -22,56 +23,48 @@ export function NavbarItems() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
+
   return (
     <header
       className="fixed top-0 z-50 w-full transition-all duration-500"
       style={{
-        background: scrolled
-          ? "rgba(8,8,8,0.88)"
-          : "transparent",
-        backdropFilter: scrolled ? "blur(20px) saturate(1.4)" : "none",
-        borderBottom: scrolled
-          ? "1px solid rgba(255,255,255,0.06)"
-          : "1px solid transparent",
+        background: scrolled ? "rgba(10,10,10,0.96)" : "transparent",
+        backdropFilter: scrolled ? "blur(18px) saturate(1.2)" : "none",
+        borderBottom: scrolled ? "1px solid #222" : "1px solid transparent",
       }}
     >
-      <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-6 sm:px-10 lg:px-16">
-
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-5">
         {/* Logo */}
         <Link
           href="/"
-          className="text-lg font-black tracking-tighter text-white"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          className="text-2xl font-black tracking-tight text-white"
+          style={{ fontFamily: "var(--font-main)" }}
         >
-          DEV_PORTFOLIO
+          PORTFOLIO
         </Link>
-
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-10 md:flex">
+        <nav className="hidden md:flex flex-1 justify-center gap-8">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.name}
               href={item.link}
-              className="relative text-[10px] font-bold uppercase tracking-[0.25em] text-white/50 transition-colors hover:text-white"
+              className="relative text-[13px] font-extrabold uppercase tracking-[0.18em] text-white/80 hover:text-white transition-colors px-2 py-1"
+              style={{ fontFamily: "var(--font-main)" }}
             >
               {item.name}
-              {item.name === "HOME" && (
-                <span className="absolute -bottom-2 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-red-500" />
-              )}
             </Link>
           ))}
         </nav>
-
         {/* Desktop CTA */}
-        <div className="hidden items-center md:flex">
+        <div className="hidden md:flex items-center">
           <button
             onClick={() => window.open("/aklilu_tamirat_resume.pdf", "_blank")}
-            className="text-[10px] font-bold uppercase tracking-[0.25em] text-red-500 transition hover:text-red-400"
+            className="button ml-4 border-2 border-[var(--accent)] text-[var(--accent)] font-bold uppercase tracking-[0.18em] px-6 py-2 bg-transparent hover:bg-[var(--accent)] hover:text-white transition"
+            style={{ fontFamily: "var(--font-main)" }}
           >
-            RESUME
+            Download CV
           </button>
         </div>
-
         {/* Mobile hamburger */}
         <button
           onClick={() => setOpen(!open)}
@@ -90,15 +83,14 @@ export function NavbarItems() {
           opacity: open ? 1 : 0,
         }}
       >
-        <div
-          className="mx-4 mb-4 space-y-1 rounded-2xl border border-white/10 bg-black/90 p-4 backdrop-blur-xl"
-        >
+        <div className="mx-4 mb-4 space-y-1 rounded-2xl border border-white/10 bg-black/90 p-4 backdrop-blur-xl">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.name}
               href={item.link}
               onClick={() => setOpen(false)}
-              className="flex items-center rounded-xl px-4 py-3 text-[11px] uppercase tracking-[0.28em] text-white/60 transition hover:bg-white/5 hover:text-white"
+              className="flex items-center rounded-xl px-4 py-3 text-[13px] uppercase tracking-[0.18em] text-white/80 hover:bg-white/5 hover:text-white font-extrabold"
+              style={{ fontFamily: "var(--font-main)" }}
             >
               {item.name}
             </Link>
@@ -109,9 +101,10 @@ export function NavbarItems() {
                 setOpen(false);
                 window.open("/aklilu_tamirat_resume.pdf", "_blank");
               }}
-              className="w-full py-3 text-[11px] font-bold uppercase tracking-[0.28em] text-red-500"
+              className="button w-full border-2 border-[var(--accent)] text-[var(--accent)] font-bold uppercase tracking-[0.18em] px-6 py-2 bg-transparent hover:bg-[var(--accent)] hover:text-white transition"
+              style={{ fontFamily: "var(--font-main)" }}
             >
-              RESUME
+              Download CV
             </button>
           </div>
         </div>

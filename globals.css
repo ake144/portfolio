@@ -1,0 +1,127 @@
+/*
+  globals.css - Revamped for Next.js Conf/Vercel-inspired dark, centered, modern look
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #fff;
+  --secondary: #b3b3b3;
+  --divider: #222;
+  --accent: #2563eb;
+  --card-bg: #111;
+  --card-border: #222;
+  --radius: 18px;
+  --font-main: 'Inter', 'Geist', 'Sora', Arial, sans-serif;
+}
+
+html, body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-main);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+main, .main-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 16px 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-main);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5em;
+  color: var(--foreground);
+}
+
+section {
+  width: 100%;
+  margin: 64px 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--divider);
+  margin: 32px 0;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  margin: 16px 0;
+  color: var(--foreground);
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.12);
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--divider);
+  color: var(--secondary);
+  border-radius: 8px;
+  padding: 2px 10px;
+  font-size: 0.85em;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.button, .btn {
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  background: transparent;
+  border-radius: 999px;
+  padding: 10px 28px;
+  font-weight: 700;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin: 8px 0;
+}
+.button:hover, .btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--divider);
+  border-radius: 8px;
+}
+
+footer {
+  color: var(--secondary);
+  text-align: center;
+  padding: 32px 0 16px 0;
+  font-size: 0.95em;
+  border-top: 1px solid var(--divider);
+  margin-top: 64px;
+}
+
+/* Navigation bar styles will be added in the navigation component */

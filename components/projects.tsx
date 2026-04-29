@@ -81,15 +81,22 @@ const Projects = () => {
   ];
 
   return (
-    <div className="section-card overflow-hidden">
-      <div className="grid grid-cols-1 gap-px bg-white/[0.05] md:grid-cols-2 xl:grid-cols-3">
+    <section className="w-full flex flex-col items-center justify-center py-10">
+      <div className="card flex flex-col items-center text-center w-full max-w-4xl mb-12">
+        <p className="badge mb-4">PROJECTS</p>
+        <h2 className="text-4xl sm:text-5xl font-extrabold uppercase mb-4 tracking-tight" style={{letterSpacing: '0.04em'}}>
+          Product Builds & Showcases
+        </h2>
+        <p className="text-lg text-white/70 max-w-2xl mb-4">
+          A curated collection of things I have built across product, engineering, and platform work.
+        </p>
+      </div>
+      <div className="w-full grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
         {projects.map((project) => (
-          <div className="h-full bg-black/75 transition hover:bg-white/[0.03]" key={project.id}>
-            <ProjectCard project={project} />
-          </div>
+          <ProjectCard key={project.id} project={project} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -4,65 +4,32 @@ import { ExperienceShowcase } from "@/components/exprience/showCase";
 
 const ExperienceSection = () => {
       return (
-            <div className="space-y-6">
-                  {/* Top info cards */}
-                  <div className="grid gap-5 lg:grid-cols-[1fr_0.60fr]">
-                        <div className="section-card px-8 py-10">
-                              <p className="accent-line">Timeline</p>
-                              <h3
-                                    className="mt-5 max-w-4xl text-balance text-white"
-                                    style={{
-                                          fontFamily: "'Space Grotesk', sans-serif",
-                                          fontSize: "clamp(1.8rem, 4vw, 3rem)",
-                                          fontWeight: 700,
-                                          lineHeight: 0.95,
-                                          letterSpacing: "-0.015em",
-                                    }}
-                              >
-                                    Teams, products,
-                                    <br />
-                                    and delivery.
-                              </h3>
-                              <p className="mt-5 max-w-2xl text-base leading-[1.8] text-white/55 sm:text-lg">
-                                    A quick view of the roles and environments that shaped how I
-                                    approach collaboration, quality, and shipping.
-                              </p>
-                        </div>
-
-                        <div className="section-card flex flex-col justify-between px-8 py-10">
-                              <div>
-                                    <p className="text-[10px] uppercase tracking-[0.35em] text-white/35">
-                                          Working style
-                                    </p>
-                                    <ul className="mt-5 space-y-3 text-sm leading-[1.8] text-white/55">
-                                          <li className="flex items-start gap-2">
-                                                <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-red-500/70" />
-                                                Product thinking first.
-                                          </li>
-                                          <li className="flex items-start gap-2">
-                                                <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-red-500/70" />
-                                                Strong systems and clean execution.
-                                          </li>
-                                          <li className="flex items-start gap-2">
-                                                <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-red-500/70" />
-                                                Interfaces that survive real usage.
-                                          </li>
-                                    </ul>
-                              </div>
-                              <Link
-                                    href="/contact"
-                                    className="glow-btn mt-8 self-start"
-                              >
-                                    Get in touch
-                                    <ArrowRight className="h-3.5 w-3.5" />
-                              </Link>
-                        </div>
-                  </div>
-
-                  {/* Timeline showcase */}
-                  <ExperienceShowcase />
+        <section className="w-full flex flex-col items-center justify-center py-20">
+          <div className="card flex flex-col items-center text-center max-w-3xl mb-12">
+            <p className="badge mb-4">EXPERIENCE</p>
+            <h2 className="text-4xl sm:text-5xl font-extrabold uppercase mb-4 tracking-tight" style={{letterSpacing: '0.04em'}}>
+              Teams, Products & Delivery
+            </h2>
+            <p className="text-lg text-white/70 max-w-2xl mb-4">
+              A quick view of the roles and environments that shaped how I approach collaboration, quality, and shipping.
+            </p>
+            <div className="w-full flex flex-col items-center mt-6">
+              <p className="text-xs uppercase tracking-[0.35em] text-white/45 mb-2">Working style</p>
+              <ul className="space-y-2 text-sm leading-[1.8] text-white/65 mb-4">
+                <li>Product thinking first.</li>
+                <li>Strong systems and clean execution.</li>
+                <li>Interfaces that survive real usage.</li>
+              </ul>
+              <Link href="/contact" className="button flex items-center gap-2">
+                Get in touch <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
-      );
+          </div>
+          <div className="w-full max-w-4xl">
+            <ExperienceShowcase />
+          </div>
+          </section>
+        );
 };
 
 export default ExperienceSection;
