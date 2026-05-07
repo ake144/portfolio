@@ -96,7 +96,7 @@ const Projects = () => {
 
   return (
     <section className="w-full py-10 sm:py-14">
-      <div className="mb-8 flex flex-col gap-4 border-b border-white/10 pb-5 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+      <div className="mb-8 flex flex-col gap-4 border-b   border-white/10 pb-5 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="accent-line">SYS://PROJECTS</p>
           <h2
@@ -117,11 +117,7 @@ const Projects = () => {
       </div>
 
       <div className="section-card overflow-hidden">
-        <div className="border-b border-white/10 bg-white/2 px-5 py-3 sm:px-6">
-          <p className="text-[10px] uppercase tracking-[0.35em] text-white/40">
-            Hover a row to expand the technical deep dive
-          </p>
-        </div>
+         
         <div>
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
