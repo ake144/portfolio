@@ -21,13 +21,13 @@ export default function Home() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 
         {/* About section */}
-        <section id="about" className="mt-10 sm:mt-14">
+        {/* <section id="about" className="mt-10 sm:mt-14">
           <AboutMe />
-        </section>
+        </section> */}
 
         {/* Work section */}
         <section id="work" className="mt-16 sm:mt-24">
-          <div className="mb-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          {/* <div className="mb-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="accent-line">Featured work</p>
               <h2
@@ -49,7 +49,7 @@ export default function Home() {
               All work
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
-          </div>
+          </div> */}
           <Projects />
         </section>
 

@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { PixelatedCanvas } from "../ui/pixelated-canvas";
 
 /* ─────────────────────────────────────────
    Pixel-dot portrait canvas
@@ -325,7 +326,9 @@ const HeroSection = () => {
         >
           {/* Pixelated portrait */}
           <div className="rounded-[10px] border border-white/[0.07] overflow-hidden bg-[#0a0a0a]">
-            <PixelPortrait />
+             <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-neutral-950">
+                <PixelatedCanvas src="/avatar.jpg" width={200} height={200} cellSize={3} dotScale={0.9} shape="square" backgroundColor="#000000" interactive />
+              </div>
             <div className="flex items-center justify-between px-3 py-2 border-t border-white/[0.06]">
               <span className="text-[9px] uppercase tracking-[0.2em] text-white/30">Portrait / signal</span>
               <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-[0.12em] text-[#22c55e]/70">
