@@ -27,48 +27,11 @@ export default function Home() {
 
         {/* Work section */}
         <section id="work" className="mt-16 sm:mt-24">
-          {/* <div className="mb-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="accent-line">Featured work</p>
-              <h2
-                className="mt-5 text-balance text-white"
-                style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontSize: "clamp(1.9rem, 4vw, 2.8rem)",
-                  fontWeight: 700,
-                  lineHeight: 1.05,
-                }}
-              >
-                Selected projects and<br className="hidden sm:block" /> product builds.
-              </h2>
-            </div>
-            <Link
-              href="/projects"
-              className="ghost-btn shrink-0 self-start sm:self-auto"
-            >
-              All work
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </div> */}
           <Projects />
         </section>
 
         {/* Experience section */}
         <section id="experience" className="mt-16 sm:mt-24">
-          <div className="mb-10">
-            <p className="accent-line">Background</p>
-            <h2
-              className="mt-5 text-balance text-white"
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontSize: "clamp(1.9rem, 4vw, 2.8rem)",
-                fontWeight: 700,
-                lineHeight: 1.05,
-              }}
-            >
-              Where I've built and shipped.
-            </h2>
-          </div>
           <ExperienceSection />
         </section>
 
