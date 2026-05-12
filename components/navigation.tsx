@@ -5,11 +5,9 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
-  { name: "About", link: "/#about" },
-  { name: "Services", link: "/#services" },
-  { name: "Tech", link: "/#tech" },
+  { name: "Home", link: "/" },
   { name: "Projects", link: "/#projects" },
-  { name: "Experience", link: "/#experience" },
+  { name: "About", link: "/#about" },
   { name: "Contact", link: "/#contact" },
 ];
 
@@ -37,10 +35,9 @@ export function NavbarItems() {
         {/* Logo */}
         <Link
           href="/"
-          className="text-2xl font-black tracking-tight text-white"
-          style={{ fontFamily: "var(--font-main)" }}
+          className="text-[13px] font-mono font-bold tracking-widest text-white uppercase"
         >
-          PORTFOLIO
+          ARCHITECT_OS
         </Link>
         {/* Desktop nav */}
         <nav className="hidden md:flex flex-1 justify-center gap-8">
