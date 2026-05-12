@@ -4,77 +4,89 @@ import { PixelatedCanvas } from "./ui/pixelated-canvas";
 import SocialButtons from "./ui/social-buttons";
 import Link from "next/link";
 import { LinkPreview } from "./ui/link-preview";
-import { Spotlight } from "./ui/spotlight";
 import { ArrowRight } from "lucide-react";
 
 const SKILLS = [
-  "React",
-  "Next.js",
   "TypeScript",
+  "React_Core",
+  "Tailwind_CSS",
+  "Node_ENV",
+  "Next_JS",
   "Flutter",
-  "Node.js",
   "DevOps",
+  "System_Design"
 ];
 
 const AboutMe = () => {
   return (
-    <section className="w-full flex flex-col items-center justify-center py-20">
-      <div className="mx-auto w-full max-w-6xl grid grid-cols-1 gap-10 lg:grid-cols-2 items-start px-4">
-        {/* Left: Intro card */}
-        <div className="card relative overflow-hidden px-8 py-12">
-          <Spotlight className="absolute -top-24 left-1/2 -translate-x-1/2" fill="rgba(37,99,235,0.12)" />
-          <p className="badge">ABOUT</p>
-          <h2 className="mt-4 text-4xl sm:text-5xl font-extrabold uppercase tracking-tight">Build. <span className="text-[var(--accent)]">Share.</span> Ship.</h2>
-          <p className="mt-4 text-white/70 leading-relaxed">
-            I design and ship software that feels sharp, fast, and useful. My focus sits at the intersection of product thinking, frontend craft, and backend systems.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link href="/projects" className="button">View Projects</Link>
-            <Link href="/contact" className="button">Contact</Link>
-          </div>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {SKILLS.map((s) => <span key={s} className="badge">{s}</span>)}
-          </div>
-          <div className="mt-6">
-            <div className="space-y-4 text-sm leading-[1.9] text-white/55">
-              <p>
-                I&apos;ve worked across React, Next.js, Node.js, TypeScript, Flutter, and related backend tooling to create interfaces and systems that hold up in production.
-              </p>
-              <p>
-                I&apos;m currently a software developer at <LinkPreview url="https://m-pesa.safaricom.et/" imageSrc="/safari.png" isStatic className="underline">Safaricom Ethiopia</LinkPreview>, where I work on scalable fintech products, user experience, and reliable integrations.
-              </p>
-            </div>
-            <div className="mt-6">
-              <SocialButtons size="lg" className="gap-4" github="https://github.com/ake144" twitter="https://x.com/AkeTamirat94397" linkedin="https://www.linkedin.com/in/akeja/" />
-            </div>
+    <section id="about" className="relative w-full bg-[#0c0c0c] text-[#e0e0e0] font-mono border-t border-[#222] pt-10">
+      {/* Top Profile Section */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 border-b border-[#222]">
+        {/* Left: Image */}
+        <div className="border border-[#222] relative group">
+          <div className="absolute top-4 left-4 text-[10px] text-gray-500 z-10 font-bold tracking-widest">COORD // X:1.00 Y:0.00</div>
+          <div className="absolute bottom-4 right-4 text-[10px] text-gray-500 z-10 font-bold tracking-widest">[IMG_SYS_RDY]</div>
+          <div className="aspect-square bg-[#0a0a0a] overflow-hidden p-[1px]">
+            <PixelatedCanvas src="/avatar.jpg" width={600} height={600} cellSize={3} dotScale={0.9} shape="square" backgroundColor="#000000" interactive />
           </div>
         </div>
 
-        {/* Right: Portrait & details */}
-        <aside className="space-y-6">
-          <div className="overflow-hidden rounded-3xl border border-white/[0.08] bg-black/60 p-3">
-            <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-neutral-950">
-              <PixelatedCanvas src="/avatar.jpg" width={600} height={600} cellSize={3} dotScale={0.9} shape="square" backgroundColor="#000000" interactive />
-            </div>
-            <div className="mt-3 flex items-center justify-between px-1 text-[10px] uppercase tracking-[0.3em] text-white/35">
-              <span>Portrait / signal</span>
-              <span className="flex items-center gap-1.5 text-white/60"><span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-emerald-400" /> Live profile</span>
-            </div>
+        {/* Right: Intro */}
+        <div className="flex flex-col justify-center">
+          <div className="flex items-center gap-4 mb-6">
+             <div className="text-[10px] text-gray-500 tracking-[0.2em] font-bold uppercase pb-1 border-b border-[#333]">
+               INITIATING PROFILE SEQUENCE
+             </div>
           </div>
-
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-            {SKILLS.map((skill) => (
-              <div key={skill} className="tag-pill justify-center py-2.5 text-center">{skill}</div>
-            ))}
+          <h2 className="text-6xl sm:text-7xl lg:text-[7rem] font-serif text-white tracking-tight leading-[0.85] mb-8 uppercase">
+            BUILDER<br/>
+            <span className="italic text-gray-500 text-5xl sm:text-6xl lg:text-[6rem] font-serif">&amp;</span> MAKER.
+          </h2>
+          <div className="pl-4 border-l-2 border-[#333]">
+            <p className="text-gray-400 font-mono text-sm leading-relaxed max-w-md">
+              I design and ship software that feels sharp, fast, and useful. My focus sits at the intersection of product thinking, frontend craft, and backend systems.
+            </p>
           </div>
-
-          <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4 text-center">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-white/30">Based in</p>
-            <p className="mt-1 text-sm font-medium text-white/70">Addis Ababa, Ethiopia</p>
-            <p className="mt-0.5 text-[10px] text-white/30">Open to remote worldwide</p>
+          <div className="mt-10">
+             <SocialButtons size="md" className="gap-4 grayscale hover:grayscale-0 transition duration-300" github="https://github.com/ake144" twitter="https://x.com/AkeTamirat94397" linkedin="https://www.linkedin.com/in/akeja/" />
           </div>
-        </aside>
+        </div>
       </div>
+
+      {/* Philosophy Section */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-[#222]">
+        <div className="md:col-span-1 border-b md:border-b-0 border-[#222] pb-8 md:pb-0">
+          <h3 className="text-3xl font-serif text-white mb-6">The Philosophy</h3>
+          <div className="border border-[#222] bg-[#111] p-3 text-[10px] text-[#a8e036] font-bold tracking-widest mt-8">
+            &gt; EXECUTING PARADIGM_SHIFT.sh
+          </div>
+        </div>
+        <div className="md:col-span-3 space-y-6 text-sm text-gray-400 leading-relaxed font-mono pl-0 md:pl-8">
+          <p>
+            I&apos;ve worked across React, Next.js, Node.js, TypeScript, Flutter, and related backend tooling to create interfaces and systems that hold up in production.
+          </p>
+          <p>
+            I&apos;m currently a software developer at <LinkPreview url="https://m-pesa.safaricom.et/" imageSrc="/safari.png" isStatic className="text-white font-bold underline decoration-[#444] hover:decoration-white transition-colors">Safaricom Ethiopia</LinkPreview>, where I work on scalable fintech products, user experience, and reliable integrations.
+          </p>
+        </div>
+      </div>
+
+      {/* Technical Specs */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 border-b border-[#222]">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-4">
+          <div className="text-[10px] uppercase tracking-[0.2em] font-bold border-b border-[#222] pb-1">TECHNICAL SPECS // MATRIX</div>
+          <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-600">SYS.STATUS [OPTIMAL]</div>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 border-l border-t border-[#222]">
+          {SKILLS.map((skill, index) => (
+            <div key={skill} className="border-r border-b border-[#222] p-6 flex flex-col justify-between h-32 hover:bg-[#111] transition-colors cursor-default">
+              <span className="text-[10px] text-gray-500 font-bold">{(index + 1).toString().padStart(2, '0')}</span>
+              <span className="text-xs font-bold tracking-widest uppercase text-white mt-auto">{skill}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      
     </section>
   );
 };
