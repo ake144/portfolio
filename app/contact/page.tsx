@@ -1,30 +1,9 @@
 'use client';
 
-import SocialButtons from "@/components/ui/social-buttons";
 import Link from "next/link";
 import { useState } from "react";
-import { toast } from "sonner"
-import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
-
-const contactDetails = [
-	{
-		label: "Email",
-		value: "tamiratake@gmail.com",
-		href: "mailto:tamiratake@gmail.com",
-		icon: Mail
-	},
-	{
-		label: "Phone",
-		value: "+251 954234576",
-		href: "tel:+251954234576",
-		icon: Phone
-	},
-	{
-		label: "Location",
-		value: "Addis Ababa, Ethiopia",
-		icon: MapPin
-	},
-];
+import { toast } from "sonner";
+import { ArrowRight, Mail } from "lucide-react";
 
 const ContactPage = () => {
 	const [loading, setLoading] = useState(false);
@@ -38,7 +17,6 @@ const ContactPage = () => {
 		const data = {
 			name: formData.get("name"),
 			email: formData.get("email"),
-			company: formData.get("company"),
 			message: formData.get("message"),
 		};
 
@@ -52,146 +30,136 @@ const ContactPage = () => {
 			});
 
 			if (response.ok || response.status === 200) {
-				toast.success("Email sent successfully!", {
-					description: "Thank you for reaching out. I'll get back to you soon.",
+				toast.success("Transmission successful", {
+					description: "Valid sequence received. Expect contact shortly.",
 				});
 				form.reset();
 			} else {
 				const result = await response.json();
-				toast.error(result.message || "Failed to send email");
+				toast.error(result.message || "Transmission failed");
 			}
 		} catch {
-			toast.error("An unexpected error occurred");
+			toast.error("An unexpected error occurred during transmission");
 		} finally {
 			setLoading(false);
 		}
 	}
 
 	return (
-		<main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-14">
-			<div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
-				<div className="space-y-6 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.35)] sm:p-8 lg:p-10">
-					<p className="text-xs uppercase tracking-[0.35em] text-red-400/80">
-						Contact
-					</p>
-					<h1 className="max-w-2xl text-4xl font-semibold leading-[0.95] text-white sm:text-5xl lg:text-7xl">
-						Let&apos;s build something extraordinary.
-					</h1>
-					<p className="max-w-xl text-base leading-7 text-white/68 sm:text-lg">
-						If you have a product idea, a design challenge, or a platform that needs stronger execution, send me a note and I&apos;ll reply as soon as I can.
-					</p>
+		<main className="relative w-full min-h-screen bg-[#0c0c0c] text-[#e0e0e0] font-mono flex items-center pt-24 pb-12">
+			{/* Grid Background */}
+			<div className="absolute inset-0 pointer-events-none opacity-10" style={{ backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+			
+			<div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
+				<div className="grid gap-16 lg:grid-cols-2 items-start">
+					
+					{/* Left Column: Info */}
+					<div className="flex flex-col">
+						<div className="mb-8">
+							<span className="inline-block border border-[#333] bg-[#111] px-4 py-2 text-[10px] text-[#a8e036] font-bold tracking-widest uppercase">
+								STATUS: LISTENING
+							</span>
+						</div>
+						
+						<h1 className="text-5xl sm:text-7xl lg:text-[5.5rem] font-serif text-white tracking-tighter leading-[0.9] mb-8 uppercase">
+							INITIATE <br /> CONNECTION
+						</h1>
+						
+						<p className="max-w-sm text-gray-400 font-mono text-sm leading-relaxed mb-12">
+							Deploy communications protocol. Awaiting valid input sequence to establish direct channel.
+						</p>
 
-					<div className="flex flex-wrap gap-3">
-						<SocialButtons
-							size="md"
-							className="gap-4"
-							github="https://github.com/ake144"
-							twitter="https://x.com/AkeTamirat94397"
-							linkedin="https://www.linkedin.com/in/akeja/"
-						/>
+						<div className="space-y-4 max-w-md">
+							<Link href="https://github.com/ake144" target="_blank" className="flex items-center justify-between border border-[#222] bg-[#0c0c0c] hover:bg-[#111] transition-colors p-5 group">
+								<span className="text-xs text-gray-300 font-bold tracking-widest">DIR /social/github</span>
+								<ArrowRight className="w-4 h-4 text-gray-500 group-hover:text-white transition-colors" />
+							</Link>
+							<Link href="https://www.linkedin.com/in/akeja/" target="_blank" className="flex items-center justify-between border border-[#222] bg-[#0c0c0c] hover:bg-[#111] transition-colors p-5 group">
+								<span className="text-xs text-gray-300 font-bold tracking-widest">DIR /social/linkedin</span>
+								<ArrowRight className="w-4 h-4 text-gray-500 group-hover:text-white transition-colors" />
+							</Link>
+							<Link href="mailto:tamiratake@gmail.com" className="flex items-center justify-between border border-[#222] bg-[#0c0c0c] hover:bg-[#111] transition-colors p-5 group">
+								<span className="text-xs text-gray-300 font-bold tracking-widest">LNK mailto:tamiratake@gmail.com</span>
+								<Mail className="w-4 h-4 text-gray-500 group-hover:text-white transition-colors" />
+							</Link>
+						</div>
 					</div>
 
-					<div className="grid gap-3 sm:grid-cols-2">
-						{contactDetails.map((item) => (
-							<div key={item.label} className="rounded-[1.25rem] border border-white/10 bg-black/40 p-4">
-								<span className="text-[10px] uppercase tracking-[0.3em] text-white/40">{item.label}</span>
-								{item.href ? (
-									<Link href={item.href} className="mt-3 block truncate text-sm text-white/75 transition hover:text-white sm:text-base">
-										{item.value}
-									</Link>
-								) : (
-									<p className="mt-3 truncate text-sm text-white/75 sm:text-base">{item.value}</p>
-								)}
+					{/* Right Column: Form Terminal */}
+					<div className="border border-[#222] bg-[#0c0c0c] shadow-2xl flex flex-col">
+						{/* Window Header */}
+						<div className="flex justify-between items-center px-4 py-3 border-b border-[#222] bg-[#0a0a0a]">
+							<div className="flex gap-2">
+								<div className="w-2.5 h-2.5 bg-transparent border border-[#444]"></div>
+								<div className="w-2.5 h-2.5 bg-transparent border border-[#444]"></div>
+								<div className="w-2.5 h-2.5 bg-transparent border border-[#444]"></div>
 							</div>
-						))}
-					</div>
-
-					<div className="rounded-[1.5rem] border border-white/10 bg-black/50 p-5 text-sm leading-7 text-white/60">
-						I usually respond with a direct next step, a short scope note, or a concrete recommendation so the conversation can move quickly.
-					</div>
-				</div>
-
-				<div className="rounded-[2rem] border border-white/10 bg-black/60 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.35)] sm:p-8 lg:p-10">
-					<div className="mb-8">
-						<p className="text-xs uppercase tracking-[0.35em] text-white/45">
-							Send a message
-						</p>
-						<p className="mt-4 max-w-xl text-sm leading-7 text-white/60 sm:text-base">
-							Use the form below if you want to talk about a project, collaboration, or a role.
-						</p>
-					</div>
-
-					<form onSubmit={handleSubmit} className="space-y-6">
-						<div className="grid gap-5 sm:grid-cols-2">
-							<label className="space-y-2 text-sm text-white/70">
-								<span className="text-[10px] uppercase tracking-[0.3em] text-white/45">Your name</span>
-								<input
-									required
-									name="name"
-									type="text"
-									placeholder="John Doe"
-									className="w-full border border-white/10 bg-white/[0.03] px-4 py-3 text-white placeholder:text-white/25 focus:border-red-500/60 focus:outline-none"
-								/>
-							</label>
-
-							<label className="space-y-2 text-sm text-white/70">
-								<span className="text-[10px] uppercase tracking-[0.3em] text-white/45">Email address</span>
-								<input
-									required
-									name="email"
-									type="email"
-									placeholder="john@example.com"
-									className="w-full border border-white/10 bg-white/[0.03] px-4 py-3 text-white placeholder:text-white/25 focus:border-red-500/60 focus:outline-none"
-								/>
-							</label>
+							<div className="text-[10px] text-gray-500 font-bold tracking-widest">
+								transmission_client.exe
+							</div>
 						</div>
 
-						<div className="grid gap-5 sm:grid-cols-2">
-							<label className="space-y-2 text-sm text-white/70">
-								<span className="text-[10px] uppercase tracking-[0.3em] text-white/45">Phone optional</span>
-								<input
-									name="phone"
-									type="tel"
-									placeholder="+1 (555) 000-0000"
-									className="w-full border border-white/10 bg-white/[0.03] px-4 py-3 text-white placeholder:text-white/25 focus:border-red-500/60 focus:outline-none"
-								/>
-							</label>
-							<label className="space-y-2 text-sm text-white/70">
-								<span className="text-[10px] uppercase tracking-[0.3em] text-white/45">Company website</span>
-								<input
-									name="website"
-									type="url"
-									placeholder="https://example.com"
-									className="w-full border border-white/10 bg-white/[0.03] px-4 py-3 text-white placeholder:text-white/25 focus:border-red-500/60 focus:outline-none"
-								/>
-							</label>
-						</div>
+						{/* Form Content */}
+						<div className="p-8">
+							<form onSubmit={handleSubmit} className="flex flex-col h-full">
+								<div className="space-y-10">
+									<label className="block">
+										<span className="block text-xs font-bold tracking-widest text-[#e0e0e0] mb-4 uppercase">
+											&gt; IDENTIFIER [STRING]
+										</span>
+										<input
+											required
+											name="name"
+											type="text"
+											placeholder="Enter designations..."
+											className="w-full bg-transparent border-b border-[#333] pb-3 text-sm text-gray-300 placeholder:text-gray-700 focus:outline-none focus:border-[#666] transition-colors"
+										/>
+									</label>
 
-						<label className="block space-y-2 text-sm text-white/70">
-							<span className="text-[10px] uppercase tracking-[0.3em] text-white/45">How can I help?</span>
-							<textarea
-								required
-								name="message"
-								rows={6}
-								placeholder="Tell me about your project goals..."
-								className="w-full resize-none border border-white/10 bg-white/[0.03] px-4 py-3 text-white placeholder:text-white/25 focus:border-red-500/60 focus:outline-none"
-							/>
-						</label>
+									<label className="block">
+										<span className="block text-xs font-bold tracking-widest text-[#e0e0e0] mb-4 uppercase">
+											&gt; RETURN_ADDRESS [EMAIL]
+										</span>
+										<input
+											required
+											name="email"
+											type="email"
+											placeholder="user@domain.net..."
+											className="w-full bg-transparent border-b border-[#333] pb-3 text-sm text-gray-300 placeholder:text-gray-700 focus:outline-none focus:border-[#666] transition-colors"
+										/>
+									</label>
 
-						<div className="flex flex-wrap items-center gap-3 pt-2">
-							<button
-								type="submit"
-								disabled={loading}
-								className="inline-flex items-center justify-center gap-2 border border-red-500/70 bg-red-500 px-6 py-3 text-[11px] font-bold uppercase tracking-[0.35em] text-white transition hover:bg-red-400 disabled:cursor-not-allowed disabled:opacity-50"
-							>
-								{loading ? "Sending..." : "Send message"}
-								<ArrowRight className="h-4 w-4" />
-							</button>
-							<p className="text-xs uppercase tracking-[0.3em] text-white/35">
-								Usually replies within 24 hours
-							</p>
+									<label className="block">
+										<span className="block text-xs font-bold tracking-widest text-[#e0e0e0] mb-4 uppercase">
+											&gt; PAYLOAD [TEXT]
+										</span>
+										<textarea
+											required
+											name="message"
+											rows={5}
+											placeholder="Type your message..."
+											className="w-full bg-transparent border-b border-[#333] pb-3 text-sm text-gray-300 placeholder:text-gray-700 focus:outline-none focus:border-[#666] transition-colors resize-none"
+										/>
+									</label>
+								</div>
+
+								<div className="mt-14 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6">
+									<div className="text-[10px] text-gray-600 font-bold uppercase tracking-widest space-y-1">
+										<p>0x00A1: ACK_WAITING</p>
+										<p>0x00A2: BUFFER_CLEAR</p>
+									</div>
+									<button
+										type="submit"
+										disabled={loading}
+										className="border border-[#e0e0e0] text-[#e0e0e0] hover:bg-[#e0e0e0] hover:text-black transition-colors px-6 py-4 text-[10px] font-bold uppercase tracking-[0.2em] flex items-center gap-3 bg-transparent disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none"
+									>
+										{loading ? "TRANSMITTING..." : "EXECUTE_TRANSMISSION"}
+										<span className="text-xs">{(loading ? "..." : "▻")}</span>
+									</button>
+								</div>
+							</form>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</main>
