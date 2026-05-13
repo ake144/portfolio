@@ -70,23 +70,6 @@ const AboutMe = () => {
           </p>
         </div>
       </div>
-
-      {/* Technical Specs */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 border-b border-[#222]">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-4">
-          <div className="text-[10px] uppercase tracking-[0.2em] font-bold border-b border-[#222] pb-1">TECHNICAL SPECS // MATRIX</div>
-          <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-600">SYS.STATUS [OPTIMAL]</div>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 border-l border-t border-[#222]">
-          {SKILLS.map((skill, index) => (
-            <div key={skill} className="border-r border-b border-[#222] p-6 flex flex-col justify-between h-32 hover:bg-[#111] transition-colors cursor-default">
-              <span className="text-[10px] text-gray-500 font-bold">{(index + 1).toString().padStart(2, '0')}</span>
-              <span className="text-xs font-bold tracking-widest uppercase text-white mt-auto">{skill}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      
     </section>
   );
 };
