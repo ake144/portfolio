@@ -95,7 +95,7 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="relative w-full bg-[#0c0c0c] text-[#e0e0e0] font-mono border-t border-[#222] py-20">
+    <section id="projects" className="relative w-full bg-transparent text-[#e0e0e0] font-mono border-t border-[#222] py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header Area */}
         <div className="mb-16">
@@ -120,45 +120,36 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="columns-1 md:columns-2 gap-8 space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {projects.map((project) => (
-            <div key={project.id} className="break-inside-avoid border border-[#222] bg-[#0c0c0c] group hover:border-[#444] transition-colors relative flex flex-col">
-              {/* Card Header */}
+            <div key={project.id} className="border border-[#222] bg-[#0c0c0c] hover:border-[#444] transition-colors relative flex flex-col">
               <div className="flex justify-between items-center px-4 py-3 border-b border-[#222] bg-[#0a0a0a]">
                 <div className="flex gap-1.5">
                   <div className="w-1.5 h-1.5 border border-gray-600"></div>
                   <div className="w-1.5 h-1.5 border border-gray-600"></div>
                   <div className="w-1.5 h-1.5 border border-gray-600"></div>
                 </div>
-                <div className="text-[9px] text-gray-500 font-bold uppercase tracking-widest">
-                  SYS_{project.id.toString().padStart(2, '0')} // {project.title.replace(/\s+/g, "_")}
+                <div className="bg-[#1a1a1a] px-2 py-0.5 border border-[#333] text-[9px] text-[#a8e036] font-bold uppercase tracking-widest">
+                  {project.id.toString().padStart(2, '0')} // {project.category.replace(/\s+/g, "_")}
                 </div>
               </div>
 
-              {/* Card Body Placeholder / Concept Art */}
-              <div className="relative w-full overflow-hidden bg-[#111] min-h-[280px] sm:min-h-[340px] flex flex-col items-center justify-center p-8 text-center group-hover:bg-[#161616] transition-colors">
-                {/* Abstract pattern background based on icon */}
-                <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
-                <div className="text-7xl mb-6 opacity-80 mix-blend-luminosity grayscale">{project.icon}</div>
-                <h3 className="text-3xl lg:text-4xl font-serif text-white opacity-20 uppercase tracking-tighter absolute bottom-1/2 translate-y-1/2 scale-150 rotate-[-5deg] pointer-events-none z-0 mix-blend-overlay">
-                  {project.title.replace(/\s+/g, "_")}
-                </h3>
-                <p className="text-gray-400 text-sm font-mono leading-relaxed z-10 max-w-sm">
-                  {project.description}
-                </p>
-                {project.link && (
-                  <Link href={project.link} target="_blank" rel="noopener noreferrer" className="absolute top-0 left-0 w-full h-full z-20"></Link>
-                )}
+              <div className="relative w-full overflow-hidden bg-[#111] h-[200px] flex flex-col items-center justify-center p-8 text-center transition-colors">
+                <div className="text-[10px] text-gray-600 tracking-widest font-mono z-10 font-bold mix-blend-overlay">
+                  3 0 0 × 3 0 0
+                </div>
               </div>
 
-              {/* Card Footer */}
-              <div className="p-6 border-t border-[#222] bg-[#0c0c0c]">
-                <h3 className="text-2xl sm:text-3xl font-serif text-white mb-6 group-hover:text-gray-300 transition-colors">
-                  {project.title}
+              <div className="p-5 border-t border-[#222] bg-[#0c0c0c] flex flex-col flex-1">
+                <h3 className="text-[13px] font-bold font-mono text-white mb-3 uppercase tracking-widest">
+                  {project.title.replace(/\s+/g, "_")}
                 </h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="px-2 py-1 border border-[#333] text-[9px] uppercase tracking-widest text-[#a8e036]">
+                <p className="text-gray-400 text-[11px] font-mono leading-relaxed mb-6 block h-auto flex-1">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {project.tags.slice(0, 3).map((tag) => (
+                    <span key={tag} className="px-2 py-1 border border-[#333] text-[9px] text-gray-400">
                       {tag}
                     </span>
                   ))}

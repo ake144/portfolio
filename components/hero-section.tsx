@@ -2,10 +2,7 @@ import Link from "next/link";
 
 const HeroSection = () => {
   return (
-    <section className="relative w-full min-h-screen bg-[#0c0c0c] text-[#e0e0e0] font-mono overflow-hidden flex flex-col justify-center">
-      {/* Grid Background */}
-      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
-      
+    <section className="relative w-full min-h-screen bg-transparent text-[#e0e0e0] font-mono overflow-hidden flex flex-col justify-center">
       {/* Background Huge Text */}
       <div className="absolute inset-x-0 top-1/4 flex justify-center opacity-5 pointer-events-none z-0">
         <h1 className="text-[12vw] font-black tracking-tighter uppercase whitespace-nowrap overflow-hidden text-center">STRUCTURAL</h1>
