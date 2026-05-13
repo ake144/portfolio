@@ -95,76 +95,66 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="relative w-full bg-transparent text-[#e0e0e0] font-mono border-t border-[#222] py-20">
+    <section id="projects" className="relative w-full bg-transparent text-[#e0e0e0] font-mono py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
         {/* Header Area */}
         <div className="mb-16">
-          <div className="text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em] mb-8">
-            HOME / PROJECTS
+          <div className="inline-flex items-center border border-[#333] bg-[#0a0a0a] px-3 py-1.5 mb-8">
+            <span className="text-[10px] text-gray-400 font-bold mr-3 tracking-widest">05</span>
+            <span className="text-[10px] text-white font-bold tracking-widest border-l border-[#333] pl-3 uppercase">PROJECTS</span>
           </div>
           
-          <h2 className="text-6xl sm:text-8xl lg:text-[9rem] font-serif text-white tracking-tight leading-[0.85] mb-8 uppercase">
-            STRUCTURAL<br />
-            <span className="text-gray-400">ARTISTRY.</span>
-          </h2>
+          <h3 className="text-lg sm:text-xl font-serif text-white mb-6">
+            Things I have put my effort in and pushed my limits.
+          </h3>
           
-          <div className="border-t border-[#222] pt-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-            <p className="text-sm font-mono text-gray-400 max-w-2xl leading-relaxed">
-              A curated collection of technical implementations and architectural explorations. 
-              Filtering by complex frontend mechanics and generative design.
-            </p>
-            <div className="bg-[#111] border border-[#222] px-4 py-2 text-[10px] text-white font-bold tracking-widest">
-              FILTER: ALL_SYSTEMS
-            </div>
-          </div>
+          <p className="text-sm font-mono text-gray-400 max-w-3xl leading-relaxed">
+            I've worked on tons of little projects over the years but these are the ones that I'm most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved.
+          </p>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 border-t border-l border-[#222]">
           {projects.map((project) => (
-            <div key={project.id} className="border border-[#222] bg-[#0c0c0c] hover:border-[#444] transition-colors relative flex flex-col">
-              <div className="flex justify-between items-center px-4 py-3 border-b border-[#222] bg-[#0a0a0a]">
-                <div className="flex gap-1.5">
-                  <div className="w-1.5 h-1.5 border border-gray-600"></div>
-                  <div className="w-1.5 h-1.5 border border-gray-600"></div>
-                  <div className="w-1.5 h-1.5 border border-gray-600"></div>
-                </div>
-                <div className="bg-[#1a1a1a] px-2 py-0.5 border border-[#333] text-[9px] text-[#a8e036] font-bold uppercase tracking-widest">
-                  {project.id.toString().padStart(2, '0')} // {project.category.replace(/\s+/g, "_")}
-                </div>
+            <div key={project.id} className="border-r border-b border-[#222] p-8 lg:p-12 hover:bg-[#080808] transition-colors group flex flex-col">
+              
+              {/* Icon */}
+              <div className="w-12 h-12 rounded-full border border-[#333] bg-[#111] flex items-center justify-center mb-8 text-[#a882ff] text-xl group-hover:border-[#555] transition-colors">
+                {project.icon}
               </div>
 
-              <div className="relative w-full overflow-hidden bg-[#111] h-[200px] flex flex-col items-center justify-center p-8 text-center transition-colors">
-                <div className="text-[10px] text-gray-600 tracking-widest font-mono z-10 font-bold mix-blend-overlay">
-                  3 0 0 × 3 0 0
-                </div>
+              {/* Title & Desc */}
+              <h4 className="text-[13px] text-white font-bold uppercase tracking-widest mb-3">
+                {project.title.replace(/\s+/g, "_")}
+              </h4>
+              <p className="text-xs text-gray-400 font-mono leading-relaxed mb-8 max-w-md flex-1">
+                {project.description}
+              </p>
+
+              {/* Links */}
+              <div className="mb-10 mt-auto">
+                {project.link ? (
+                  <Link href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-bold text-white hover:text-[#a882ff] uppercase tracking-widest transition-colors">
+                    <span className="text-base leading-none transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">↗</span> {project.title}
+                  </Link>
+                ) : (
+                  <span className="inline-flex items-center gap-2 text-xs font-bold text-gray-600 uppercase tracking-widest">
+                    <span>↗</span> PRIVATE_REPO
+                  </span>
+                )}
               </div>
 
-              <div className="p-5 border-t border-[#222] bg-[#0c0c0c] flex flex-col flex-1">
-                <h3 className="text-[13px] font-bold font-mono text-white mb-3 uppercase tracking-widest">
-                  {project.title.replace(/\s+/g, "_")}
-                </h3>
-                <p className="text-gray-400 text-[11px] font-mono leading-relaxed mb-6 block h-auto flex-1">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.tags.slice(0, 3).map((tag) => (
-                    <span key={tag} className="px-2 py-1 border border-[#333] text-[9px] text-gray-400">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+              {/* Tech Stack Tags as subtle icons/text */}
+              <div className="flex flex-wrap gap-4 text-gray-500 font-mono text-[10px] uppercase tracking-widest">
+                {project.tags.slice(0, 4).map((tag) => (
+                  <span key={tag} className="flex items-center gap-1.5 opacity-60">
+                    <span className="opacity-50">⟨⟩</span> {tag}
+                  </span>
+                ))}
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Bottom Load More */}
-        <div className="mt-20 border-t border-[#222] flex justify-center pt-16">
-          <button className="border border-[#333] hover:border-white hover:bg-white hover:text-black transition-colors px-6 py-3 text-[10px] text-gray-400 font-bold tracking-[0.2em] uppercase flex items-center gap-3 bg-transparent">
-            LOAD_MORE_RECORDS
-            <span className="text-xs">⤓</span>
-          </button>
         </div>
       </div>
     </section>
