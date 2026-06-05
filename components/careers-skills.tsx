@@ -1,33 +1,37 @@
 import React from 'react';
 
 const experiences = [
-  {
-    id: 1,
-    company: "Safaricom Ethiopia",
-    role: "Frontend Engineer",
-    period: "2025 – PRESENT",
-  },
-  {
-    id: 2,
-    company: "SRE Technologies",
-    role: "Full Stack Engineer",
-    period: "2023 – 2025",
-  },
-  {
-    id: 3,
-    company: "Marvels Creative Tech",
-    role: "Frontend Developer",
-    period: "2024 – 2025",
-  },
+    {
+        id: 1,
+        company: "Safaricom Ethiopia",
+        role: "Full-Stack & AI Engineer",
+        period: "2025 – PRESENT",
+    },
+    {
+        id: 2,
+        company: "SRE Technologies",
+        role: "Full Stack Engineer",
+        period: "2023 – 2025",
+    },
+    {
+        id: 3,
+        company: "Marvels Creative Tech",
+        role: "Frontend Developer",
+        period: "2024 – 2025",
+    },
 ];
 
 const skills = [
-  { name: "TypeScript", icon: "⇥" },
-  { name: "React.js", icon: "⟨⟩" },
-  { name: "Next.js", icon: "◫" },
-  { name: "Tailwind", icon: "⎔" },
-  { name: "Three.js", icon: "▱" },
-  { name: "Node.js", icon: "⬡" },
+    { name: "TypeScript", icon: "⇥" },
+    { name: "React / Next.js", icon: "⟨⟩" },
+    { name: "Node.js / FastAPI", icon: "⬡" },
+    { name: "LangChain / RAG", icon: "⬡" },
+    { name: "LLM Evaluation", icon: "⎔" },
+    { name: "Agentic Workflows", icon: "▱" },
+    { name: "PostgreSQL / VectorDB", icon: "◫" },
+    { name: "Docker / AWS", icon: "⬢" },
+    { name: "Prompt Engineering", icon: "⤷" },
+    { name: "OpenAI / Anthropic", icon: "✦" },
 ];
 
 const CareersSkills = () => {
@@ -35,7 +39,7 @@ const CareersSkills = () => {
         <section id="experience" className="relative w-full bg-transparent text-[#e0e0e0] font-mono border-t border-[#222] py-24">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 relative">
-                    
+
                     {/* Careers Column */}
                     <div>
                         <div className="mb-12">

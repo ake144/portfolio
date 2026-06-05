@@ -8,12 +8,12 @@ import { ArrowRight } from "lucide-react";
 
 const SKILLS = [
   "TypeScript",
-  "React_Core",
-  "Tailwind_CSS",
-  "Node_ENV",
-  "Next_JS",
-  "Flutter",
-  "DevOps",
+  "React_/_Next.js",
+  "Node.js_/_FastAPI",
+  "LangChain_/_RAG",
+  "LLM_Evaluation",
+  "Agentic_Workflows",
+  "DevOps_/_Docker",
   "System_Design"
 ];
 
@@ -34,21 +34,21 @@ const AboutMe = () => {
         {/* Right: Intro */}
         <div className="flex flex-col justify-center">
           <div className="flex items-center gap-4 mb-6">
-             <div className="text-[10px] text-gray-500 tracking-[0.2em] font-bold uppercase pb-1 border-b border-[#333]">
-               INITIATING PROFILE SEQUENCE
-             </div>
+            <div className="text-[10px] text-gray-500 tracking-[0.2em] font-bold uppercase pb-1 border-b border-[#333]">
+              INITIATING PROFILE SEQUENCE
+            </div>
           </div>
           <h2 className="text-6xl sm:text-7xl lg:text-[7rem] font-serif text-white tracking-tight leading-[0.85] mb-8 uppercase">
-            BUILDER<br/>
+            BUILDER<br />
             <span className="italic text-gray-500 text-5xl sm:text-6xl lg:text-[6rem] font-serif">&amp;</span> MAKER.
           </h2>
           <div className="pl-4 border-l-2 border-[#333]">
             <p className="text-gray-400 font-mono text-sm leading-relaxed max-w-md">
-              I design and ship software that feels sharp, fast, and useful. My focus sits at the intersection of product thinking, frontend craft, and backend systems.
+              Results-driven AI Engineer &amp; Full-Stack Developer with 4+ years of experience building scalable, production-grade web apps and LLM-powered systems. Proven track record shipping products used by 100,000+ users in fintech, EdTech &amp; e-commerce.
             </p>
           </div>
           <div className="mt-10">
-             <SocialButtons size="md" className="gap-4 grayscale hover:grayscale-0 transition duration-300" github="https://github.com/ake144" twitter="https://x.com/AkeTamirat94397" linkedin="https://www.linkedin.com/in/akeja/" />
+            <SocialButtons size="md" className="gap-4 grayscale hover:grayscale-0 transition duration-300" github="https://github.com/ake144" twitter="https://x.com/AkeTamirat94397" linkedin="https://www.linkedin.com/in/akeja/" />
           </div>
         </div>
       </div>
@@ -63,10 +63,10 @@ const AboutMe = () => {
         </div>
         <div className="md:col-span-3 space-y-6 text-sm text-gray-400 leading-relaxed font-mono pl-0 md:pl-8">
           <p>
-            I&apos;ve worked across React, Next.js, Node.js, TypeScript, Flutter, and related backend tooling to create interfaces and systems that hold up in production.
+            I build across the full stack — React, Next.js, Node.js, TypeScript, FastAPI — and actively engineer AI systems using LangChain, LangGraph, RAG pipelines, and autonomous agents. I understand JavaScript internals deeply (async/await, closures, event loop, prototypes) and bring the same rigor to AI evaluation: reasoning validation, hallucination detection, and prompt engineering.
           </p>
           <p>
-            I&apos;m currently a software developer at <LinkPreview url="https://m-pesa.safaricom.et/" imageSrc="/safari.png" isStatic className="text-white font-bold underline decoration-[#444] hover:decoration-white transition-colors">Safaricom Ethiopia</LinkPreview>, where I work on scalable fintech products, user experience, and reliable integrations.
+            I&apos;m currently a software developer at <LinkPreview url="https://m-pesa.safaricom.et/" imageSrc="/safari.png" isStatic className="text-white font-bold underline decoration-[#444] hover:decoration-white transition-colors">Safaricom Ethiopia</LinkPreview>, where I work on scalable fintech products, integrating LLM-powered features and robust backend services.
           </p>
         </div>
       </div>
