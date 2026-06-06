@@ -27,7 +27,7 @@ const AboutMe = () => {
           <div className="absolute top-4 left-4 text-[10px] text-gray-500 z-10 font-bold tracking-widest">COORD // X:1.00 Y:0.00</div>
           <div className="absolute bottom-4 right-4 text-[10px] text-gray-500 z-10 font-bold tracking-widest">[IMG_SYS_RDY]</div>
           <div className="aspect-square bg-[#0a0a0a] overflow-hidden p-[1px]">
-            <PixelatedCanvas src="/avatar.jpg" width={600} height={600} cellSize={3} dotScale={0.9} shape="square" backgroundColor="#000000" interactive />
+            <PixelatedCanvas src="/avatar1.png" width={600} height={600} cellSize={3} dotScale={0.9} shape="square" backgroundColor="#000000" interactive />
           </div>
         </div>
 

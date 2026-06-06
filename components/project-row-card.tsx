@@ -1,7 +1,7 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useState } from "react";
+import { ArrowUpRight, Bookmark, ChevronDown } from "lucide-react";
 
 interface Project {
   id: number;
@@ -11,126 +11,143 @@ interface Project {
   category: string;
   tags: string[];
   link?: string;
-  icon: string;
   bullets: string[];
 }
 
 interface ProjectCardProps {
   project: Project;
+  defaultExpanded?: boolean;
 }
 
-function ProjectRowContent({ project }: ProjectCardProps) {
+export function ProjectRowCard({ project, defaultExpanded = false }: ProjectCardProps) {
+  const [expanded, setExpanded] = useState(defaultExpanded);
+
   return (
-    <div className="relative overflow-hidden bg-transparent transition-colors duration-300 hover:bg-white/3">
+    <div className="group border-b border-white/[0.06] last:border-b-0">
+      {/* Main row */}
+      <div
+        className="relative flex cursor-pointer items-start gap-4 px-4 py-5 transition-colors duration-300 hover:bg-white/[0.02] sm:items-center sm:gap-6 sm:px-6 md:gap-8 md:px-8"
+        onClick={() => setExpanded(!expanded)}
+      >
+        {/* Number */}
+        <span
+          className="min-w-[48px] select-none text-[2.8rem] font-bold leading-none tracking-[-0.06em] text-white/[0.07] transition-colors duration-300 group-hover:text-white/[0.14] sm:min-w-[64px] sm:text-[3.4rem]"
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+        >
+          {String(project.id).padStart(2, "0")}
+        </span>
 
-      <div className="grid gap-4 px-5 py-6 sm:px-6 sm:py-6 md:grid-cols-[72px_180px_minmax(0,1fr)_72px] md:gap-6 md:px-7 md:py-6">
-        <div className="flex items-start gap-4 md:items-center md:gap-5">
-          <span className="text-[2.6rem] font-semibold leading-none tracking-[-0.06em] text-white/10 transition-colors duration-300 group-hover:text-white/20 sm:text-[3.2rem]">
-            {String(project.id).padStart(2, "0")}
-          </span>
-          {/* simplified; removed vertical divider */}
-        </div>
-
-        <div className="space-y-1 pt-1 md:pt-2">
-          <p className="text-[10px] uppercase tracking-[0.4em] text-white/30">
+        {/* Category */}
+        <div className="hidden min-w-[110px] flex-col gap-0.5 pt-1 sm:flex md:min-w-[140px]">
+          <p className="text-[9px] font-semibold uppercase tracking-[0.35em] text-white/25">
             {project.category}
           </p>
-          <p className="text-[10px] uppercase tracking-[0.28em] text-white/22">
-            {project.link ? "Live product" : "Selected build"}
-          </p>
         </div>
 
-        <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-3">
+        {/* Title + Tags + Description */}
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             <h3
-              className="text-[1.55rem] font-semibold leading-none text-white transition-colors duration-300 group-hover:text-white/95 sm:text-[1.8rem]"
+              className="text-[0.95rem] font-semibold leading-tight text-white sm:text-[1.1rem]"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
               {project.title}
             </h3>
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-white/6 text-sm transition-all duration-300 group-hover:bg-white/12">
-              {project.icon}
-            </span>
+
+            {/* Tags - inline with title */}
+            <div className="flex flex-wrap gap-1.5">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-white/[0.06] bg-white/[0.03] px-2 py-0.5 text-[8px] uppercase tracking-[0.15em] text-white/35 transition-colors duration-200 group-hover:border-white/[0.1] group-hover:text-white/45"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
 
-          <div className="mt-3 flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
+          {/* Description */}
+          <p className="mt-1.5 text-[11px] leading-relaxed text-white/30 sm:text-xs sm:max-w-2xl">
+            {project.description}
+          </p>
+
+          {/* Mobile category */}
+          <p className="mt-1 text-[8px] font-semibold uppercase tracking-[0.35em] text-white/20 sm:hidden">
+            {project.category}
+          </p>
+        </div>
+
+        {/* Action Icons */}
+        <div className="flex items-center gap-2 pt-1 sm:gap-3">
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="flex h-8 w-8 items-center justify-center rounded-md text-white/25 transition-all duration-200 hover:bg-white/[0.06] hover:text-white/60"
+              aria-label="Open project"
+            >
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </a>
+          )}
+          <button
+            onClick={(e) => e.stopPropagation()}
+            className="flex h-8 w-8 items-center justify-center rounded-md text-white/25 transition-all duration-200 hover:bg-white/[0.06] hover:text-white/60"
+            aria-label="Bookmark"
+          >
+            <Bookmark className="h-3.5 w-3.5" />
+          </button>
+          <ChevronDown
+            className={`h-3.5 w-3.5 text-white/20 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
+          />
+        </div>
+      </div>
+
+      {/* Expanded detail panel */}
+      <div
+        className="overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        style={{
+          maxHeight: expanded ? "320px" : "0px",
+          opacity: expanded ? 1 : 0,
+        }}
+      >
+        <div className="mx-4 mb-5 rounded-lg border border-white/[0.05] bg-white/[0.015] px-5 py-5 sm:mx-6 sm:px-7 sm:py-6 md:mx-8">
+          {/* Sub-header */}
+          <p className="mb-3 text-[9px] font-semibold uppercase tracking-[0.4em] text-white/20">
+            Technical deep dive
+          </p>
+
+          <p className="max-w-3xl text-[12px] leading-[1.8] text-white/45 sm:text-[13px]">
+            {project.detail}
+          </p>
+
+          {/* Highlights */}
+          <div className="mt-4 flex flex-wrap gap-2">
+            {project.bullets.map((bullet) => (
               <span
-                key={tag}
-                className="rounded-full px-2.5 py-1 text-[9px] uppercase tracking-[0.18em] text-white/45 bg-white/3"
+                key={bullet}
+                className="rounded-full border border-white/[0.06] bg-white/[0.025] px-3 py-1 text-[8px] uppercase tracking-[0.18em] text-white/35"
               >
-                {tag}
+                {bullet}
               </span>
             ))}
           </div>
 
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-white/55 sm:text-[0.95rem]">
-            {project.description}
-          </p>
-        </div>
-
-        <div className="flex items-start justify-end pt-1 md:pt-2">
-          <span className="flex h-10 w-10 items-center justify-center rounded-md bg-white/6 text-white/60 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:bg-white/12 group-hover:text-white">
-            <ArrowUpRight className="h-4 w-4" />
-          </span>
-        </div>
-      </div>
-      <div className="max-h-none bg-transparent px-5 py-5 opacity-100 transition-all duration-500 md:max-h-0 md:overflow-hidden md:px-7 md:py-0 md:opacity-0 md:group-hover:max-h-56 md:group-hover:py-6 md:group-hover:opacity-100 md:group-hover:bg-white/6 md:group-hover:rounded-b-md">
-        <div className="grid gap-6 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.32em] text-white/34">
-              Technical deep dive
-            </p>
-            <p className="mt-3 text-sm leading-7 text-white/66 sm:text-[0.95rem]">
-              {project.detail}
-            </p>
-          </div>
-
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.35em] text-white/35">
-              Highlights
-            </p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {project.bullets.map((bullet) => (
-                <span
-                  key={bullet}
-                  className="rounded-full px-3 py-1.5 text-[9px] uppercase tracking-[0.18em] text-white/58 bg-white/3"
-                >
-                  {bullet}
-                </span>
-              ))}
-            </div>
-
-            {project.link ? (
-              <span className="mt-4 inline-flex items-center gap-2 bg-white/4 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/75 transition-all duration-300 group-hover:bg-white/8 group-hover:text-white">
-                Open project
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </span>
-            ) : null}
-          </div>
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/40 transition-colors duration-200 hover:text-white/70"
+            >
+              Open project
+              <ArrowUpRight className="h-3 w-3" />
+            </a>
+          )}
         </div>
       </div>
     </div>
-  );
-}
-
-export function ProjectCard({ project }: ProjectCardProps) {
-  if (project.link) {
-    return (
-      <a
-        href={project.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={cn("group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20")}
-      >
-        <ProjectRowContent project={project} />
-      </a>
-    );
-  }
-
-  return (
-    <article className="group block">
-      <ProjectRowContent project={project} />
-    </article>
   );
 }
