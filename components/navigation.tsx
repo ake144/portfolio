@@ -56,7 +56,7 @@ export function NavbarItems() {
         <div className="hidden md:flex items-center">
           <button
             onClick={() => window.open("/aklilu_tamirat_resume.pdf", "_blank")}
-            className="button ml-4 border-2 border-[var(--accent)] text-[var(--accent)] font-bold uppercase tracking-[0.18em] px-6 py-2 bg-transparent hover:bg-[var(--accent)] hover:text-white transition"
+            className="button ml-4 border-2 border-white text-white font-bold uppercase tracking-[0.18em] px-6 py-2 bg-transparent hover:bg-white hover:text-black transition"
             style={{ fontFamily: "var(--font-main)" }}
           >
             Download CV
@@ -98,7 +98,7 @@ export function NavbarItems() {
                 setOpen(false);
                 window.open("/aklilu_tamirat_resume.pdf", "_blank");
               }}
-              className="button w-full border-2 border-[var(--accent)] text-[var(--accent)] font-bold uppercase tracking-[0.18em] px-6 py-2 bg-transparent hover:bg-[var(--accent)] hover:text-white transition"
+              className="button w-full cursor-pointer border-2 border-white text-white font-bold uppercase tracking-[0.18em] px-6 py-2 bg-transparent hover:bg-white hover:text-black transition"
               style={{ fontFamily: "var(--font-main)" }}
             >
               Download CV

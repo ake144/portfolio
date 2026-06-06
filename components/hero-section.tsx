@@ -8,41 +8,41 @@ const HeroSection = () => {
         <h1 className="text-[12vw] font-black tracking-tighter uppercase whitespace-nowrap overflow-hidden text-center">SYSTEMS</h1>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full z-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 pt-28 sm:pt-32 lg:pt-0">
         {/* Left Column */}
         <div className="lg:col-span-8 flex flex-col justify-center">
-          <div className="mb-6">
-            <span className="text-[#a8e036] font-mono text-sm border-l border-[#222] pl-3">
+          <div className="mb-5 sm:mb-6">
+            <span className="text-[#a8e036] font-mono text-xs sm:text-sm border-l border-[#222] pl-3">
               const role = &quot;FULLSTACK_&amp;_AI_DEVELOPER&quot;;
             </span>
           </div>
 
-          <h2 className="text-5xl md:text-7xl lg:text-9xl font-serif text-white tracking-tight leading-[0.9] mb-2">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-serif text-white tracking-tight leading-[0.9] mb-1.5 sm:mb-2">
             BUILDING
           </h2>
-          <h2 className="text-5xl md:text-7xl lg:text-9xl font-serif italic text-gray-500 tracking-tight leading-[0.9] mb-2">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-serif italic text-gray-500 tracking-tight leading-[0.9] mb-1.5 sm:mb-2">
             SCALABLE
           </h2>
-          <h2 className="text-5xl md:text-7xl lg:text-9xl font-serif text-white tracking-tight leading-[0.9] mb-8">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-serif text-white tracking-tight leading-[0.9] mb-6 sm:mb-8">
             SYSTEMS.
           </h2>
 
-          <p className="max-w-xl text-gray-400 font-mono text-sm leading-relaxed mb-10">
+          <p className="max-w-xl text-gray-400 font-mono text-xs sm:text-sm leading-relaxed mb-8 sm:mb-10">
             Full-Stack Developer &amp; AI Engineer with 4+ years shipping production-grade web apps and LLM-powered systems. Proficient in React, Next.js, Node.js, FastAPI, LangChain, and RAG pipelines. Products used by 100,000+ users across fintech, EdTech &amp; e-commerce.
           </p>
 
-          <div className="flex flex-wrap items-center gap-6 border-t border-[#333] pt-8 max-w-xl">
-            <Link href="/#projects" className="bg-[#9366ff] hover:bg-[#7e52eb] text-white px-8 py-3 text-sm font-bold tracking-widest transition-colors">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-6 border-t border-[#333] pt-6 sm:pt-8 max-w-xl">
+            <Link href="/#projects" className="bg-[#9366ff] hover:bg-[#7e52eb] text-white px-8 py-3 text-sm font-bold tracking-widest transition-colors text-center">
               VIEW PROJECTS
             </Link>
-            <Link href="/#contact" className="border border-white hover:bg-white hover:text-black text-white px-8 py-3 text-sm font-bold tracking-widest transition-colors">
+            <Link href="/#contact" className="border border-white hover:bg-white hover:text-black text-white px-8 py-3 text-sm font-bold tracking-widest transition-colors text-center">
               GET IN TOUCH
             </Link>
           </div>
         </div>
 
-        {/* Right Column (Code Window) */}
-        <div className="lg:col-span-4 flex items-center justify-end">
+        {/* Right Column (Code Window) — hidden on mobile, shown lg+ */}
+        <div className="hidden lg:flex lg:col-span-4 items-center justify-end">
           <div className="border border-[#222] bg-[#0c0c0c] w-full max-w-sm">
             {/* Window Header */}
             <div className="border-b border-[#222] p-4 flex gap-2">
