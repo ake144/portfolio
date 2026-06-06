@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { toast } from "sonner";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail, Send } from "lucide-react";
 
 const ContactSection = () => {
 	const [loading, setLoading] = useState(false);
@@ -30,133 +30,182 @@ const ContactSection = () => {
 			});
 
 			if (response.ok || response.status === 200) {
-				toast.success("Transmission successful", {
-					description: "Valid sequence received. Expect contact shortly.",
+				toast.success("Message sent!", {
+					description: "Thanks for reaching out — I'll get back to you soon.",
 				});
 				form.reset();
 			} else {
 				const result = await response.json();
-				toast.error(result.message || "Transmission failed");
+				toast.error(result.message || "Something went wrong. Please try again.");
 			}
 		} catch {
-			toast.error("An unexpected error occurred during transmission");
+			toast.error("An unexpected error occurred. Please try again.");
 		} finally {
 			setLoading(false);
 		}
-	}
+	};
 
 	return (
 		<section id="contact" className="relative w-full bg-[#0c0c0c] text-[#e0e0e0] font-mono flex items-center py-24 border-t border-[#222]">
 			<div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
-				<div className="grid gap-16 lg:grid-cols-2 items-start">
-					
-					{/* Left Column: Info */}
-					<div className="flex flex-col">
-						<div className="mb-8">
-							<span className="inline-block border border-[#333] bg-[#111] px-4 py-2 text-[10px] text-[#a8e036] font-bold tracking-widest uppercase">
-								STATUS: LISTENING
-							</span>
-						</div>
-						
-						<h2 className="text-5xl sm:text-7xl lg:text-[5.5rem] font-serif text-white tracking-tighter leading-[0.9] mb-8 uppercase">
-							INITIATE <br /> CONNECTION
+
+				{/* Section Header */}
+				<div className="mb-16 border-b border-[#222] pb-10">
+					<p className="text-[10px] text-[#a8e036] font-bold tracking-[0.3em] uppercase mb-4">
+						— SECTION_05 / CONTACT
+					</p>
+					<div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+						<h2 className="text-5xl sm:text-7xl lg:text-8xl font-serif text-white tracking-tighter leading-[0.9] uppercase">
+							Get In<br />
+							<span className="italic text-gray-500">Touch.</span>
 						</h2>
-						
-						<p className="max-w-sm text-gray-400 font-mono text-sm leading-relaxed mb-12">
-							Deploy communications protocol. Awaiting valid input sequence to establish direct channel.
+						<p className="max-w-xs text-gray-400 text-sm leading-relaxed">
+							Have a project in mind, a question, or just want to say hello? I&apos;d love to hear from you.
 						</p>
-
-						<div className="space-y-4 max-w-md">
-							<Link href="https://github.com/ake144" target="_blank" className="flex items-center justify-between border border-[#222] bg-[#0c0c0c] hover:bg-[#111] transition-colors p-5 group">
-								<span className="text-xs text-gray-300 font-bold tracking-widest">DIR /social/github</span>
-								<ArrowRight className="w-4 h-4 text-gray-500 group-hover:text-white transition-colors" />
-							</Link>
-							<Link href="https://www.linkedin.com/in/akeja/" target="_blank" className="flex items-center justify-between border border-[#222] bg-[#0c0c0c] hover:bg-[#111] transition-colors p-5 group">
-								<span className="text-xs text-gray-300 font-bold tracking-widest">DIR /social/linkedin</span>
-								<ArrowRight className="w-4 h-4 text-gray-500 group-hover:text-white transition-colors" />
-							</Link>
-							<Link href="mailto:tamiratake@gmail.com" className="flex items-center justify-between border border-[#222] bg-[#0c0c0c] hover:bg-[#111] transition-colors p-5 group">
-								<span className="text-xs text-gray-300 font-bold tracking-widest">LNK mailto:tamiratake@gmail.com</span>
-								<Mail className="w-4 h-4 text-gray-500 group-hover:text-white transition-colors" />
-							</Link>
-						</div>
 					</div>
+				</div>
 
-					{/* Right Column: Form Terminal */}
-					<div className="border border-[#222] bg-[#0c0c0c] shadow-2xl flex flex-col">
-						{/* Window Header */}
-						<div className="flex justify-between items-center px-4 py-3 border-b border-[#222] bg-[#0a0a0a]">
-							<div className="flex gap-2">
-								<div className="w-2.5 h-2.5 bg-transparent border border-[#444]"></div>
-								<div className="w-2.5 h-2.5 bg-transparent border border-[#444]"></div>
-								<div className="w-2.5 h-2.5 bg-transparent border border-[#444]"></div>
-							</div>
-							<div className="text-[10px] text-gray-500 font-bold tracking-widest">
-								transmission_client.exe
-							</div>
+				<div className="grid gap-16 lg:grid-cols-2 items-start">
+
+					{/* Left Column: Info & Links */}
+					<div className="flex flex-col gap-10">
+
+						{/* Availability badge */}
+						<div className="inline-flex items-center gap-3 border border-[#a8e036]/30 bg-[#a8e036]/5 px-4 py-3 w-fit">
+							<span className="w-2 h-2 rounded-full bg-[#a8e036] animate-pulse"></span>
+							<span className="text-xs text-[#a8e036] font-bold tracking-widest uppercase">Available for new projects</span>
 						</div>
 
-						{/* Form Content */}
-						<div className="p-8">
-							<form onSubmit={handleSubmit} className="flex flex-col h-full">
-								<div className="space-y-10">
-									<label className="block">
-										<span className="block text-xs font-bold tracking-widest text-[#e0e0e0] mb-4 uppercase">
-											&gt; IDENTIFIER [STRING]
-										</span>
-										<input
-											required
-											name="name"
-											type="text"
-											placeholder="Enter designations..."
-											className="w-full bg-transparent border-b border-[#333] pb-3 text-sm text-gray-300 placeholder:text-gray-700 focus:outline-none focus:border-[#666] transition-colors"
-										/>
-									</label>
+						<div>
+							<p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+								I&apos;m open to freelance work, full-time opportunities, and interesting collaborations — especially in AI engineering, full-stack development, and LLM-powered products.
+							</p>
+						</div>
 
-									<label className="block">
-										<span className="block text-xs font-bold tracking-widest text-[#e0e0e0] mb-4 uppercase">
-											&gt; RETURN_ADDRESS [EMAIL]
-										</span>
-										<input
-											required
-											name="email"
-											type="email"
-											placeholder="user@domain.net..."
-											className="w-full bg-transparent border-b border-[#333] pb-3 text-sm text-gray-300 placeholder:text-gray-700 focus:outline-none focus:border-[#666] transition-colors"
-										/>
-									</label>
+						{/* Contact Links */}
+						<div className="space-y-3">
+							<p className="text-[10px] text-gray-600 font-bold uppercase tracking-[0.2em] mb-5">
+								Reach me directly
+							</p>
 
-									<label className="block">
-										<span className="block text-xs font-bold tracking-widest text-[#e0e0e0] mb-4 uppercase">
-											&gt; PAYLOAD [TEXT]
-										</span>
-										<textarea
-											required
-											name="message"
-											rows={5}
-											placeholder="Type your message..."
-											className="w-full bg-transparent border-b border-[#333] pb-3 text-sm text-gray-300 placeholder:text-gray-700 focus:outline-none focus:border-[#666] transition-colors resize-none"
-										/>
-									</label>
-								</div>
-
-								<div className="mt-14 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6">
-									<div className="text-[10px] text-gray-600 font-bold uppercase tracking-widest space-y-1">
-										<p>0x00A1: ACK_WAITING</p>
-										<p>0x00A2: BUFFER_CLEAR</p>
+							<Link
+								href="mailto:tamiratake@gmail.com"
+								className="flex items-center justify-between border border-[#222] bg-[#0c0c0c] hover:bg-[#111] hover:border-[#444] transition-all p-5 group"
+							>
+								<div className="flex items-center gap-4">
+									<Mail className="w-4 h-4 text-[#a8e036]" />
+									<div>
+										<p className="text-xs text-gray-500 uppercase tracking-widest mb-0.5">Email</p>
+										<p className="text-sm text-white font-bold">tamiratake@gmail.com</p>
 									</div>
-									<button
-										type="submit"
-										disabled={loading}
-										className="border border-[#e0e0e0] text-[#e0e0e0] hover:bg-[#e0e0e0] hover:text-black transition-colors px-6 py-4 text-[10px] font-bold uppercase tracking-[0.2em] flex items-center gap-3 bg-transparent disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none"
-									>
-										{loading ? "TRANSMITTING..." : "EXECUTE_TRANSMISSION"}
-										<span className="text-xs">{(loading ? "..." : "▻")}</span>
-									</button>
 								</div>
-							</form>
+								<ArrowRight className="w-4 h-4 text-gray-600 group-hover:text-white group-hover:translate-x-1 transition-all" />
+							</Link>
+
+							<Link
+								href="https://www.linkedin.com/in/akeja/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="flex items-center justify-between border border-[#222] bg-[#0c0c0c] hover:bg-[#111] hover:border-[#444] transition-all p-5 group"
+							>
+								<div className="flex items-center gap-4">
+									<Linkedin className="w-4 h-4 text-[#a8e036]" />
+									<div>
+										<p className="text-xs text-gray-500 uppercase tracking-widest mb-0.5">LinkedIn</p>
+										<p className="text-sm text-white font-bold">linkedin.com/in/akeja</p>
+									</div>
+								</div>
+								<ArrowRight className="w-4 h-4 text-gray-600 group-hover:text-white group-hover:translate-x-1 transition-all" />
+							</Link>
+
+							<Link
+								href="https://github.com/ake144"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="flex items-center justify-between border border-[#222] bg-[#0c0c0c] hover:bg-[#111] hover:border-[#444] transition-all p-5 group"
+							>
+								<div className="flex items-center gap-4">
+									<Github className="w-4 h-4 text-[#a8e036]" />
+									<div>
+										<p className="text-xs text-gray-500 uppercase tracking-widest mb-0.5">GitHub</p>
+										<p className="text-sm text-white font-bold">github.com/ake144</p>
+									</div>
+								</div>
+								<ArrowRight className="w-4 h-4 text-gray-600 group-hover:text-white group-hover:translate-x-1 transition-all" />
+							</Link>
 						</div>
 					</div>
+
+					{/* Right Column: Contact Form */}
+					<div className="border border-[#222] bg-[#0a0a0a]">
+						{/* Form header bar */}
+						<div className="flex items-center justify-between px-6 py-4 border-b border-[#222]">
+							<div className="flex gap-2">
+								<div className="w-2.5 h-2.5 border border-[#444]"></div>
+								<div className="w-2.5 h-2.5 border border-[#444]"></div>
+								<div className="w-2.5 h-2.5 border border-[#444]"></div>
+							</div>
+							<span className="text-[10px] text-gray-500 font-bold tracking-widest uppercase">Send me a message</span>
+						</div>
+
+						{/* Form */}
+						<form onSubmit={handleSubmit} className="p-8 flex flex-col gap-8">
+
+							<label className="block">
+								<span className="block text-[10px] font-bold tracking-widest text-gray-500 uppercase mb-3">
+									Your Name <span className="text-[#a8e036]">*</span>
+								</span>
+								<input
+									required
+									name="name"
+									type="text"
+									placeholder="e.g. Jane Smith"
+									className="w-full bg-transparent border-b border-[#333] pb-3 text-sm text-gray-200 placeholder:text-gray-700 focus:outline-none focus:border-[#a8e036] transition-colors"
+								/>
+							</label>
+
+							<label className="block">
+								<span className="block text-[10px] font-bold tracking-widest text-gray-500 uppercase mb-3">
+									Email Address <span className="text-[#a8e036]">*</span>
+								</span>
+								<input
+									required
+									name="email"
+									type="email"
+									placeholder="you@example.com"
+									className="w-full bg-transparent border-b border-[#333] pb-3 text-sm text-gray-200 placeholder:text-gray-700 focus:outline-none focus:border-[#a8e036] transition-colors"
+								/>
+							</label>
+
+							<label className="block">
+								<span className="block text-[10px] font-bold tracking-widest text-gray-500 uppercase mb-3">
+									Your Message <span className="text-[#a8e036]">*</span>
+								</span>
+								<textarea
+									required
+									name="message"
+									rows={5}
+									placeholder="Tell me about your project, idea, or question..."
+									className="w-full bg-transparent border-b border-[#333] pb-3 text-sm text-gray-200 placeholder:text-gray-700 focus:outline-none focus:border-[#a8e036] transition-colors resize-none"
+								/>
+							</label>
+
+							<div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-2">
+								<p className="text-[10px] text-gray-600 tracking-widest">
+									I typically reply within 24–48 hours.
+								</p>
+								<button
+									type="submit"
+									disabled={loading}
+									className="flex items-center gap-3 bg-[#9366ff] hover:bg-[#7e52eb] disabled:opacity-50 disabled:cursor-not-allowed text-white px-7 py-4 text-xs font-bold uppercase tracking-[0.2em] transition-colors focus:outline-none"
+								>
+									{loading ? "Sending..." : "Send Message"}
+									<Send className={`w-3.5 h-3.5 ${loading ? "animate-pulse" : ""}`} />
+								</button>
+							</div>
+						</form>
+					</div>
+
 				</div>
 			</div>
 		</section>
