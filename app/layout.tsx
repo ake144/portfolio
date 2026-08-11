@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { NavbarItems } from "@/components/navigation";
 import FooterPage from "@/components/footer";
@@ -15,6 +15,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -94,7 +100,7 @@ export default function RootLayout({
                 siteConfig.links.github,
                 siteConfig.links.linkedin,
               ],
-              jobTitle: "Software Engineer",
+              jobTitle: "Full-Stack & AI Engineer",
               worksFor: {
                 "@type": "Organization",
                 name: "Safaricom Ethiopia",
@@ -104,7 +110,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} bg-background text-foreground antialiased`}
       >
         <InitialLoader />
         <NavbarItems />
@@ -115,7 +121,7 @@ export default function RootLayout({
         <Toaster
           toastOptions={{
             style: {
-              background: "#111",
+              background: "#111113",
               border: "1px solid rgba(255,255,255,0.08)",
               color: "white",
             },

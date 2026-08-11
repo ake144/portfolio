@@ -7,15 +7,9 @@ import HeroSection from "@/components/home/hero-section";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-[#0c0c0c] selection:bg-[#a882ff] selection:text-black">
-      {/* Global abstract grid pattern */}
-      <div 
-        className="fixed inset-0 pointer-events-none opacity-[0.03] z-[0]" 
-        style={{ 
-          backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', 
-          backgroundSize: '40px 40px' 
-        }}
-      ></div>
+    <main className="relative min-h-screen bg-background">
+      {/* Global grid pattern — one consistent pitch behind every section */}
+      <div className="line-grid pointer-events-none fixed inset-0 z-0 opacity-[0.025]" />
 
       <div className="relative z-10">
         <GSAPAnimations />

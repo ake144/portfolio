@@ -64,25 +64,22 @@ export default function InitialLoader() {
   return (
     <div
       ref={loaderRef}
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#080808]"
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background"
     >
       {/* Background accent */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -left-1/4 -top-1/4 h-1/2 w-1/2 rounded-full bg-red-600/5 blur-[120px]" />
-        <div className="absolute -bottom-1/4 -right-1/4 h-1/2 w-1/2 rounded-full bg-red-600/5 blur-[120px]" />
+        <div className="absolute -left-1/4 -top-1/4 h-1/2 w-1/2 rounded-full bg-primary/5 blur-[120px]" />
+        <div className="absolute -bottom-1/4 -right-1/4 h-1/2 w-1/2 rounded-full bg-primary/5 blur-[120px]" />
       </div>
 
       <div className="relative z-10 flex flex-col items-center">
         {/* Logo mark */}
-        <div className="loader-item mb-8 flex h-12 w-12 items-center justify-center rounded-2xl bg-red-600 text-xl font-bold text-white shadow-[0_0_30px_rgba(220,38,38,0.3)]">
+        <div className="loader-item mb-8 flex h-12 w-12 items-center justify-center rounded-md bg-primary font-display text-xl font-bold text-primary-foreground shadow-[0_0_30px_color-mix(in_oklch,var(--primary)_35%,transparent)]">
           A
         </div>
 
         <div className="overflow-hidden">
-          <h1
-            className="loader-item text-2xl font-bold uppercase tracking-[0.4em] text-white sm:text-3xl"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          >
+          <h1 className="loader-item font-display text-2xl font-bold uppercase tracking-[0.4em] text-white sm:text-3xl">
             Aklilu Tamirat
           </h1>
         </div>
@@ -104,7 +101,7 @@ export default function InitialLoader() {
           <div className="h-[1px] w-full bg-white/5">
             <div
               ref={progressRef}
-              className="h-full w-full origin-left bg-red-600 shadow-[0_0_10px_rgba(220,38,38,0.5)]"
+              className="h-full w-full origin-left bg-primary shadow-[0_0_10px_color-mix(in_oklch,var(--primary)_60%,transparent)]"
             />
           </div>
         </div>
@@ -112,7 +109,7 @@ export default function InitialLoader() {
 
       {/* Bottom info */}
       <div className="loader-item absolute bottom-12 text-[9px] uppercase tracking-[0.3em] text-white/10">
-        Portfolio · 2026 · v2.0
+        Portfolio · {new Date().getFullYear()} · v2.1
       </div>
     </div>
   );

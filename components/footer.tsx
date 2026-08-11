@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Twitter } from "lucide-react";
 
 const socials = [
     { icon: Github, href: "https://github.com/ake144", label: "GitHub" },
@@ -10,43 +10,45 @@ const socials = [
 const links = {
     NAVIGATE: [
         { name: "Home", href: "/#home" },
+        { name: "About", href: "/#about" },
         { name: "Projects", href: "/#projects" },
         { name: "Experience", href: "/#experience" },
-        { name: "Blog", href: "/#blog" },
+        { name: "Writing", href: "/blog" },
     ],
-    CONTACT: [
+    CONNECT: [
         { name: "tamiratake@gmail.com", href: "mailto:tamiratake@gmail.com" },
-        { name: "Start a project", href: "/#contact" },
-        { name: "LinkedIn", href: "https://www.linkedin.com/in/akeja/" },
+        { name: "linkedin.com/in/akeja", href: "https://www.linkedin.com/in/akeja/" },
+        { name: "github.com/ake144", href: "https://github.com/ake144" },
     ],
 };
 
 const FooterPage = () => {
+    const year = new Date().getFullYear();
+
     return (
-        <footer className="relative w-full bg-[#0c0c0c] text-[#e0e0e0] font-mono border-t border-[#222]">
-            <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
-                    
+        <footer className="relative w-full border-t border-border">
+            <div className="relative z-10 mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
                     {/* Left Column */}
-                    <div className="lg:col-span-5 flex flex-col items-start lg:pr-12">
-                        <Link href="/#home" className="flex items-center gap-4 mb-8">
-                            <span className="flex h-10 w-10 items-center justify-center bg-[#a882ff] font-serif text-2xl font-bold text-black pb-1">
+                    <div className="flex flex-col items-start lg:col-span-5 lg:pr-12">
+                        <Link href="/#home" className="mb-8 flex items-center gap-2.5">
+                            <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary font-display text-base font-bold text-primary-foreground">
                                 A
                             </span>
-                            <span className="text-2xl font-serif font-bold text-white tracking-tight">
+                            <span className="font-display text-xl font-semibold tracking-tight text-white">
                                 Aklilu Tamirat
                             </span>
                         </Link>
-                        
-                        <p className="text-gray-400 text-sm leading-relaxed max-w-sm mb-6">
+
+                        <p className="mb-6 max-w-sm text-sm leading-relaxed text-white/45">
                             Building sharp, fast, editorial interfaces for products that need clarity and momentum.
                         </p>
-                        
-                        <div className="mb-10 text-[11px] font-bold tracking-widest text-[#a882ff] uppercase">
-                            [SYS.STATUS: ONLINE]
+
+                        <div className="mb-10 font-mono text-[11px] font-bold uppercase tracking-widest text-primary/80">
+                            [sys.status: online]
                         </div>
-                        
-                        <div className="flex items-center gap-8 mt-auto">
+
+                        <div className="mt-auto flex items-center gap-6">
                             {socials.map(({ icon: Icon, href, label }) => (
                                 <a
                                     key={label}
@@ -54,7 +56,7 @@ const FooterPage = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label={label}
-                                    className="text-gray-400 hover:text-white transition-colors"
+                                    className="text-white/40 transition-colors hover:text-white"
                                 >
                                     <Icon className="h-5 w-5" />
                                 </a>
@@ -64,13 +66,13 @@ const FooterPage = () => {
 
                     {/* Middle Column (Navigate) */}
                     <div className="lg:col-span-3">
-                        <h3 className="text-gray-500 text-[10px] font-bold tracking-[0.2em] uppercase border-b border-[#222] pb-3 mb-6">
-                            NAVIGATE
+                        <h3 className="mb-6 border-b border-border pb-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white/35">
+                            Navigate
                         </h3>
                         <ul className="space-y-4">
                             {links.NAVIGATE.map((item) => (
                                 <li key={item.name}>
-                                    <Link href={item.href} className="text-white hover:text-[#a882ff] transition-colors text-sm">
+                                    <Link href={item.href} className="text-sm text-white/70 transition-colors hover:text-primary">
                                         {item.name}
                                     </Link>
                                 </li>
@@ -79,15 +81,20 @@ const FooterPage = () => {
                     </div>
 
                     {/* Right Column (Contact & Status) */}
-                    <div className="lg:col-span-4 flex flex-col gap-10">
+                    <div className="flex flex-col gap-10 lg:col-span-4">
                         <div>
-                            <h3 className="text-gray-500 text-[10px] font-bold tracking-[0.2em] uppercase border-b border-[#222] pb-3 mb-6">
-                                CONTACT
+                            <h3 className="mb-6 border-b border-border pb-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white/35">
+                                Connect
                             </h3>
                             <ul className="space-y-4">
-                                {links.CONTACT.map((item) => (
+                                {links.CONNECT.map((item) => (
                                     <li key={item.name}>
-                                        <Link href={item.href} className="text-white hover:text-[#a882ff] transition-colors text-sm">
+                                        <Link
+                                            href={item.href}
+                                            target={item.href.startsWith("http") ? "_blank" : undefined}
+                                            rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                            className="text-sm text-white/70 transition-colors hover:text-primary"
+                                        >
                                             {item.name}
                                         </Link>
                                     </li>
@@ -96,40 +103,34 @@ const FooterPage = () => {
                         </div>
 
                         {/* Status Box */}
-                        <div className="border border-[#222] bg-[#111] p-6 lg:p-8 mt-auto w-full">
-                            <div className="flex gap-1.5 mb-6">
-                                <div className="w-2 h-2 bg-[#a882ff]"></div>
-                                <div className="w-2 h-2 bg-[#a882ff]"></div>
-                                <div className="w-2 h-2 bg-[#a882ff]"></div>
-                            </div>
-                            
-                            <div className="flex items-center gap-3 mb-4">
-                                <span className="w-2 h-2 bg-[#a882ff]"></span>
-                                <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-[#a882ff]">
-                                    AVAILABLE FOR WORK
+                        <div className="mt-auto w-full border border-border bg-surface-1 p-6 lg:p-7">
+                            <div className="mb-5 flex items-center gap-2.5">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
+                                    <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+                                </span>
+                                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary/90">
+                                    Available for work
                                 </span>
                             </div>
-                            
-                            <p className="text-sm text-gray-400 leading-relaxed mb-8">
+
+                            <p className="mb-7 text-sm leading-relaxed text-white/45">
                                 Currently open to full-time roles and select freelance projects. Based in Addis Ababa, open to remote.
                             </p>
-                            
-                            <Link
-                                href="/#contact"
-                                className="inline-block bg-[#a882ff] hover:bg-[#8f61ff] text-black transition-colors px-6 py-3 text-[10px] font-bold uppercase tracking-[0.2em]"
-                            >
-                                GET IN TOUCH
+
+                            <Link href="/#contact" className="glow-btn px-5! py-2.5!">
+                                Get in touch
+                                <ArrowUpRight className="h-3.5 w-3.5" />
                             </Link>
                         </div>
                     </div>
-                    
                 </div>
 
                 {/* Bottom bar */}
-                <div className="mt-24 pt-6 border-t border-[#222] flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] text-gray-500">
-                    <p className="font-mono">v2.0.4 // SYSTEM_READY</p>
-                    <p className="font-mono">© 2026 Aklilu Tamirat. All rights reserved.</p>
-                    <p className="font-mono">Built with Next.js · Three.js · Tailwind CSS</p>
+                <div className="mt-20 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 font-mono text-[10px] text-white/30 md:flex-row">
+                    <p>v2.1 // system_ready</p>
+                    <p>© {year} Aklilu Tamirat. All rights reserved.</p>
+                    <p>Built with Next.js · Tailwind CSS · Motion</p>
                 </div>
             </div>
         </footer>

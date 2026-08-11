@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"); */
 
 @custom-variant dark (&:is(.dark *));
 
@@ -9,6 +8,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-space-grotesk);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -38,45 +38,65 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* ── Design tokens ────────────────────────────────────────────────
+   One brand color (--primary, an ember/vermillion), one neutral scale.
+   Every accent used anywhere in the app should trace back to --primary
+   so the whole site reads as one system, not five prototypes stitched
+   together. Change it here and the whole site follows.
+──────────────────────────────────────────────────────────────────── */
 :root {
-  --radius: 0.625rem;
-  --background: oklch(0.06 0 0);
-  --foreground: oklch(0.97 0 0);
-  --card: oklch(0.10 0 0);
-  --card-foreground: oklch(0.97 0 0);
-  --popover: oklch(0.10 0 0);
-  --popover-foreground: oklch(0.97 0 0);
-  --primary: oklch(0.60 0.22 28);
-  --primary-foreground: oklch(0.10 0 0);
+  --radius: 0.75rem;
+
+  --background: oklch(0.065 0 0);
+  --foreground: oklch(0.96 0 0);
+
+  --surface-1: oklch(0.10 0 0);
+  --surface-2: oklch(0.135 0 0);
+
+  --card: var(--surface-1);
+  --card-foreground: oklch(0.96 0 0);
+  --popover: oklch(0.11 0 0);
+  --popover-foreground: oklch(0.96 0 0);
+
+  --primary: oklch(0.635 0.205 27);
+  --primary-foreground: oklch(0.99 0 0);
+
   --secondary: oklch(0.15 0 0);
-  --secondary-foreground: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.96 0 0);
+
   --muted: oklch(0.15 0 0);
-  --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.15 0 0);
-  --accent-foreground: oklch(0.97 0 0);
-  --destructive: oklch(0.60 0.22 28);
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.65 0.18 28);
-  --chart-1: oklch(0.66 0.2 28);
+  --muted-foreground: oklch(0.63 0 0);
+
+  --accent: oklch(0.16 0 0);
+  --accent-foreground: oklch(0.96 0 0);
+
+  --destructive: oklch(0.58 0.21 27);
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 13%);
+  --ring: oklch(0.635 0.205 27 / 55%);
+
+  --chart-1: oklch(0.635 0.205 27);
   --chart-2: oklch(0.72 0.15 165);
   --chart-3: oklch(0.8 0.16 72);
   --chart-4: oklch(0.65 0.19 282);
   --chart-5: oklch(0.58 0.18 20);
+
   --sidebar: oklch(0.08 0 0);
-  --sidebar-foreground: oklch(0.97 0 0);
-  --sidebar-primary: oklch(0.60 0.22 28);
-  --sidebar-primary-foreground: oklch(0.10 0 0);
+  --sidebar-foreground: oklch(0.96 0 0);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
   --sidebar-accent: oklch(0.15 0 0);
-  --sidebar-accent-foreground: oklch(0.97 0 0);
-  --sidebar-border: oklch(1 0 0 / 8%);
-  --sidebar-ring: oklch(0.65 0.18 28);
+  --sidebar-accent-foreground: oklch(0.96 0 0);
+  --sidebar-border: oklch(1 0 0 / 9%);
+  --sidebar-ring: var(--ring);
 }
 
 /* ── Global resets ────────────────────────────────────────────── */
@@ -87,15 +107,13 @@
   html {
     color-scheme: dark;
     scroll-behavior: smooth;
-    font-family: "Inter", var(--font-geist-sans), system-ui, sans-serif;
   }
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground font-sans antialiased;
     min-height: 100vh;
-    background-color: #080808;
     background-image:
-      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(220, 38, 38, 0.12), transparent),
-      radial-gradient(circle at 85% 5%, rgba(255, 255, 255, 0.04), transparent 26%);
+      radial-gradient(ellipse 80% 55% at 50% -12%, color-mix(in oklch, var(--primary) 16%, transparent), transparent),
+      radial-gradient(circle at 88% 6%, rgba(255, 255, 255, 0.035), transparent 26%);
     background-attachment: fixed;
     overflow-x: hidden;
   }
@@ -108,150 +126,199 @@
     pointer-events: none;
     z-index: 9999;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    opacity: 0.35;
+    opacity: 0.3;
   }
 
   ::selection {
-    background: rgba(220, 38, 38, 0.32);
+    background: color-mix(in oklch, var(--primary) 45%, transparent);
     color: white;
   }
 
   ::-webkit-scrollbar {
-    width: 4px;
+    width: 5px;
   }
   ::-webkit-scrollbar-track {
-    background: #080808;
+    background: var(--background);
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(220, 38, 38, 0.35);
-    border-radius: 2px;
+    background: color-mix(in oklch, var(--primary) 45%, transparent);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in oklch, var(--primary) 65%, transparent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
-/* ── Section card ─────────────────────────────────────────────── */
-.section-card {
-  border-radius: 0.25rem; /* rectangular, slight radius */
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  background: linear-gradient(160deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.01) 100%);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.45);
-  backdrop-filter: blur(1px);
-  transition: border-color 0.18s ease, background 0.18s ease;
-}
-.section-card:hover {
-  border-color: rgba(255,255,255,0.08);
-}
-
-/* ── Glowing accent line ──────────────────────────────────────── */
-.accent-line {
+/* ── Eyebrow label ────────────────────────────────────────────────
+   The "01 — SECTION" marker used above every section heading.
+   Usage: <p class="eyebrow"><span>01</span>Projects</p>
+──────────────────────────────────────────────────────────────────── */
+.eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.35em;
-  color: rgba(248, 113, 113, 0.85);
+  gap: 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: color-mix(in oklch, var(--primary) 78%, white);
 }
-.accent-line::before {
+.eyebrow::before {
   content: "";
   display: block;
-  width: 1.8rem;
+  width: 1.5rem;
   height: 1px;
-  background: rgba(248, 113, 113, 0.7);
+  background: color-mix(in oklch, var(--primary) 65%, transparent);
+}
+.eyebrow span {
+  color: var(--muted-foreground);
+  font-weight: 500;
+}
+
+/* ── Section heading ──────────────────────────────────────────── */
+.section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5.4vw, 4rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+  color: white;
+}
+
+/* ── Card surface ─────────────────────────────────────────────── */
+.section-card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.025) 0%, rgba(255, 255, 255, 0.008) 100%);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.section-card:hover {
+  border-color: color-mix(in oklch, var(--primary) 25%, var(--border));
+}
+
+/* Interactive card: lift + accent glow on hover, for anything clickable */
+.card-interactive {
+  position: relative;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background 0.3s ease, box-shadow 0.35s ease;
+}
+.card-interactive:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in oklch, var(--primary) 40%, var(--border));
+  background: var(--surface-2);
+  box-shadow: 0 20px 45px -20px rgba(0, 0, 0, 0.65), 0 0 0 1px color-mix(in oklch, var(--primary) 12%, transparent);
 }
 
 /* ── Tag pill ─────────────────────────────────────────────────── */
 .tag-pill {
   display: inline-flex;
   align-items: center;
-  padding: 0.2rem 0.75rem;
+  padding: 0.22rem 0.75rem;
   border-radius: 9999px;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: rgba(255,255,255,0.04);
-  font-size: 0.65rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: rgba(255,255,255,0.6);
-  transition: border-color 0.2s, color 0.2s;
+  letter-spacing: 0.16em;
+  color: var(--muted-foreground);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 .tag-pill:hover {
-  border-color: rgba(248,113,113,0.5);
-  color: rgba(255,255,255,0.9);
+  border-color: color-mix(in oklch, var(--primary) 45%, transparent);
+  color: rgba(255, 255, 255, 0.92);
+  background: color-mix(in oklch, var(--primary) 8%, transparent);
 }
 
 /* ── Animated gradient text ───────────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.65) 50%, #f87171 100%);
+  background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 45%, var(--primary) 115%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* ── Glow button ──────────────────────────────────────────────── */
+/* ── Buttons ──────────────────────────────────────────────────── */
 .glow-btn {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
-  font-size: 0.65rem;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.32em;
-  color: white;
-  background: rgba(220, 38, 38, 0.9);
-  border: 1px solid rgba(248,113,113,0.5);
-  border-radius: 0.25rem;
+  letter-spacing: 0.24em;
+  color: var(--primary-foreground);
+  background: var(--primary);
+  border: 1px solid color-mix(in oklch, var(--primary) 70%, white 15%);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  transition: background 0.25s, transform 0.18s;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
 }
 .glow-btn::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.18), transparent 65%);
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.22), transparent 65%);
 }
 .glow-btn:hover {
-  background: rgba(239, 68, 68, 1);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px -12px color-mix(in oklch, var(--primary) 55%, transparent);
+}
+.glow-btn:active {
+  transform: translateY(0);
 }
 
 .ghost-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
-  font-size: 0.65rem;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.32em;
-  color: rgba(255,255,255,0.75);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 0.25rem;
-  transition: border-color 0.25s, color 0.25s, transform 0.18s;
+  letter-spacing: 0.24em;
+  color: rgba(255, 255, 255, 0.78);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color 0.25s, color 0.25s, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s;
 }
 .ghost-btn:hover {
-  border-color: rgba(255,255,255,0.3);
+  border-color: color-mix(in oklch, var(--primary) 45%, var(--border));
   color: white;
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.03);
+  transform: translateY(-2px);
 }
 
 /* ── Stat number ──────────────────────────────────────────────── */
 .stat-num {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 2.25rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
   color: white;
   line-height: 1;
-}
-
-/* ── Section heading ──────────────────────────────────────────── */
-.section-heading {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(2.4rem, 6vw, 4.5rem);
-  font-weight: 700;
-  line-height: 0.92;
-  color: white;
 }
 
 /* ── Animations ───────────────────────────────────────────────── */
@@ -304,13 +371,19 @@
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 28s linear infinite;
+  animation: marquee 32s linear infinite;
 }
 
-/* ── Grid dot BG ──────────────────────────────────────────────── */
+/* ── Grid dot / line backdrops ───────────────────────────────── */
 .dot-grid {
-  background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
   background-size: 28px 28px;
+}
+.line-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px);
+  background-size: 44px 44px;
 }
 
 @theme inline {
