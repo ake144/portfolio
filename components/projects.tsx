@@ -2,7 +2,7 @@ import { ProjectCard, type Project } from "./projects/project-card";
 
 const projects: Project[] = [
   {
-    id: 1,
+    id: 6,
     title: "UIForest",
     description:
       "Open-source design system and component library built to speed up product delivery.",
@@ -22,7 +22,7 @@ const projects: Project[] = [
       "Designed around campaign visibility, content partnerships, and reliable payout flows so creators and operators can keep the platform easy to understand while it handles real volume.",
     category: "Affiliate Platform",
     tags: ["Next.js", "Docker", "PostgreSQL", "TypeScript", "Node.js"],
-    link: "https://esperanza.et",
+    link: "https://affiliate.biyxy.com/",
     bullets: ["Campaign tracking", "Containerized deployment", "Payment-ready"],
   },
   {
@@ -59,13 +59,14 @@ const projects: Project[] = [
     bullets: ["Learning paths", "Course delivery", "Certification-ready flows"],
   },
   {
-    id: 6,
+    id: 1,
     title: "E-Commerce Platform",
     description: "An e-commerce admin platform for products, orders, and customer management.",
     detail:
       "Built for operators who need reliable control over inventory, orders, and reporting while keeping the day-to-day interface compact and usable.",
     category: "Commerce",
     tags: ["Next.js", "TypeScript", "PostgreSQL"],
+    link: "https://store.biyxy.com/",
     bullets: ["Order management", "Inventory visibility", "Operator-first dashboard"],
   },
   {
