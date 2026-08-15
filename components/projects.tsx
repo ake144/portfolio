@@ -1,17 +1,17 @@
 import { ProjectCard, type Project } from "./projects/project-card";
 
 const projects: Project[] = [
+
   {
-    id: 6,
-    title: "UIForest",
-    description:
-      "Open-source design system and component library built to speed up product delivery.",
+    id: 1,
+    title: "E-Commerce Platform",
+    description: "An e-commerce admin platform for products, orders, and customer management.",
     detail:
-      "A reusable UI foundation with polished primitives, consistent spacing rules, and production-ready templates for teams that need to move quickly without losing visual control.",
-    category: "Design System",
-    tags: ["React", "TypeScript", "Tailwind", "shadcn"],
-    link: "https://uiforest.dev",
-    bullets: ["Reusable primitives", "Template-driven workflows", "Fast theming"],
+      "Built for operators who need reliable control over inventory, orders, and reporting while keeping the day-to-day interface compact and usable.",
+    category: "Commerce",
+    tags: ["Next.js", "TypeScript", "PostgreSQL"],
+    link: "https://store.biyxy.com/",
+    bullets: ["Order management", "Inventory visibility", "Operator-first dashboard"],
   },
   {
     id: 2,
@@ -58,16 +58,17 @@ const projects: Project[] = [
     link: "https://globalpathway.esperanza.et/",
     bullets: ["Learning paths", "Course delivery", "Certification-ready flows"],
   },
-  {
-    id: 1,
-    title: "E-Commerce Platform",
-    description: "An e-commerce admin platform for products, orders, and customer management.",
+    {
+    id: 6,
+    title: "UIForest",
+    description:
+      "Open-source design system and component library built to speed up product delivery.",
     detail:
-      "Built for operators who need reliable control over inventory, orders, and reporting while keeping the day-to-day interface compact and usable.",
-    category: "Commerce",
-    tags: ["Next.js", "TypeScript", "PostgreSQL"],
-    link: "https://store.biyxy.com/",
-    bullets: ["Order management", "Inventory visibility", "Operator-first dashboard"],
+      "A reusable UI foundation with polished primitives, consistent spacing rules, and production-ready templates for teams that need to move quickly without losing visual control.",
+    category: "Design System",
+    tags: ["React", "TypeScript", "Tailwind", "shadcn"],
+    link: "https://uiforest.dev",
+    bullets: ["Reusable primitives", "Template-driven workflows", "Fast theming"],
   },
   {
     id: 7,
