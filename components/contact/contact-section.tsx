@@ -75,7 +75,7 @@ const ContactSection = () => {
 				{/* Section Header */}
 				<div className="mb-16 border-b border-border pb-10 sm:mb-20">
 					<p className="eyebrow mb-6">
-						<span>04</span>Contact
+						<span>05</span>Contact
 					</p>
 					<div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
 						<h2 className="section-heading">

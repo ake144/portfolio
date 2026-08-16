@@ -1,0 +1,38 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_URL")
+  extensions = [vector]
+}
+
+/// One row per chunk of the ingested "about me" PDF. `embedding` is a pgvector
+/// column — Prisma has no native vector type, so it's read/written with raw SQL
+/// (see lib/vector-store.ts) and only declared here for migrations + introspection.
+model DocumentChunk {
+  id         String                       @id @default(cuid())
+  source     String
+  chunkIndex Int
+  content    String
+  embedding  Unsupported("vector(1536)")?
+  createdAt  DateTime                     @default(now())
+
+  @@unique([source, chunkIndex])
+}
+
+/// Per-IP, per-day message counter for the chat API so a single visitor can't
+/// run up the OpenRouter bill. Bucketing by day keeps the table tiny and lets
+/// old rows be pruned trivially (delete where day < today).
+model ChatRateLimit {
+  id        String   @id @default(cuid())
+  ipHash    String
+  day       String
+  count     Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  @@unique([ipHash, day])
+}

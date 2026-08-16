@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { name: "About", link: "/#about", id: "about" },
   { name: "Projects", link: "/#projects", id: "projects" },
   { name: "Experience", link: "/#experience", id: "experience" },
+  { name: "Ask AI", link: "/#ask-me", id: "ask-me" },
   { name: "Contact", link: "/#contact", id: "contact" },
 ];
 

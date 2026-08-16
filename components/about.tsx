@@ -1,6 +1,6 @@
 "use client";
 
-import { PixelatedCanvas } from "./ui/pixelated-canvas";
+import { ScrollPortrait } from "./three/scroll-portrait";
 import SocialButtons from "./ui/social-buttons";
 import { LinkPreview } from "./ui/link-preview";
 
@@ -29,16 +29,7 @@ const AboutMe = () => {
               [IMG_SYS_RDY]
             </div>
             <div className="aspect-square overflow-hidden bg-surface-1 p-px">
-              <PixelatedCanvas
-                src="/avatar1.png"
-                width={600}
-                height={600}
-                cellSize={3}
-                dotScale={0.9}
-                shape="square"
-                backgroundColor="#000000"
-                interactive
-              />
+              <ScrollPortrait src="/avatar1.png" alt="Aklilu Tamirat" />
             </div>
           </div>
 

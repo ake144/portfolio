@@ -1,5 +1,8 @@
 import { ProjectCard, type Project } from "./projects/project-card";
 
+// Drop screenshots into /public/projects (see /public/projects/README.md for the
+// exact filenames + recommended size), then uncomment the matching `image` line
+// below. Any project left without one keeps the generated abstract cover art.
 const projects: Project[] = [
 
   {
@@ -12,6 +15,7 @@ const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "PostgreSQL"],
     link: "https://store.biyxy.com/",
     bullets: ["Order management", "Inventory visibility", "Operator-first dashboard"],
+    // image: "/projects/ecommerce-platform.jpg",
   },
   {
     id: 2,
@@ -24,6 +28,7 @@ const projects: Project[] = [
     tags: ["Next.js", "Docker", "PostgreSQL", "TypeScript", "Node.js"],
     link: "https://affiliate.biyxy.com/",
     bullets: ["Campaign tracking", "Containerized deployment", "Payment-ready"],
+    // image: "/projects/esperanza.jpg",
   },
   {
     id: 3,
@@ -36,6 +41,7 @@ const projects: Project[] = [
     tags: ["React", "Nest.js", "PostgreSQL", "Redis", "TypeScript"],
     link: "https://hoorafilx.com/",
     bullets: ["Playback focused UX", "Cache-backed browsing", "Large catalogue support"],
+    // image: "/projects/hoorafilx.jpg",
   },
   {
     id: 4,
@@ -46,6 +52,7 @@ const projects: Project[] = [
     category: "Enterprise",
     tags: ["Next.js", "TypeScript", "Node.js", "PostgreSQL"],
     bullets: ["Admin workflows", "Academic records", "Enterprise dashboards"],
+    // image: "/projects/school-portal.jpg",
   },
   {
     id: 5,
@@ -57,6 +64,7 @@ const projects: Project[] = [
     tags: ["Next.js", "Nest.js", "Redis", "TypeScript", "PostgreSQL"],
     link: "https://globalpathway.esperanza.et/",
     bullets: ["Learning paths", "Course delivery", "Certification-ready flows"],
+    // image: "/projects/e-learning-platform.jpg",
   },
     {
     id: 6,
@@ -69,6 +77,7 @@ const projects: Project[] = [
     tags: ["React", "TypeScript", "Tailwind", "shadcn"],
     link: "https://uiforest.dev",
     bullets: ["Reusable primitives", "Template-driven workflows", "Fast theming"],
+    // image: "/projects/uiforest.jpg",
   },
   {
     id: 7,
@@ -79,6 +88,7 @@ const projects: Project[] = [
     category: "Job Board",
     tags: ["Next.js", "Redux", "Node.js", "PostgreSQL"],
     bullets: ["Listings and applications", "Employer profiles", "Searchable marketplace"],
+    // image: "/projects/job-board-platform.jpg",
   },
 ];
 

@@ -13,6 +13,7 @@ const links = {
         { name: "About", href: "/#about" },
         { name: "Projects", href: "/#projects" },
         { name: "Experience", href: "/#experience" },
+        { name: "Ask AI", href: "/#ask-me" },
         { name: "Writing", href: "/blog" },
     ],
     CONNECT: [

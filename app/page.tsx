@@ -1,6 +1,7 @@
 import AboutMe from "@/components/about";
 import Projects from "@/components/projects";
 import CareersSkills from "@/components/careers-skills";
+import AskMeSection from "@/components/ask-me/ask-me-section";
 import ContactSection from "@/components/contact/contact-section";
 import GSAPAnimations from "@/components/gsap-animations";
 import HeroSection from "@/components/home/hero-section";
@@ -22,7 +23,9 @@ export default function Home() {
         <Projects />
 
         <CareersSkills />
-        
+
+        <AskMeSection />
+
         <ContactSection />
       </div>
     </main>

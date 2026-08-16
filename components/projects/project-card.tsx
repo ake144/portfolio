@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowUpRight, Lock } from "lucide-react";
 
 export interface Project {
@@ -9,6 +10,11 @@ export interface Project {
   tags: string[];
   link?: string;
   bullets: string[];
+  /** Path under /public (e.g. "/projects/ecommerce.jpg"). Falls back to the
+   * generated CardArt below when omitted, so the grid never shows a broken
+   * image while screenshots are still being collected. */
+  image?: string;
+  imageAlt?: string;
 }
 
 interface ProjectCardProps {
@@ -16,9 +22,18 @@ interface ProjectCardProps {
   featured?: boolean;
 }
 
-/** Deterministic abstract header art — no screenshots needed, just the grid/glow
- * motifs already used across the site, recombined per-card so the grid doesn't
- * feel repetitive while staying on the single accent color. */
+function domainFromLink(link?: string): string | null {
+  if (!link) return null;
+  try {
+    return new URL(link).hostname.replace(/^www\./, "");
+  } catch {
+    return null;
+  }
+}
+
+/** Deterministic abstract header art — the fallback for projects that don't
+ * have a screenshot yet, built from the grid/glow motifs already used across
+ * the site, recombined per-card so the grid doesn't feel repetitive. */
 function CardArt({ index, featured }: { index: number; featured?: boolean }) {
   const variant = index % 3;
   return (
@@ -56,6 +71,30 @@ function CardArt({ index, featured }: { index: number; featured?: boolean }) {
   );
 }
 
+function CardVisual({ project, index, featured }: { project: Project; index: number; featured?: boolean }) {
+  if (!project.image) {
+    return <CardArt index={index} featured={featured} />;
+  }
+
+  const label = domainFromLink(project.link) ?? project.category;
+
+  return (
+    <div className="relative h-full w-full overflow-hidden bg-surface-1">
+      <Image
+        src={project.image}
+        alt={project.imageAlt ?? `${project.title} preview`}
+        fill
+        sizes={featured ? "(min-width: 1024px) 42vw, 100vw" : "(min-width: 1024px) 33vw, 100vw"}
+        className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-surface-1 via-black/5 to-black/25" />
+      <span className="absolute left-3 top-3 rounded-md border border-white/15 bg-black/50 px-2 py-1 font-mono text-[9px] font-bold uppercase tracking-widest text-white/75 backdrop-blur-sm">
+        {label}
+      </span>
+    </div>
+  );
+}
+
 export function ProjectCard({ project, featured = false }: ProjectCardProps) {
   const index = project.id - 1;
   const className = `card-interactive group flex overflow-hidden ${
@@ -65,8 +104,8 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
   const body = (
     <>
       {/* Visual header */}
-      <div className={featured ? "h-48 shrink-0 lg:h-auto lg:w-[42%]" : "h-40 shrink-0"}>
-        <CardArt index={index} featured={featured} />
+      <div className={featured ? "h-56 shrink-0 lg:h-auto lg:w-[42%]" : "h-44 shrink-0"}>
+        <CardVisual project={project} index={index} featured={featured} />
       </div>
 
       {/* Content */}
