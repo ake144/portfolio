@@ -60,47 +60,60 @@ const skills: { name: string; icon: LucideIcon }[] = [
 
 const CareersSkills = () => {
   return (
-    <section id="experience" className="relative w-full border-t border-border py-24 sm:py-32">
+    <section id="experience" className="relative w-full border-t border-white/10 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <p className="eyebrow mb-14 sm:mb-16">
-          <span>03</span>Experience &amp; skills
-        </p>
+        <div className="mb-16 border-b border-white/10 pb-10 sm:mb-20">
+          <p className="eyebrow mb-6">
+            <span>03</span>Experience &amp; skills
+          </p>
+          <h2 className="font-display text-5xl font-bold text-white sm:text-6xl">
+            My journey & expertise.
+          </h2>
+        </div>
 
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-20">
           {/* Experience column */}
-          <div>
-            <h2 className="mb-10 font-display text-3xl font-semibold text-white sm:text-4xl">Career</h2>
+          <div className="space-y-6">
+            <h3 className="font-display text-2xl font-bold text-white">Career</h3>
 
-            <div className="flex flex-col border-t border-border">
+            <div className="space-y-4">
               {experiences.map((exp) => (
-                <div key={exp.id} className="group border-b border-border py-7">
-                  <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-start">
-                    <div>
-                      <div className="mb-1.5 flex items-center gap-2.5">
+                <div
+                  key={exp.id}
+                  className="group rounded-lg border border-white/10 bg-linear-to-br from-white/7 to-white/2 p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
+                >
+                  <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-start">
+                    <div className="flex-1">
+                      <div className="mb-2 flex items-center gap-2">
                         {exp.current && (
                           <span className="relative flex h-1.5 w-1.5 shrink-0">
-                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
+                            <span className="absolute inline-flex h-full w-full animate-pulse rounded-full bg-primary opacity-75" />
                             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
                           </span>
                         )}
-                        <h3 className="text-sm font-bold text-white">{exp.role}</h3>
+                        <h3 className="font-display text-base font-semibold text-white">
+                          {exp.role}
+                        </h3>
                       </div>
-                      <p className="font-mono text-xs uppercase tracking-widest text-white/40">
-                        @ {exp.company}
+                      <p className="font-mono text-xs uppercase tracking-widest text-primary/60">
+                        {exp.company}
                       </p>
                     </div>
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/30">
+                    <span className="font-mono text-xs font-semibold uppercase tracking-widest text-white/40">
                       {exp.period}
                     </span>
                   </div>
 
-                  <p className="mt-3 max-w-md text-[13px] leading-relaxed text-white/45">
+                  <p className="mt-4 text-sm leading-relaxed text-white/60">
                     {exp.description}
                   </p>
 
-                  <div className="mt-4 flex flex-wrap gap-1.5">
+                  <div className="mt-4 flex flex-wrap gap-2">
                     {exp.highlights.map((highlight) => (
-                      <span key={highlight} className="tag-pill">
+                      <span
+                        key={highlight}
+                        className="rounded-full border border-primary/20 bg-primary/8 px-3 py-1 font-mono text-xs font-medium text-primary/80 transition-all duration-300 group-hover:border-primary/40 group-hover:bg-primary/12"
+                      >
                         {highlight}
                       </span>
                     ))}
@@ -111,19 +124,21 @@ const CareersSkills = () => {
           </div>
 
           {/* Skills column */}
-          <div>
-            <h2 className="mb-10 font-display text-3xl font-semibold text-white sm:text-4xl">Skills</h2>
+          <div className="space-y-6">
+            <h3 className="font-display text-2xl font-bold text-white">Core Skills</h3>
 
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {skills.map((skill) => (
                 <div
                   key={skill.name}
-                  className="card-interactive flex items-center gap-3.5 px-4 py-4"
+                  className="group rounded-lg border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:border-primary/40 hover:bg-primary/8 hover:shadow-md hover:shadow-primary/10 flex items-center gap-3"
                 >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border bg-white/3 text-primary/80">
-                    <skill.icon className="h-4 w-4" strokeWidth={1.75} />
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-primary/80 transition-colors group-hover:border-primary/40 group-hover:bg-primary/12">
+                    <skill.icon className="h-4 w-4" strokeWidth={1.5} />
                   </div>
-                  <span className="text-xs font-bold tracking-wide text-white/85">{skill.name}</span>
+                  <span className="font-semibold text-white/85 transition-colors group-hover:text-white">
+                    {skill.name}
+                  </span>
                 </div>
               ))}
             </div>

@@ -3,112 +3,142 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
+const STATUS_STEPS = ["Compiling", "Rendering", "Ready"];
+const RADIUS = 34;
+const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+
 export default function InitialLoader() {
   const [isLoading, setIsLoading] = useState(true);
-  const loaderRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
+  const [statusIndex, setStatusIndex] = useState(0);
+  const rootRef = useRef<HTMLDivElement>(null);
   const percentRef = useRef<HTMLSpanElement>(null);
+  const ringRef = useRef<SVGCircleElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        onComplete: () => {
-          setIsLoading(false);
-        },
-      });
+    const statusInterval = setInterval(() => {
+      setStatusIndex((i) => (i < STATUS_STEPS.length - 1 ? i + 1 : i));
+    }, 400);
 
-      // Initial state
-      gsap.set(".loader-item", { opacity: 0, y: 20 });
-      gsap.set(progressRef.current, { scaleX: 0 });
+    const ctx = gsap.context(() => {
+      const counter = { value: 0 };
+
+      gsap.set(".loader-item", { opacity: 0, y: 14 });
+      gsap.set(ringRef.current, { strokeDashoffset: CIRCUMFERENCE });
+      gsap.set(rootRef.current, { clipPath: "inset(0% 0% 0% 0%)" });
+
+      const tl = gsap.timeline({
+        onComplete: () => setIsLoading(false),
+      });
 
       tl.to(".loader-item", {
         opacity: 1,
         y: 0,
-        duration: 0.8,
-        stagger: 0.1,
+        duration: 0.45,
+        stagger: 0.06,
         ease: "power3.out",
       })
         .to(
-          progressRef.current,
+          ringRef.current,
+          { strokeDashoffset: 0, duration: 0.85, ease: "power2.out" },
+          "<"
+        )
+        .to(
+          counter,
           {
-            scaleX: 1,
-            duration: 2.5,
-            ease: "power2.inOut",
-            onUpdate: function () {
+            value: 100,
+            duration: 0.85,
+            ease: "power2.out",
+            onUpdate: () => {
               if (percentRef.current) {
-                percentRef.current.textContent = Math.floor(this.progress() * 100).toString();
+                percentRef.current.textContent = Math.floor(counter.value).toString();
               }
             },
           },
-          "-=0.5"
+          "<"
         )
-        .to(".loader-item, .loader-progress-wrap", {
+        .to(".loader-item", {
           opacity: 0,
-          y: -20,
-          duration: 0.5,
-          ease: "power3.in",
-          stagger: 0.05,
+          y: -10,
+          duration: 0.28,
+          stagger: 0.04,
+          ease: "power2.in",
         })
-        .to(loaderRef.current, {
-          yPercent: -100,
-          duration: 1.2,
-          ease: "expo.inOut",
-        });
-    }, loaderRef);
+        .set(rootRef.current, { pointerEvents: "none" })
+        .to(
+          rootRef.current,
+          {
+            clipPath: "inset(0% 0% 100% 0%)",
+            duration: 0.55,
+            ease: "power4.inOut",
+          },
+          "-=0.05"
+        );
+    }, rootRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      clearInterval(statusInterval);
+    };
   }, []);
 
   if (!isLoading) return null;
 
   return (
     <div
-      ref={loaderRef}
+      ref={rootRef}
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background"
     >
       {/* Background accent */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -left-1/4 -top-1/4 h-1/2 w-1/2 rounded-full bg-primary/5 blur-[120px]" />
-        <div className="absolute -bottom-1/4 -right-1/4 h-1/2 w-1/2 rounded-full bg-primary/5 blur-[120px]" />
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="line-grid absolute inset-0 opacity-[0.025]" />
+        <div className="absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-[110px]" />
       </div>
 
       <div className="relative z-10 flex flex-col items-center">
-        {/* Logo mark */}
-        <div className="loader-item mb-8 flex h-12 w-12 items-center justify-center rounded-md bg-primary font-display text-xl font-bold text-primary-foreground shadow-[0_0_30px_color-mix(in_oklch,var(--primary)_35%,transparent)]">
-          A
-        </div>
-
-        <div className="overflow-hidden">
-          <h1 className="loader-item font-display text-2xl font-bold uppercase tracking-[0.4em] text-white sm:text-3xl">
-            Aklilu Tamirat
-          </h1>
-        </div>
-
-        <div className="overflow-hidden mt-3">
-          <p className="loader-item text-[10px] uppercase tracking-[0.35em] text-white/30">
-            Engineering Digital Excellence
-          </p>
-        </div>
-
-        {/* Progress bar */}
-        <div className="loader-progress-wrap mt-12 w-48 sm:w-64">
-          <div className="flex justify-between mb-2">
-            <span className="text-[9px] uppercase tracking-[0.2em] text-white/20">Loading System</span>
-            <span className="text-[9px] font-mono text-white/40">
-              <span ref={percentRef}>0</span>%
-            </span>
-          </div>
-          <div className="h-[1px] w-full bg-white/5">
-            <div
-              ref={progressRef}
-              className="h-full w-full origin-left bg-primary shadow-[0_0_10px_color-mix(in_oklch,var(--primary)_60%,transparent)]"
+        {/* Ring-wrapped monogram */}
+        <div className="loader-item relative mb-7 flex h-20 w-20 items-center justify-center">
+          <svg className="absolute inset-0 -rotate-90" viewBox="0 0 80 80">
+            <circle
+              cx="40"
+              cy="40"
+              r={RADIUS}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1"
+              className="text-white/8"
             />
-          </div>
+            <circle
+              ref={ringRef}
+              cx="40"
+              cy="40"
+              r={RADIUS}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeDasharray={CIRCUMFERENCE}
+              className="text-primary"
+            />
+          </svg>
+          <span className="flex h-11 w-11 items-center justify-center rounded-md bg-primary font-display text-lg font-bold text-primary-foreground shadow-[0_0_30px_color-mix(in_oklch,var(--primary)_35%,transparent)]">
+            A
+          </span>
         </div>
+
+        {/* Counter */}
+        <div className="loader-item flex items-baseline gap-1 font-display text-4xl font-semibold tabular-nums text-white sm:text-5xl">
+          <span ref={percentRef}>0</span>
+          <span className="text-base text-white/25">%</span>
+        </div>
+
+        {/* Status cycle */}
+        <p className="loader-item mt-5 font-mono text-[10px] uppercase tracking-[0.35em] text-white/35">
+          {STATUS_STEPS[statusIndex]}
+        </p>
       </div>
 
       {/* Bottom info */}
-      <div className="loader-item absolute bottom-12 text-[9px] uppercase tracking-[0.3em] text-white/10">
+      <div className="loader-item absolute bottom-12 font-mono text-[9px] uppercase tracking-[0.3em] text-white/10">
         Portfolio · {new Date().getFullYear()} · v2.1
       </div>
     </div>

@@ -22,7 +22,10 @@ function PortraitMesh({ src, progressRef, pointerRef }: PortraitCanvasProps) {
   const materialRef = useRef<THREE.MeshBasicMaterial>(null);
   const backMaterialRef = useRef<THREE.MeshBasicMaterial>(null);
 
-  const aspect = texture.image ? texture.image.width / texture.image.height : 1;
+  const image = texture.image as unknown;
+  const aspect = image && typeof image === "object" && "width" in image && "height" in image
+    ? (image as { width: number; height: number }).width / (image as { width: number; height: number }).height
+    : 1;
   const height = 2.1;
   const width = height * aspect;
 

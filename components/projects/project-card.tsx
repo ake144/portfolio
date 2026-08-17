@@ -97,66 +97,81 @@ function CardVisual({ project, index, featured }: { project: Project; index: num
 
 export function ProjectCard({ project, featured = false }: ProjectCardProps) {
   const index = project.id - 1;
-  const className = `card-interactive group flex overflow-hidden ${
-    featured ? "flex-col lg:flex-row" : "flex-col"
+  const className = `card-interactive group relative overflow-hidden rounded-xl border border-white/10 bg-linear-to-br from-white/7 to-white/3 backdrop-blur-sm transition-all duration-500 flex ${
+    featured ? "flex-col lg:flex-row hover:border-primary/40 hover:shadow-xl hover:shadow-primary/20" : "flex-col hover:border-primary/30 hover:shadow-lg hover:shadow-primary/15"
   }`;
 
   const body = (
     <>
       {/* Visual header */}
-      <div className={featured ? "h-56 shrink-0 lg:h-auto lg:w-[42%]" : "h-44 shrink-0"}>
+      <div className={featured ? "relative h-56 shrink-0 lg:h-auto lg:w-[45%]" : "relative h-44 shrink-0 overflow-hidden"}>
         <CardVisual project={project} index={index} featured={featured} />
+        <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/20 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
       </div>
 
       {/* Content */}
-      <div className={`flex flex-1 flex-col p-6 ${featured ? "sm:p-8" : ""}`}>
-        <div className="mb-3 flex items-start justify-between gap-3">
-          <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.3em] text-white/35">
-            {project.category}
-          </p>
-          <span
-            className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md border transition-all duration-300 ${
+      <div className={`flex flex-1 flex-col ${featured ? "p-7 sm:p-8" : "p-6"}`}>
+        {/* Header row */}
+        <div className="mb-4 flex items-start justify-between gap-3">
+          <div className="flex flex-col gap-2">
+            <p className="font-mono text-[9px] font-semibold uppercase tracking-widest text-primary/75">
+              {project.category}
+            </p>
+          </div>
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-all duration-300 ${
               project.link
-                ? "border-border text-white/30 group-hover:border-primary/40 group-hover:bg-primary/10 group-hover:text-primary"
-                : "border-border text-white/15"
+                ? "border-white/15 text-white/40 group-hover:border-primary/60 group-hover:bg-primary/15 group-hover:text-primary"
+                : "border-white/10 text-white/20"
             }`}
+            aria-label={project.link ? `Visit ${project.title}` : "Not available"}
           >
             {project.link ? (
-              <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             ) : (
-              <Lock className="h-3 w-3" />
+              <Lock className="h-3.5 w-3.5" />
             )}
-          </span>
+          </a>
         </div>
 
+        {/* Title */}
         <h3
-          className={`font-display font-semibold leading-tight text-white ${
-            featured ? "text-2xl sm:text-3xl" : "text-lg"
+          className={`font-display font-bold leading-tight text-white ${
+            featured ? "text-2xl sm:text-3xl mb-3" : "text-lg mb-2"
           }`}
         >
           {project.title}
         </h3>
 
-        <p className={`mt-3 leading-relaxed text-white/45 ${featured ? "text-sm sm:text-[15px]" : "text-[13px]"}`}>
+        {/* Description */}
+        <p className={`leading-relaxed text-white/55 ${featured ? "text-[15px] mb-5" : "text-sm mb-3"}`}>
           {featured ? project.detail : project.description}
         </p>
 
+        {/* Bullets for featured */}
         {featured && project.bullets.length > 0 && (
-          <ul className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-3">
+          <div className="mb-6 grid grid-cols-1 gap-2 sm:grid-cols-3">
             {project.bullets.map((bullet) => (
-              <li
+              <div
                 key={bullet}
-                className="rounded-md border border-border bg-white/2 px-3 py-2 text-[11px] leading-snug text-white/50"
+                className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 font-mono text-[11px] leading-snug text-white/50 transition-colors duration-300 group-hover:border-primary/30 group-hover:bg-primary/8 group-hover:text-white/70"
               >
                 {bullet}
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         )}
 
-        <div className="mt-auto flex flex-wrap gap-1.5 pt-6">
-          {project.tags.slice(0, featured ? project.tags.length : 4).map((tag) => (
-            <span key={tag} className="tag-pill">
+        {/* Tags */}
+        <div className="mt-auto flex flex-wrap gap-2 pt-4">
+          {project.tags.slice(0, featured ? project.tags.length : 3).map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full border border-primary/20 bg-primary/8 px-3 py-1 font-mono text-xs font-medium text-primary/80 transition-all duration-300 group-hover:border-primary/40 group-hover:bg-primary/12"
+            >
               {tag}
             </span>
           ))}

@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
           typeof (m as { content?: unknown }).content === "string"
       )
       .slice(-8)
-      .map((m) => ({ role: m.role as "user" | "assistant", content: m.content.slice(0, 1000) }));
+      .map((m: { role: string; content: string }) => ({ role: m.role as "user" | "assistant", content: m.content.slice(0, 1000) }));
 
     const lastUserMessage = [...history].reverse().find((m) => m.role === "user");
     if (!lastUserMessage) {

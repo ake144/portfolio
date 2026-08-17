@@ -96,24 +96,25 @@ const Projects = () => {
   const [featured, ...rest] = projects;
 
   return (
-    <section id="projects" className="relative w-full border-t border-border py-24 sm:py-32">
+    <section id="projects" className="relative w-full border-t border-white/10 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-14 flex flex-col gap-6 sm:mb-16 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-16 flex flex-col gap-8 border-b border-white/10 pb-10 sm:mb-20 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="eyebrow mb-5">
-              <span>02</span>Projects
+              <span>02</span>Featured Work
             </p>
-            <h2 className="section-heading">Selected work.</h2>
+            <h2 className="font-display text-5xl font-bold text-white sm:text-6xl">
+              Projects & products.
+            </h2>
           </div>
-          <p className="max-w-sm text-sm leading-relaxed text-white/45">
-            A curated set of products shipped across fintech, education, entertainment, and
-            commerce — from open-source tooling to systems running in production today.
+          <p className="max-w-md text-base leading-relaxed text-white/50">
+            Production-grade systems serving 100K+ users. From fintech & e-commerce to AI-powered platforms and design systems.
           </p>
         </div>
 
         {/* Featured + grid */}
-        <div className="grid grid-cols-1 gap-4">
+        <div className="space-y-6">
           <ProjectCard project={featured} featured />
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {rest.map((project) => (
