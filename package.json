@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@prisma/adapter-pg": "^7.9.1",
     "@prisma/client": "^7.9.1",
     "@radix-ui/react-hover-card": "^1.1.15",
     "@radix-ui/react-slot": "^1.2.3",
@@ -28,6 +29,7 @@
     "next-themes": "^0.4.6",
     "nodemailer": "^7.0.11",
     "openai": "^7.4.0",
+    "pg": "^8.23.0",
     "qss": "^3.0.0",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
