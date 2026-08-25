@@ -118,23 +118,20 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
               {project.category}
             </p>
           </div>
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
+          <span
+            aria-hidden="true"
             className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-all duration-300 ${
               project.link
                 ? "border-white/15 text-white/40 group-hover:border-primary/60 group-hover:bg-primary/15 group-hover:text-primary"
                 : "border-white/10 text-white/20"
             }`}
-            aria-label={project.link ? `Visit ${project.title}` : "Not available"}
           >
             {project.link ? (
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             ) : (
               <Lock className="h-3.5 w-3.5" />
             )}
-          </a>
+          </span>
         </div>
 
         {/* Title */}

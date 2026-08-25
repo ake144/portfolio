@@ -20,17 +20,16 @@ const AboutMe = () => {
 
         {/* Top: portrait + intro */}
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
-          {/* Left: image */}
-          <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-linear-to-br from-white/8 to-white/2 p-1 shadow-xl transition-all duration-500 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10">
-            <div className="absolute left-4 top-4 z-10 font-mono text-[9px] font-semibold tracking-widest text-white/30">
-              // Profile
-            </div>
-            <div className="absolute bottom-4 right-4 z-10 font-mono text-[9px] font-semibold tracking-widest text-primary/60">
-              ACTIVE
-            </div>
-            <div className="aspect-square overflow-hidden bg-surface-1 rounded-lg">
-              <ScrollPortrait src="/avatar1.png" alt="Aklilu Tamirat" />
-            </div>
+          {/* Left: image — no card chrome, the photo itself is the whole
+              element. aspect-[4/5] plus the cover-fit texture mapping in
+              PortraitCanvas means it fills edge to edge with no gap. */}
+          <div className="relative overflow-hidden rounded-2xl aspect-4/5">
+            <ScrollPortrait
+              src="/avatar1.png"
+              alt="Aklilu Tamirat"
+              name="Aklilu Tamirat"
+              role="Full-Stack & AI Engineer"
+            />
           </div>
 
           {/* Right: intro */}
@@ -102,8 +101,8 @@ const AboutMe = () => {
             </div>
 
             <div className="space-y-4 border-l-2 border-primary/30 pl-6 text-base leading-relaxed text-white/60">
-              <p>
-                I'm currently a software developer at{" "}
+              <div>
+                I&apos;m currently a software developer at{" "}
                 <LinkPreview
                   url="https://m-pesa.safaricom.et/"
                   imageSrc="/safari.png"
@@ -114,7 +113,7 @@ const AboutMe = () => {
                 </LinkPreview>
                 , where I architect scalable fintech products, integrating LLM-powered features and
                 robust backend services for millions of users.
-              </p>
+              </div>
               <p>
                 I believe great engineering means shipping fast, iterating based on real feedback, and
                 never compromising on quality or user experience.

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowDown, Github, Linkedin, Twitter } from "lucide-react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import HeroScene from "./three/hero-scene";
 
 const STACK = [
   { key: "ai", value: "LangChain / RAG / Agents" },
@@ -22,13 +23,14 @@ const SOCIALS = [
 
 const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
+  const primaryBtnRef = useRef<HTMLAnchorElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
+    const cleanups: Array<() => void> = [];
 
     const ctx = gsap.context(() => {
-      // Staggered entrance for hero elements
       gsap.from(".hero-fade-in", {
         opacity: 0,
         y: 24,
@@ -37,7 +39,6 @@ const HeroSection = () => {
         ease: "power3.out",
       });
 
-      // Subtle text reveal for main heading
       gsap.from(".hero-heading-word", {
         opacity: 0,
         y: 40,
@@ -46,9 +47,60 @@ const HeroSection = () => {
         ease: "power2.out",
         delay: 0.1,
       });
+
+      // Magnetic pull on the primary CTA — a small, contained attraction
+      // toward the cursor within its own bounding box, resting back at 0.
+      const btn = primaryBtnRef.current;
+      if (btn) {
+        const xTo = gsap.quickTo(btn, "x", { duration: 0.45, ease: "power3" });
+        const yTo = gsap.quickTo(btn, "y", { duration: 0.45, ease: "power3" });
+        const handleMove = (e: MouseEvent) => {
+          const rect = btn.getBoundingClientRect();
+          xTo((e.clientX - (rect.left + rect.width / 2)) * 0.25);
+          yTo((e.clientY - (rect.top + rect.height / 2)) * 0.25);
+        };
+        const handleLeave = () => {
+          xTo(0);
+          yTo(0);
+        };
+        btn.addEventListener("mousemove", handleMove);
+        btn.addEventListener("mouseleave", handleLeave);
+        cleanups.push(() => {
+          btn.removeEventListener("mousemove", handleMove);
+          btn.removeEventListener("mouseleave", handleLeave);
+        });
+      }
+
+      // Holographic tilt on the code panel, same interaction language as
+      // the About section's portrait card.
+      const panel = panelRef.current;
+      if (panel) {
+        const rotateXTo = gsap.quickTo(panel, "rotateX", { duration: 0.6, ease: "power3" });
+        const rotateYTo = gsap.quickTo(panel, "rotateY", { duration: 0.6, ease: "power3" });
+        const handlePanelMove = (e: MouseEvent) => {
+          const rect = panel.getBoundingClientRect();
+          const px = (e.clientX - rect.left) / rect.width - 0.5;
+          const py = (e.clientY - rect.top) / rect.height - 0.5;
+          rotateYTo(px * 9);
+          rotateXTo(-py * 9);
+        };
+        const handlePanelLeave = () => {
+          rotateXTo(0);
+          rotateYTo(0);
+        };
+        panel.addEventListener("mousemove", handlePanelMove);
+        panel.addEventListener("mouseleave", handlePanelLeave);
+        cleanups.push(() => {
+          panel.removeEventListener("mousemove", handlePanelMove);
+          panel.removeEventListener("mouseleave", handlePanelLeave);
+        });
+      }
     }, containerRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      cleanups.forEach((fn) => fn());
+    };
   }, []);
 
   return (
@@ -56,24 +108,16 @@ const HeroSection = () => {
       ref={containerRef}
       className="relative flex min-h-screen w-full flex-col justify-center overflow-hidden pt-28 pb-16 sm:pt-32 lg:pt-24"
     >
-      {/* Dynamic gradient backdrop */}
-      <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute left-1/2 top-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-primary/8 blur-[150px]" />
-        <div className="absolute right-0 top-1/3 h-[500px] w-[600px] rounded-full bg-primary/5 blur-[120px]" />
-      </div>
+      {/* Soft base tone — the particle network below carries the rest of the atmosphere */}
+      <div className="pointer-events-none absolute left-1/2 top-0 z-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-primary/6 blur-[150px]" />
 
-      {/* Ghost background text */}
-      <div className="pointer-events-none absolute inset-x-0 top-[15%] z-0 flex justify-center opacity-[0.03] select-none">
-        <h1 className="whitespace-nowrap text-center font-display text-[18vw] font-bold uppercase leading-none tracking-tighter">
-          EXCELLENCE
-        </h1>
-      </div>
+      <HeroScene />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left column — Hero content */}
           <div className="flex flex-col justify-center space-y-8">
-            {/* Status badge with enhanced design */}
+            {/* Status badge */}
             <div className="hero-fade-in">
               <div className="inline-flex items-center gap-3 rounded-full border border-primary/30 bg-gradient-to-r from-primary/12 to-primary/5 px-4 py-2 backdrop-blur-sm">
                 <span className="relative flex h-2 w-2">
@@ -89,10 +133,10 @@ const HeroSection = () => {
               </p>
             </div>
 
-            {/* Main heading with dynamic styling */}
-            <div ref={textRef} className="space-y-2">
+            {/* Main heading */}
+            <div className="space-y-1">
               <div className="hero-heading-word">
-                <h1 className="font-display text-5xl font-bold leading-tight text-white sm:text-6xl md:text-7xl">
+                <h1 className="font-display text-6xl font-bold leading-[1.05] text-white sm:text-7xl md:text-8xl">
                   Full-Stack{" "}
                   <span className="bg-gradient-to-r from-primary via-primary to-primary/70 bg-clip-text text-transparent">
                     Developer
@@ -100,13 +144,14 @@ const HeroSection = () => {
                 </h1>
               </div>
               <div className="hero-heading-word">
-                <h2 className="font-display text-4xl font-bold leading-tight text-white/60 sm:text-5xl md:text-6xl">
+                <h2 className="font-display text-5xl font-bold leading-[1.05] text-white/55 sm:text-6xl md:text-7xl">
                   &amp; AI Engineer
+                  <span className="animate-blink ml-1 inline-block h-[0.75em] w-[3px] translate-y-1 bg-primary align-middle" />
                 </h2>
               </div>
             </div>
 
-            {/* Enhanced description */}
+            {/* Description */}
             <div className="hero-fade-in space-y-4">
               <p className="max-w-lg text-base leading-relaxed text-white/60 md:text-lg">
                 Shipping production systems with React, Next.js, Node.js, and LLM integrations. 4+ years building
@@ -118,8 +163,9 @@ const HeroSection = () => {
             {/* CTA Buttons */}
             <div className="hero-fade-in flex flex-col gap-4 sm:flex-row sm:items-center">
               <Link
+                ref={primaryBtnRef}
                 href="/#projects"
-                className="group inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-semibold text-primary-foreground transition-all duration-300 hover:shadow-[0_0_30px_color-mix(in_oklch,var(--primary)_40%,transparent)] hover:scale-105"
+                className="group inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-semibold text-primary-foreground transition-shadow duration-300 hover:shadow-[0_0_30px_color-mix(in_oklch,var(--primary)_40%,transparent)]"
               >
                 Explore My Work
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -149,9 +195,15 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right column — Code window showcase */}
-          <div className="hero-fade-in delay-300 hidden items-center justify-end lg:flex">
-            <div className="w-full overflow-hidden rounded-xl border border-white/10 bg-white/5 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:border-primary/30 hover:bg-white/7">
+          {/* Right column — Code window showcase, with a mouse-tracked 3D tilt */}
+          <div
+            className="hero-fade-in delay-300 hidden items-center justify-end lg:flex"
+            style={{ perspective: "1200px" }}
+          >
+            <div
+              ref={panelRef}
+              className="w-full overflow-hidden rounded-xl border border-white/10 bg-white/5 shadow-2xl backdrop-blur-sm transition-colors duration-500 will-change-transform hover:border-primary/30 hover:bg-white/7"
+            >
               {/* Window header */}
               <div className="flex items-center justify-between border-b border-white/10 px-4 py-4">
                 <div className="flex gap-2">
@@ -164,10 +216,10 @@ const HeroSection = () => {
               {/* Window content */}
               <div className="p-6">
                 <p className="mb-6 font-mono text-[10px] font-semibold uppercase tracking-widest text-white/40">
-                  // Tech Stack
+                  {"// Tech Stack"}
                 </p>
                 <div className="space-y-4">
-                  {STACK.map((row, i) => (
+                  {STACK.map((row) => (
                     <div key={row.key} className="group flex items-start gap-3">
                       <span className="shrink-0 font-mono text-xs text-primary/75 group-hover:text-primary">
                         →
