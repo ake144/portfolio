@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowUp, Sparkles } from "lucide-react";
+import { ArrowUp, RotateCcw, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -17,15 +17,57 @@ const SUGGESTED_PROMPTS = [
   "How do I get in touch with him?",
 ];
 
+// Kept entirely client-side, on purpose — a conversation transcript has no
+// reason to touch Supabase (that DB holds résumé embeddings + the rate-limit
+// counter, nothing else). localStorage is plenty: chat text is small, the
+// API is synchronous, and every browser gives it comfortably more room than
+// this will ever need.
+const STORAGE_KEY = "portfolio:ask-me:messages";
+const MAX_STORED_MESSAGES = 40;
+
 export function ChatPanel() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
+  // Hydrate from localStorage after mount — never during the initial render,
+  // so server and client agree on the first paint (messages: []) and there's
+  // no hydration mismatch.
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) setMessages(parsed);
+    } catch {
+      // Corrupted or inaccessible (private browsing, storage disabled) —
+      // just start with an empty conversation.
+    }
+  }, []);
+
+  // Persist on every change, capped so a long-lived conversation doesn't
+  // grow the stored payload forever.
+  useEffect(() => {
+    try {
+      if (messages.length === 0) {
+        localStorage.removeItem(STORAGE_KEY);
+      } else {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(messages.slice(-MAX_STORED_MESSAGES)));
+      }
+    } catch {
+      // Quota exceeded or storage unavailable — conversation still works,
+      // it just won't survive a reload this time.
+    }
+  }, [messages]);
+
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages]);
+
+  const clearConversation = () => {
+    setMessages([]);
+  };
 
   const send = async (text: string) => {
     const trimmed = text.trim();
@@ -80,6 +122,20 @@ export function ChatPanel() {
 
   return (
     <div className="flex flex-1 flex-col">
+      {messages.length > 0 && (
+        <div className="flex items-center justify-end border-b border-border px-4 py-2">
+          <button
+            type="button"
+            onClick={clearConversation}
+            disabled={loading}
+            className="flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-widest text-white/30 transition-colors hover:text-primary disabled:pointer-events-none disabled:opacity-40"
+          >
+            <RotateCcw className="h-3 w-3" />
+            New conversation
+          </button>
+        </div>
+      )}
+
       {/* Messages */}
       <div ref={scrollRef} className="flex-1 space-y-5 overflow-y-auto p-6" style={{ maxHeight: 460 }}>
         {messages.length === 0 && (

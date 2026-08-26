@@ -3,27 +3,50 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
-const STATUS_STEPS = ["Compiling", "Rendering", "Ready"];
-const RADIUS = 34;
-const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+const STATUS_STEPS = ["Connecting", "Syncing", "Online"];
+
+// A deterministic, hand-tuned scatter (not random — this renders identically
+// every load) that reads as a small constellation around the mark, echoing
+// the particle network in the hero rather than a generic loading spinner.
+const RADIAL_NODES = [
+  { angle: 8, radius: 78 },
+  { angle: 42, radius: 88 },
+  { angle: 78, radius: 74 },
+  { angle: 118, radius: 92 },
+  { angle: 152, radius: 80 },
+  { angle: 188, radius: 86 },
+  { angle: 222, radius: 76 },
+  { angle: 258, radius: 90 },
+  { angle: 298, radius: 82 },
+  { angle: 334, radius: 94 },
+];
+
+const CENTER = 120;
+
+const NODES = RADIAL_NODES.map(({ angle, radius }) => {
+  const rad = (angle * Math.PI) / 180;
+  return { x: CENTER + radius * Math.cos(rad), y: CENTER + radius * Math.sin(rad) };
+});
+
+const RIM_EDGES = NODES.map((_, i) => [i, (i + 1) % NODES.length] as const);
 
 export default function InitialLoader() {
   const [isLoading, setIsLoading] = useState(true);
   const [statusIndex, setStatusIndex] = useState(0);
   const rootRef = useRef<HTMLDivElement>(null);
   const percentRef = useRef<HTMLSpanElement>(null);
-  const ringRef = useRef<SVGCircleElement>(null);
 
   useEffect(() => {
     const statusInterval = setInterval(() => {
       setStatusIndex((i) => (i < STATUS_STEPS.length - 1 ? i + 1 : i));
-    }, 400);
+    }, 380);
 
     const ctx = gsap.context(() => {
       const counter = { value: 0 };
 
       gsap.set(".loader-item", { opacity: 0, y: 14 });
-      gsap.set(ringRef.current, { strokeDashoffset: CIRCUMFERENCE });
+      gsap.set(".loader-node", { opacity: 0, scale: 0, transformOrigin: "center" });
+      gsap.set(".loader-spoke, .loader-rim", { strokeDashoffset: 1 });
       gsap.set(rootRef.current, { clipPath: "inset(0% 0% 0% 0%)" });
 
       const tl = gsap.timeline({
@@ -33,14 +56,24 @@ export default function InitialLoader() {
       tl.to(".loader-item", {
         opacity: 1,
         y: 0,
-        duration: 0.45,
-        stagger: 0.06,
+        duration: 0.4,
+        stagger: 0.05,
         ease: "power3.out",
       })
         .to(
-          ringRef.current,
-          { strokeDashoffset: 0, duration: 0.85, ease: "power2.out" },
+          ".loader-node",
+          { opacity: 1, scale: 1, duration: 0.35, stagger: 0.025, ease: "back.out(2.2)" },
           "<"
+        )
+        .to(
+          ".loader-spoke",
+          { strokeDashoffset: 0, duration: 0.7, stagger: 0.02, ease: "power2.out" },
+          "<+=0.05"
+        )
+        .to(
+          ".loader-rim",
+          { strokeDashoffset: 0, duration: 0.6, stagger: 0.015, ease: "power1.out" },
+          "<+=0.1"
         )
         .to(
           counter,
@@ -54,15 +87,15 @@ export default function InitialLoader() {
               }
             },
           },
-          "<"
+          "<-=0.15"
         )
         .to(".loader-item", {
           opacity: 0,
           y: -10,
-          duration: 0.28,
-          stagger: 0.04,
+          duration: 0.26,
+          stagger: 0.03,
           ease: "power2.in",
-        })
+        }, "+=0.12")
         .set(rootRef.current, { pointerEvents: "none" })
         .to(
           rootRef.current,
@@ -95,34 +128,53 @@ export default function InitialLoader() {
       </div>
 
       <div className="relative z-10 flex flex-col items-center">
-        {/* Ring-wrapped monogram */}
-        <div className="loader-item relative mb-7 flex h-20 w-20 items-center justify-center">
-          <svg className="absolute inset-0 -rotate-90" viewBox="0 0 80 80">
-            <circle
-              cx="40"
-              cy="40"
-              r={RADIUS}
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1"
-              className="text-white/8"
-            />
-            <circle
-              ref={ringRef}
-              cx="40"
-              cy="40"
-              r={RADIUS}
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeDasharray={CIRCUMFERENCE}
-              className="text-primary"
-            />
+        {/* Constellation + monogram */}
+        <div className="loader-item relative mb-7 h-40 w-40 sm:h-48 sm:w-48">
+          <svg viewBox="0 0 240 240" className="pointer-events-none absolute inset-0 h-full w-full overflow-visible">
+            {RIM_EDGES.map(([a, b]) => (
+              <line
+                key={`rim-${a}-${b}`}
+                className="loader-rim text-white/10"
+                x1={NODES[a].x}
+                y1={NODES[a].y}
+                x2={NODES[b].x}
+                y2={NODES[b].y}
+                stroke="currentColor"
+                strokeWidth="1"
+                pathLength={1}
+                strokeDasharray={1}
+              />
+            ))}
+            {NODES.map((n, i) => (
+              <line
+                key={`spoke-${i}`}
+                className="loader-spoke text-primary/35"
+                x1={CENTER}
+                y1={CENTER}
+                x2={n.x}
+                y2={n.y}
+                stroke="currentColor"
+                strokeWidth="1"
+                pathLength={1}
+                strokeDasharray={1}
+              />
+            ))}
+            {NODES.map((n, i) => (
+              <circle
+                key={`node-${i}`}
+                className="loader-node text-primary"
+                cx={n.x}
+                cy={n.y}
+                r={3.2}
+                fill="currentColor"
+              />
+            ))}
           </svg>
-          <span className="flex h-11 w-11 items-center justify-center rounded-md bg-primary font-display text-lg font-bold text-primary-foreground shadow-[0_0_30px_color-mix(in_oklch,var(--primary)_35%,transparent)]">
-            A
-          </span>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="flex h-11 w-11 items-center justify-center rounded-md bg-primary font-display text-lg font-bold text-primary-foreground shadow-[0_0_30px_color-mix(in_oklch,var(--primary)_35%,transparent)]">
+              A
+            </span>
+          </div>
         </div>
 
         {/* Counter */}

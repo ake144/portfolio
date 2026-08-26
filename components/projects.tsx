@@ -15,11 +15,11 @@ const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "PostgreSQL"],
     link: "https://store.biyxy.com/",
     bullets: ["Order management", "Inventory visibility", "Operator-first dashboard"],
-    // image: "/projects/ecommerce-platform.jpg",
+    image: "/store.png",
   },
   {
     id: 2,
-    title: "Esperanza",
+    title: "Biyxy Affiliate Platform",
     description:
       "A digital affiliate platform built to help creators scale influence and track measurable outcomes.",
     detail:
@@ -28,7 +28,7 @@ const projects: Project[] = [
     tags: ["Next.js", "Docker", "PostgreSQL", "TypeScript", "Node.js"],
     link: "https://affiliate.biyxy.com/",
     bullets: ["Campaign tracking", "Containerized deployment", "Payment-ready"],
-    // image: "/projects/esperanza.jpg",
+    image: "/aff.png",
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const projects: Project[] = [
     tags: ["React", "Nest.js", "PostgreSQL", "Redis", "TypeScript"],
     link: "https://hoorafilx.com/",
     bullets: ["Playback focused UX", "Cache-backed browsing", "Large catalogue support"],
-    // image: "/projects/hoorafilx.jpg",
+    image: "/hoora.png",
   },
   {
     id: 4,
