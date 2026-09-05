@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { getMailTransporter } from '@/lib/mailer';
 
 // Email template as HTML
 const getEmailTemplate = (name: string, userEmail: string, company: string, message: string) => `
@@ -27,13 +27,7 @@ export async function POST(req: NextRequest) {
 
     console.log('Sending email from:', email);
 
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
+    const transporter = getMailTransporter();
 
     const mailOptions = {
       from: process.env.EMAIL_USER,

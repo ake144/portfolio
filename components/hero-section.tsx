@@ -2,14 +2,16 @@
 
 import Link from "next/link";
 import { ArrowRight, ArrowDown, Github, Linkedin, Twitter } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import HeroScene from "./three/hero-scene";
+import { useReducedMotion } from "@/lib/use-reduced-motion";
 
 const STACK = [
   { key: "ai", value: "LangChain / RAG / Agents" },
   { key: "frontend", value: "React / Next.js" },
   { key: "backend", value: "Node.js / FastAPI" },
+  { key: "mobile", value: "Flutter / React Native / Kotlin" },
   { key: "llm", value: "OpenAI / Anthropic" },
   { key: "db", value: "PostgreSQL / Vector DB" },
   { key: "devops", value: "Docker / AWS / CI-CD" },
@@ -21,10 +23,61 @@ const SOCIALS = [
   { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
 ];
 
+// Rotates in the hero heading — prefix/highlight sit on the bold first
+// line (highlight carries the gradient), suffix is the muted second line.
+// Kept roughly length-matched so swapping between them doesn't jolt the
+// layout below.
+const ROLES = [
+  { prefix: "Full-Stack", highlight: "Developer", suffix: "& AI Engineer" },
+  { prefix: "Mobile App", highlight: "Developer", suffix: "Flutter · RN · Kotlin" },
+  { prefix: "AI / LLM", highlight: "Engineer", suffix: "RAG · Agents · LangChain" },
+  { prefix: "Cloud & DevOps", highlight: "Engineer", suffix: "Docker · AWS · CI/CD" },
+];
+const ROLE_INTERVAL_MS = 2000;
+
 const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const primaryBtnRef = useRef<HTMLAnchorElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const roleRef = useRef<HTMLDivElement>(null);
+  const isFirstRoleRender = useRef(true);
+  const reducedMotion = useReducedMotion();
+  const [roleIndex, setRoleIndex] = useState(0);
+  const role = ROLES[roleIndex];
+
+  // Cycle the role every ROLE_INTERVAL_MS: fade the current one out, swap
+  // the text once it's invisible, then the effect below fades the new one
+  // back in. Reduced-motion visitors still get the rotation (it's useful
+  // information, not just decoration) but as an instant swap, no motion.
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const el = roleRef.current;
+      if (!el || reducedMotion) {
+        setRoleIndex((i) => (i + 1) % ROLES.length);
+        return;
+      }
+      gsap.to(el, {
+        opacity: 0,
+        y: -16,
+        duration: 0.35,
+        ease: "power2.in",
+        onComplete: () => setRoleIndex((i) => (i + 1) % ROLES.length),
+      });
+    }, ROLE_INTERVAL_MS);
+    return () => clearInterval(interval);
+  }, [reducedMotion]);
+
+  // Fades the new role in — skipped on mount since the page-load entrance
+  // animation below already handles the first reveal.
+  useEffect(() => {
+    if (isFirstRoleRender.current) {
+      isFirstRoleRender.current = false;
+      return;
+    }
+    const el = roleRef.current;
+    if (!el || reducedMotion) return;
+    gsap.fromTo(el, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" });
+  }, [roleIndex, reducedMotion]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -133,19 +186,19 @@ const HeroSection = () => {
               </p>
             </div>
 
-            {/* Main heading */}
-            <div className="space-y-1">
+            {/* Main heading — role rotates every couple seconds, see ROLES above */}
+            <div ref={roleRef} className="space-y-1">
               <div className="hero-heading-word">
                 <h1 className="font-display text-6xl font-bold leading-[1.05] text-white sm:text-7xl md:text-8xl">
-                  Full-Stack{" "}
+                  {role.prefix}{" "}
                   <span className="bg-gradient-to-r from-primary via-primary to-primary/70 bg-clip-text text-transparent">
-                    Developer
+                    {role.highlight}
                   </span>
                 </h1>
               </div>
               <div className="hero-heading-word">
                 <h2 className="font-display text-5xl font-bold leading-[1.05] text-white/55 sm:text-6xl md:text-7xl">
-                  &amp; AI Engineer
+                  {role.suffix}
                   <span className="animate-blink ml-1 inline-block h-[0.75em] w-[3px] translate-y-1 bg-primary align-middle" />
                 </h2>
               </div>
