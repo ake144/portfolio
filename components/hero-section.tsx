@@ -157,15 +157,14 @@ const HeroSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative flex min-h-screen w-full flex-col justify-center overflow-hidden pt-28 pb-16 sm:pt-32 lg:pt-24"
+      className="relative flex min-h-screen w-full flex-col justify-center overflow-hidden pt-28 pb-16 sm:pt-32 md:pt-24"
     >
-      {/* Soft base tone — the particle network below carries the rest of the atmosphere */}
       <div className="pointer-events-none absolute left-1/2 top-0 z-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-primary/6 blur-[150px]" />
 
       <HeroScene />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16">
           {/* Left column — Hero content */}
           <div className="flex flex-col justify-center space-y-8">
             {/* Status badge */}
@@ -184,7 +183,6 @@ const HeroSection = () => {
               </p>
             </div>
 
-            {/* Main heading — role rotates every couple seconds, see ROLES above */}
             <div ref={roleRef} className="space-y-1">
               <div className="hero-heading-word">
                 <h1 className="font-display text-6xl font-bold leading-[1.05] text-white sm:text-7xl md:text-8xl">
@@ -202,7 +200,6 @@ const HeroSection = () => {
               </div>
             </div>
 
-            {/* Description */}
             <div className="hero-fade-in space-y-4">
               <p className="max-w-lg text-base leading-relaxed text-white/60 md:text-lg">
                 Shipping production systems with React, Next.js, Node.js, and LLM integrations. 4+ years building
@@ -229,7 +226,7 @@ const HeroSection = () => {
               </Link>
             </div>
 
-            {/* Social links */}
+        
             <div className="hero-fade-in flex items-center gap-1 pt-4">
               {SOCIALS.map(({ icon: Icon, href, label }) => (
                 <a
@@ -249,7 +246,7 @@ const HeroSection = () => {
 
         <div className=" hidden items-center justify-end md:col-span-4 md:flex">
           <div className="w-full max-w-sm rounded-lg border border-border bg-surface-1/80 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)] backdrop-blur-sm">
-            {/* Window header */}
+
             <div className="flex items-center justify-between border-b border-border px-4 py-3.5">
               <div className="flex gap-1.5">
                 <div className="h-2.5 w-2.5 rounded-full bg-white/15" />
