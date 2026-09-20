@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "ingest": "dotenv -e .env -- tsx scripts/ingest.ts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
