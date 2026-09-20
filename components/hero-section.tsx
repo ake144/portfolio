@@ -124,8 +124,6 @@ const HeroSection = () => {
         });
       }
 
-      // Holographic tilt on the code panel, same interaction language as
-      // the About section's portrait card.
       const panel = panelRef.current;
       if (panel) {
         const rotateXTo = gsap.quickTo(panel, "rotateX", { duration: 0.6, ease: "power3" });
@@ -277,6 +275,7 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+    </div>
 
       {/* Scroll cue */}
       {/* <Link
